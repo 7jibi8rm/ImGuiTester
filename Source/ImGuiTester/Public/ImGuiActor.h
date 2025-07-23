@@ -57,22 +57,6 @@ public:
 private:
 
 	/**
-	 * ImGuiで実行可能なテストケースの種類を定義する列挙型。
-	 * 必要に応じてテスト項目を追加してください。
-	 */
-	enum class ETestCase : uint8
-	{
-		WindowFlags, ///< ImGuiウィンドウフラグのテスト
-		Num,         ///< テストケース数（配列サイズ用）
-	};
-
-	/**
-	 * テストケースごとの有効/無効状態を管理するビット配列。
-	 * チェックボックスUIと連動して各テストのON/OFFを制御します。
-	 */
-	TBitArray<> TestCaseBits;
-
-	/**
 	 * テストケース情報を保持する構造体。
 	 * - FlagIndex: テストケースの識別子
 	 * - TestFunction: 実行するテスト関数
@@ -81,13 +65,13 @@ private:
 	 */
 	struct FtestCase
 	{
-		ETestCase FlagIndex{};              ///< テストケースの識別子
 		TFunction<void()> TestFunction{};   ///< テスト実行用関数
 		FString Name{};                     ///< テスト名
 		FString Description{};              ///< テスト説明
+        bool bDisplayed{ false };			///< UI表示フラグ
 
-		FtestCase(const ETestCase InTestCase, TFunction<void()> InTestFunction, const FString& InName, const FString& InDescription)
-			: FlagIndex(InTestCase), TestFunction(InTestFunction), Name(InName), Description(InDescription) {
+		FtestCase(TFunction<void()> InTestFunction, const FString& InName, const FString& InDescription)
+			: TestFunction(InTestFunction), Name(InName), Description(InDescription) {
 		}
 	};
 
@@ -96,6 +80,11 @@ private:
 	 * ImGuiのUIでボタンや説明文として利用されます。
 	 */
 	TArray<FtestCase> TestCases{};
+
+
+	void TestImGuiBeginAndEnd();
+
+	void TestFuncBeginChild();
 
 	/**
 	 * ImGuiウィンドウフラグのテストを実行します。
