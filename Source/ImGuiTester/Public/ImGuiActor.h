@@ -67,11 +67,10 @@ private:
 	{
 		TFunction<void()> TestFunction{};   ///< テスト実行用関数
 		FString Name{};                     ///< テスト名
-		FString Description{};              ///< テスト説明
         bool bDisplayed{ false };			///< UI表示フラグ
 
-		FtestCase(TFunction<void()> InTestFunction, const FString& InName, const FString& InDescription)
-			: TestFunction(InTestFunction), Name(InName), Description(InDescription) {
+		FtestCase(TFunction<void()> InTestFunction, const FString& InName)
+			: TestFunction(InTestFunction), Name(InName) {
 		}
 	};
 

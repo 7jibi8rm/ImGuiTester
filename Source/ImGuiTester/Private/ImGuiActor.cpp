@@ -118,10 +118,9 @@ AImGuiActor::AImGuiActor()
 	PrimaryActorTick.bCanEverTick = true;
 
 	// テストケース情報を追加
-	TestCases.Add(FtestCase(TestImGuiBeginAndEnd, TEXT("BeginAndEnd"), TEXT("Test ImGui Begin/End functionality.")));
-    TestCases.Add(FtestCase(TestFuncBeginChild, TEXT("BeginChild"), TEXT("Test ImGui BeginChild functionality.")));
-	TestCases.Add(FtestCase(TestWindowFlags, TEXT("WindowFlags"), TEXT("Test ImGui Window Flags functionality.")));
-
+	TestCases.Add(FtestCase(TestImGuiBeginAndEnd, TEXT("BeginAndEnd")));
+    TestCases.Add(FtestCase(TestFuncBeginChild, TEXT("BeginChild")));
+	TestCases.Add(FtestCase(TestWindowFlags, TEXT("WindowFlags")));
 }
 
 /**
@@ -176,10 +175,6 @@ void AImGuiActor::ImGuiTick()
 	// ImGuiのウィンドウを開始
 	ImGui::Begin("TestMenu", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
-	// アクターやワールド情報を表示
-	ImGui::Text("Actor Tick: Actor = '%ls', World = '%ls', CurrentWorld = '%ls'",
-		*GetNameSafe(this), *GetNameSafe(GetWorld()), *GetNameSafe(GWorld));
-
 	// テストケースごとにボタンと説明を表示
 	for (FtestCase& TestCase : TestCases)
 	{
@@ -189,8 +184,6 @@ void AImGuiActor::ImGuiTick()
 			// ボタン押下でテストケースの有効/無効を切り替え
 			TestCase.bDisplayed = !TestCase.bDisplayed;
 		}
-		ImGui::SameLine();
-		ImGui::TextUnformatted(TCHAR_TO_UTF8(*TestCase.Description));
 
 		ImGui::SameLine();
 		if (TestCase.bDisplayed) {
