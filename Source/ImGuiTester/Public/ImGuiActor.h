@@ -81,16 +81,5 @@ private:
 	 */
 	TArray<FtestCase> TestCases{};
 
-
-	void TestImGuiBeginAndEnd();
-
-	void TestFuncBeginChild();
-
-	/**
-	 * ImGuiウィンドウフラグのテストを実行します。
-	 * ImGuiの各種ウィンドウフラグの動作確認用UIを表示します。
-	 */
-	void TestWindowFlags();
-
 #endif // WITH_IMGUI
 };
