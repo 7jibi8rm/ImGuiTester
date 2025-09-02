@@ -1,27 +1,41 @@
 # ImGuiTester
 
 ## 概要
-ImGuiTesterは、[Dear ImGui](https://github.com/ocornut/imgui) を利用したデバッグや各種テスト機能を実装・検証するためのサンプル集です。  
+ImGuiTesterは、Unreal Engine 5プロジェクト上で[Dear ImGui](https://github.com/ocornut/imgui)の各種ウィジェットやウィンドウ機能をテスト・デモ表示するためのサンプルプロジェクトです。  
+ImGuiの描画・入力制御をUE5アクター経由で行い、ウィンドウ・子ウィンドウ・各種フラグの動作確認ができます。
 
-## 特徴
-- Unreal Engine 5.5 使用
-- ImGuiを利用したリアルタイムUIテスト
-- テストケースの追加・切り替えが容易
+## 主な機能
+- ImGuiウィンドウの表示・制御
+- Begin/Endによるウィンドウ作成テスト
+- BeginChild/EndChildによる子ウィンドウテスト
+- ImGuiWindowFlagsの各種フラグ動作確認
+- テストケースのON/OFF切り替えUI
+
+## 対応環境
+- Unreal Engine 5.5 以降
+- Visual Studio 2022
+
+## インストール方法
+1. UE5プロジェクトの`Plugins`フォルダにImGuiプラグインを配置してください。
+2. 本プロジェクトのソースを`Source/ImGuiTester`に配置します。
+3. UE5エディタでプロジェクトを開き、C++ビルドを実行してください。
 
 ## 使い方
+1. エディタまたはゲーム内で`AImGuiActor`をレベルに配置します。
+2. 実行すると「TestMenu」ウィンドウが表示され、各テストケースのON/OFFボタンが操作できます。
+3. 有効化したテストケースのウィンドウがImGui上に表示されます。
 
-### 1. プロジェクトのビルド
-通常のUnreal Engineプロジェクトと同様に、Visual Studio 2022でプロジェクトを開き、ビルドしてください。
+## 主要ファイル
+- `Source/ImGuiTester/Private/ImGuiActor.cpp`  
+  ImGuiテスト用アクターの実装
+- `Source/ImGuiTester/Public/ImGuiActor.h`  
+  ImGuiテスト用アクターのヘッダ
+- `Plugins/ImGui/`  
+  Dear ImGuiプラグイン本体
 
-### 2. ImGuiプラグインの有効化
-`Plugins/ImGui` ディレクトリにImGuiのサードパーティ実装が含まれています。  
-プロジェクト設定でImGuiプラグインが有効になっていることを確認してください。
+## ライセンス
+本プロジェクトはMITライセンスです。Dear ImGui本体のライセンスもご確認ください。
 
-### 3. アクターの配置
-`AImGuiActor` をレベルに配置することで、ゲーム実行中にImGuiベースのデバッグUIが利用可能になります。
-
-### 4. テストケースの追加
-`AImGuiActor` クラスの `ETestCase` 列挙体と `TestCases` 配列に新しいテストケースを追加することで、独自のImGuiテストUIを拡張できます。
-
-### 5. 実行
-エディタまたはパッケージ化したアプリケーションでレベルを再生し、ImGuiウィンドウが表示されることを確認してください。
+## 備考
+- ImGuiプラグインの導入・設定方法は各プラグインのREADMEを参照してください。
+- UE5のバージョンやプラグインの互換性にご注意ください。
