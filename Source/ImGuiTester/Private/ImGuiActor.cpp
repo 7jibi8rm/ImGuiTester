@@ -1,4 +1,4 @@
-#include "ImGuiActor.h"
+ï»¿#include "ImGuiActor.h"
 #include <functional>
 #include <map>
 
@@ -7,83 +7,83 @@
 namespace
 {
 
-	// ImGui‚ÌBegin/End‚ÌƒeƒXƒg
+	// ImGuiã®Begin/Endã®ãƒ†ã‚¹ãƒˆ
 	void TestImGuiBeginAndEnd()
 	{
 		static bool bOpen = true;
 
-		// ImGui::Begin‚ÍV‚µ‚¢ƒEƒBƒ“ƒhƒE‚ğì¬E•\¦‚µA‚»‚±‚ÉGUIƒp[ƒc‚ğ”z’u‚·‚é‚½‚ß‚ÌŠÖ”‚Å‚·B
-		// ‚±‚ê‚É‘Î‰‚·‚éImGui::End‚Å•K‚¸ƒEƒBƒ“ƒhƒE‚Ì•`‰æˆ—‚ğI—¹‚³‚¹‚é•K—v‚ª‚ ‚è‚Ü‚·B
-		// “à•”‚ÅƒEƒBƒ“ƒhƒE—Ìˆæ‚ªì¬‚³‚êA‚»‚Ì’†‚Éƒ{ƒ^ƒ“‚âƒXƒ‰ƒCƒ_[AƒeƒLƒXƒg‚È‚Ç‚ÌƒEƒBƒWƒFƒbƒg‚ğ’Ç‰Á‚µ‚Ü‚·B
+		// ImGui::Beginã¯æ–°ã—ã„ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆãƒ»è¡¨ç¤ºã—ã€ãã“ã«GUIãƒ‘ãƒ¼ãƒ„ã‚’é…ç½®ã™ã‚‹ãŸã‚ã®é–¢æ•°ã§ã™ã€‚
+		// ã“ã‚Œã«å¯¾å¿œã™ã‚‹ImGui::Endã§å¿…ãšã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»å‡¦ç†ã‚’çµ‚äº†ã•ã›ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+		// å†…éƒ¨ã§ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é ˜åŸŸãŒä½œæˆã•ã‚Œã€ãã®ä¸­ã«ãƒœã‚¿ãƒ³ã‚„ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã€ãƒ†ã‚­ã‚¹ãƒˆãªã©ã®ã‚¦ã‚£ã‚¸ã‚§ãƒƒãƒˆã‚’è¿½åŠ ã—ã¾ã™ã€‚
 		ImGui::Begin(
-			"ImGui Begin/End Test",				// ƒEƒBƒ“ƒhƒE‚Ìƒ^ƒCƒgƒ‹i¯•Ê–¼j
-			bOpen ? &bOpen : nullptr,			// ƒEƒBƒ“ƒhƒE‰Eã‚Ìu~vƒ{ƒ^ƒ“‚Å•Â‚¶‚é‚©‚Ç‚¤‚©‚ğŠÇ—‚·‚éƒ|ƒCƒ“ƒ^inullptr‚Í•\¦‚µ‚È‚¢j
-			ImGuiWindowFlags_AlwaysAutoResize	// ƒEƒBƒ“ƒhƒE‚Ì•\¦§Œäƒtƒ‰ƒOiƒ^ƒCƒgƒ‹ƒo[”ñ•\¦‚âƒŠƒTƒCƒY•s‰Â‚È‚Çj
+			"ImGui Begin/End Test",				// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¿ã‚¤ãƒˆãƒ«ï¼ˆè­˜åˆ¥åï¼‰
+			bOpen ? &bOpen : nullptr,			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å³ä¸Šã®ã€ŒÃ—ã€ãƒœã‚¿ãƒ³ã§é–‰ã˜ã‚‹ã‹ã©ã†ã‹ã‚’ç®¡ç†ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ï¼ˆnullptrã¯è¡¨ç¤ºã—ãªã„ï¼‰
+			ImGuiWindowFlags_AlwaysAutoResize	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºåˆ¶å¾¡ãƒ•ãƒ©ã‚°ï¼ˆã‚¿ã‚¤ãƒˆãƒ«ãƒãƒ¼éè¡¨ç¤ºã‚„ãƒªã‚µã‚¤ã‚ºä¸å¯ãªã©ï¼‰
 		);
 
 		if (ImGui::Button("bOpen")) {
-			bOpen = !bOpen; // ƒ{ƒ^ƒ“‚ğ‰Ÿ‚·‚ÆƒEƒBƒ“ƒhƒE‚ÌŠJ•Âó‘Ô‚ğØ‚è‘Ö‚¦‚é
+			bOpen = !bOpen; // ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™ã¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®é–‹é–‰çŠ¶æ…‹ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 		}
 
-		// ImGui::End ‚ÍAImGui::Begin ‚ÅŠJn‚µ‚½ƒEƒBƒ“ƒhƒE‚Ì•`‰æˆ—‚ğI—¹‚·‚é‚½‚ß‚ÌŠÖ”‚Å‚·B
-		// ImGuiƒEƒBƒ“ƒhƒE‚ğì¬E•\¦‚·‚éÛ‚ÍA•K‚¸ƒyƒA‚ÅŒÄ‚Ño‚·•K—v‚ª‚ ‚è‚Ü‚·B
+		// ImGui::End ã¯ã€ImGui::Begin ã§é–‹å§‹ã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»å‡¦ç†ã‚’çµ‚äº†ã™ã‚‹ãŸã‚ã®é–¢æ•°ã§ã™ã€‚
+		// ImGuiã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆãƒ»è¡¨ç¤ºã™ã‚‹éš›ã¯ã€å¿…ãšãƒšã‚¢ã§å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 		ImGui::End();
 	}
 
-    // ImGui‚ÌBeginChild/EndChild‚ÌƒeƒXƒg
+    // ImGuiã®BeginChild/EndChildã®ãƒ†ã‚¹ãƒˆ
 	void TestFuncBeginChild()
 	{
-		// ImGui::BeginChild ‚Í ImGui ‚ÅƒTƒu—ÌˆæiuqƒEƒBƒ“ƒhƒEvj‚ğì‚é‚Æ‚«‚Ég‚¢‚Ü‚·B
-		// ƒXƒNƒ[ƒ‹—Ìˆæ‚Ìì¬‚âAUI‚ÌƒŒƒCƒAƒEƒg•ªŠ„‚È‚Ç‚É‚à•Ö—˜‚Å‚·B
+		// ImGui::BeginChild ã¯ ImGui ã§ã‚µãƒ–é ˜åŸŸï¼ˆã€Œå­ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€ï¼‰ã‚’ä½œã‚‹ã¨ãã«ä½¿ã„ã¾ã™ã€‚
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é ˜åŸŸã®ä½œæˆã‚„ã€UIã®ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆåˆ†å‰²ãªã©ã«ã‚‚ä¾¿åˆ©ã§ã™ã€‚
 
-		ImGui::Begin("Parent Window");	// eƒEƒBƒ“ƒhƒE‚ğŠJn
+		ImGui::Begin("Parent Window");	// è¦ªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹
 		{
-			ImGui::Text("Parent Text");	// eƒEƒBƒ“ƒhƒE“à‚ÉƒeƒLƒXƒg‚ğ•\¦
+			ImGui::Text("Parent Text");	// è¦ªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã«ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤º
 
 			ImGui::BeginChild(
-				"Child1",				// qƒEƒBƒ“ƒhƒE‚Ì¯•Ê–¼
-				ImVec2(300, 200),		// qƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒYi•300A‚‚³200j
-				true,					// ƒXƒNƒ[ƒ‹ƒo[‚ğ•\¦‚·‚é‚©‚Ç‚¤‚©
-				ImGuiWindowFlags_None);	// qƒEƒBƒ“ƒhƒE‚Ì•\¦§Œäƒtƒ‰ƒOi“Á‚Éw’è‚È‚µj
+				"Child1",				// å­ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è­˜åˆ¥å
+				ImVec2(300, 200),		// å­ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºï¼ˆå¹…300ã€é«˜ã•200ï¼‰
+				true,					// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹
+				ImGuiWindowFlags_None);	// å­ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºåˆ¶å¾¡ãƒ•ãƒ©ã‚°ï¼ˆç‰¹ã«æŒ‡å®šãªã—ï¼‰
 
 			{
-				ImGui::Text("Child1 Text");	// qƒEƒBƒ“ƒhƒE“à‚ÉƒeƒLƒXƒg‚ğ•\¦
-				ImGui::Button("Click Me!");	// qƒEƒBƒ“ƒhƒE“à‚Éƒ{ƒ^ƒ“‚ğ•\¦
+				ImGui::Text("Child1 Text");	// å­ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã«ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤º
+				ImGui::Button("Click Me!");	// å­ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã«ãƒœã‚¿ãƒ³ã‚’è¡¨ç¤º
 			}
-			ImGui::EndChild();	// qƒEƒBƒ“ƒhƒE‚Ì•`‰æ‚ğI—¹
+			ImGui::EndChild();	// å­ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†
 		}
-		ImGui::End();	// eƒEƒBƒ“ƒhƒE‚Ì•`‰æ‚ğI—¹
+		ImGui::End();	// è¦ªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†
 	}
 
 	/**
-	 * ImGuiƒEƒBƒ“ƒhƒEƒtƒ‰ƒO‚ÌƒeƒXƒg‚ğÀs‚µ‚Ü‚·B
-	 * ImGui‚ÌŠeíƒEƒBƒ“ƒhƒEƒtƒ‰ƒO‚Ì“®ìŠm”F—pUI‚ğ•\¦‚µ‚Ü‚·B
+	 * ImGuiã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ãƒ©ã‚°ã®ãƒ†ã‚¹ãƒˆã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
+	 * ImGuiã®å„ç¨®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ãƒ©ã‚°ã®å‹•ä½œç¢ºèªç”¨UIã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
 	 */
 	void TestWindowFlags()
 	{
-		// ImGuiWindowFlags‚ÍAƒEƒBƒ“ƒhƒE‚Ì‹““®‚âŒ©‚½–Ú‚ğ§Œä‚·‚é‚½‚ß‚Ìƒrƒbƒgƒtƒ‰ƒO‚Å‚·B
-		// ƒEƒBƒ“ƒhƒE‚Ìƒ^ƒCƒgƒ‹ƒo[‚Ì—L–³AƒTƒCƒY•ÏX‚âˆÚ“®‚Ì‰Â”ÛAƒXƒNƒ[ƒ‹ƒo[‚Ì•\¦İ’è‚È‚ÇA‚³‚Ü‚´‚Ü‚ÈƒEƒBƒ“ƒhƒE‚Ì‘®«‚ğ×‚©‚­w’è‚Å‚«‚Ü‚·B
+		// ImGuiWindowFlagsã¯ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æŒ™å‹•ã‚„è¦‹ãŸç›®ã‚’åˆ¶å¾¡ã™ã‚‹ãŸã‚ã®ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°ã§ã™ã€‚
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¿ã‚¤ãƒˆãƒ«ãƒãƒ¼ã®æœ‰ç„¡ã€ã‚µã‚¤ã‚ºå¤‰æ›´ã‚„ç§»å‹•ã®å¯å¦ã€ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®è¡¨ç¤ºè¨­å®šãªã©ã€ã•ã¾ã–ã¾ãªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å±æ€§ã‚’ç´°ã‹ãæŒ‡å®šã§ãã¾ã™ã€‚
 
 		static std::map<ImGuiWindowFlags, std::string> WindowFlagNames = {
-			{ ImGuiWindowFlags_NoTitleBar, "ImGuiWindowFlags_NoTitleBar" },               // ƒ^ƒCƒgƒ‹ƒo[‚ğ•\¦‚µ‚È‚¢
-			{ ImGuiWindowFlags_NoResize, "ImGuiWindowFlags_NoResize" },                   // ƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒY•ÏX‚ğ‹Ö~
-			{ ImGuiWindowFlags_NoMove, "ImGuiWindowFlags_NoMove" },                       // ƒEƒBƒ“ƒhƒE‚ÌˆÚ“®‚ğ‹Ö~
-			{ ImGuiWindowFlags_NoScrollbar, "ImGuiWindowFlags_NoScrollbar" },             // ƒXƒNƒ[ƒ‹ƒo[‚ğ•\¦‚µ‚È‚¢
-			{ ImGuiWindowFlags_NoScrollWithMouse, "ImGuiWindowFlags_NoScrollWithMouse" }, // ƒ}ƒEƒXƒzƒC[ƒ‹‚É‚æ‚éƒXƒNƒ[ƒ‹‚ğ‹Ö~
-			{ ImGuiWindowFlags_NoCollapse, "ImGuiWindowFlags_NoCollapse" },               // ƒEƒBƒ“ƒhƒE‚ÌÜ‚è‚½‚½‚İiÅ¬‰»j‚ğ‹Ö~
-			{ ImGuiWindowFlags_AlwaysAutoResize, "ImGuiWindowFlags_AlwaysAutoResize" },   // ƒEƒBƒ“ƒhƒEƒTƒCƒY‚ğ“à—e‚É‡‚í‚¹‚Ä©“®’²®
-			{ ImGuiWindowFlags_NoBackground, "ImGuiWindowFlags_NoBackground" },           // ƒEƒBƒ“ƒhƒE‚Ì”wŒi‚ğ•`‰æ‚µ‚È‚¢
-			{ ImGuiWindowFlags_NoSavedSettings, "ImGuiWindowFlags_NoSavedSettings" },     // ƒEƒBƒ“ƒhƒE‚Ìİ’èiˆÊ’u‚âƒTƒCƒY‚È‚Çj‚ğ•Û‘¶‚µ‚È‚¢
-			//{ ImGuiWindowFlags_NoMouseInputs, "ImGuiWindowFlags_NoMouseInputs" },         // ƒEƒBƒ“ƒhƒE“à‚Åƒ}ƒEƒX“ü—Í‚ğ–³Œø‰»
-			{ ImGuiWindowFlags_MenuBar, "ImGuiWindowFlags_MenuBar" },                     // ƒƒjƒ…[ƒo[‚ğ•\¦
-			{ ImGuiWindowFlags_HorizontalScrollbar, "ImGuiWindowFlags_HorizontalScrollbar" }, // …•½ƒXƒNƒ[ƒ‹ƒo[‚ğ•\¦
-			{ ImGuiWindowFlags_NoFocusOnAppearing, "ImGuiWindowFlags_NoFocusOnAppearing" },   // ƒEƒBƒ“ƒhƒE•\¦‚ÉƒtƒH[ƒJƒX‚ğæ“¾‚µ‚È‚¢
-			{ ImGuiWindowFlags_NoBringToFrontOnFocus, "ImGuiWindowFlags_NoBringToFrontOnFocus" }, // ƒtƒH[ƒJƒX‚ÉƒEƒBƒ“ƒhƒE‚ğÅ‘O–Ê‚É‚µ‚È‚¢
-			{ ImGuiWindowFlags_AlwaysVerticalScrollbar, "ImGuiWindowFlags_AlwaysVerticalScrollbar" }, // í‚É‚’¼ƒXƒNƒ[ƒ‹ƒo[‚ğ•\¦
-			{ ImGuiWindowFlags_AlwaysHorizontalScrollbar, "ImGuiWindowFlags_AlwaysHorizontalScrollbar" }, // í‚É…•½ƒXƒNƒ[ƒ‹ƒo[‚ğ•\¦
-			{ ImGuiWindowFlags_NoNavInputs, "ImGuiWindowFlags_NoNavInputs" },             // ƒiƒrƒQ[ƒVƒ‡ƒ““ü—ÍiƒL[ƒ{[ƒh/ƒQ[ƒ€ƒpƒbƒhj‚ğ–³Œø‰»
-			{ ImGuiWindowFlags_NoNavFocus, "ImGuiWindowFlags_NoNavFocus" },               // ƒiƒrƒQ[ƒVƒ‡ƒ“‚É‚æ‚éƒtƒH[ƒJƒX‚ğ–³Œø‰»
-			{ ImGuiWindowFlags_UnsavedDocument, "ImGuiWindowFlags_UnsavedDocument" },     // –¢•Û‘¶ƒhƒLƒ…ƒƒ“ƒg‚Æ‚µ‚Ä•\¦iƒ^ƒu‚ÉƒAƒXƒ^ƒŠƒXƒN“™j
+			{ ImGuiWindowFlags_NoTitleBar, "ImGuiWindowFlags_NoTitleBar" },               // ã‚¿ã‚¤ãƒˆãƒ«ãƒãƒ¼ã‚’è¡¨ç¤ºã—ãªã„
+			{ ImGuiWindowFlags_NoResize, "ImGuiWindowFlags_NoResize" },                   // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºå¤‰æ›´ã‚’ç¦æ­¢
+			{ ImGuiWindowFlags_NoMove, "ImGuiWindowFlags_NoMove" },                       // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç§»å‹•ã‚’ç¦æ­¢
+			{ ImGuiWindowFlags_NoScrollbar, "ImGuiWindowFlags_NoScrollbar" },             // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’è¡¨ç¤ºã—ãªã„
+			{ ImGuiWindowFlags_NoScrollWithMouse, "ImGuiWindowFlags_NoScrollWithMouse" }, // ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã«ã‚ˆã‚‹ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚’ç¦æ­¢
+			{ ImGuiWindowFlags_NoCollapse, "ImGuiWindowFlags_NoCollapse" },               // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æŠ˜ã‚ŠãŸãŸã¿ï¼ˆæœ€å°åŒ–ï¼‰ã‚’ç¦æ­¢
+			{ ImGuiWindowFlags_AlwaysAutoResize, "ImGuiWindowFlags_AlwaysAutoResize" },   // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’å†…å®¹ã«åˆã‚ã›ã¦è‡ªå‹•èª¿æ•´
+			{ ImGuiWindowFlags_NoBackground, "ImGuiWindowFlags_NoBackground" },           // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®èƒŒæ™¯ã‚’æç”»ã—ãªã„
+			{ ImGuiWindowFlags_NoSavedSettings, "ImGuiWindowFlags_NoSavedSettings" },     // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¨­å®šï¼ˆä½ç½®ã‚„ã‚µã‚¤ã‚ºãªã©ï¼‰ã‚’ä¿å­˜ã—ãªã„
+			//{ ImGuiWindowFlags_NoMouseInputs, "ImGuiWindowFlags_NoMouseInputs" },         // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã§ãƒã‚¦ã‚¹å…¥åŠ›ã‚’ç„¡åŠ¹åŒ–
+			{ ImGuiWindowFlags_MenuBar, "ImGuiWindowFlags_MenuBar" },                     // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã‚’è¡¨ç¤º
+			{ ImGuiWindowFlags_HorizontalScrollbar, "ImGuiWindowFlags_HorizontalScrollbar" }, // æ°´å¹³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’è¡¨ç¤º
+			{ ImGuiWindowFlags_NoFocusOnAppearing, "ImGuiWindowFlags_NoFocusOnAppearing" },   // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºæ™‚ã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’å–å¾—ã—ãªã„
+			{ ImGuiWindowFlags_NoBringToFrontOnFocus, "ImGuiWindowFlags_NoBringToFrontOnFocus" }, // ãƒ•ã‚©ãƒ¼ã‚«ã‚¹æ™‚ã«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æœ€å‰é¢ã«ã—ãªã„
+			{ ImGuiWindowFlags_AlwaysVerticalScrollbar, "ImGuiWindowFlags_AlwaysVerticalScrollbar" }, // å¸¸ã«å‚ç›´ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’è¡¨ç¤º
+			{ ImGuiWindowFlags_AlwaysHorizontalScrollbar, "ImGuiWindowFlags_AlwaysHorizontalScrollbar" }, // å¸¸ã«æ°´å¹³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’è¡¨ç¤º
+			{ ImGuiWindowFlags_NoNavInputs, "ImGuiWindowFlags_NoNavInputs" },             // ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³å…¥åŠ›ï¼ˆã‚­ãƒ¼ãƒœãƒ¼ãƒ‰/ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ï¼‰ã‚’ç„¡åŠ¹åŒ–
+			{ ImGuiWindowFlags_NoNavFocus, "ImGuiWindowFlags_NoNavFocus" },               // ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ã«ã‚ˆã‚‹ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’ç„¡åŠ¹åŒ–
+			{ ImGuiWindowFlags_UnsavedDocument, "ImGuiWindowFlags_UnsavedDocument" },     // æœªä¿å­˜ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã¨ã—ã¦è¡¨ç¤ºï¼ˆã‚¿ãƒ–ã«ã‚¢ã‚¹ã‚¿ãƒªã‚¹ã‚¯ç­‰ï¼‰
 		};
 
 		static uint64 WindowFlags = ImGuiWindowFlags_AlwaysAutoResize;
@@ -91,7 +91,7 @@ namespace
 		ImGui::Begin("Window Flags Test", nullptr, WindowFlags);
 		ImGui::Text("Current WindowFlags: %llu", WindowFlags);
 
-		// ŠeƒEƒBƒ“ƒhƒEƒtƒ‰ƒO‚Ìƒ{ƒ^ƒ“‚ğ•\¦
+		// å„ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ãƒ©ã‚°ã®ãƒœã‚¿ãƒ³ã‚’è¡¨ç¤º
 		for (auto& FlagName : WindowFlagNames) {
 			if (ImGui::Button(FlagName.second.c_str())) {
 				WindowFlags ^= FlagName.first;
@@ -110,100 +110,156 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒEƒBƒ“ƒhƒE‚ğì¬‚·‚é
-	/// ƒVƒ“ƒvƒ‹‚ÈImGuiƒEƒBƒ“ƒhƒE‚ğì¬‚µAƒeƒLƒXƒg‚ğ•\¦‚µ‚Ü‚·B
-	/// ImGui‚ÌƒEƒBƒ“ƒhƒE¶¬EƒeƒLƒXƒg•\¦‚ÌŠî–{“I‚Èg‚¢•û‚ğŠm”F‚Å‚«‚Ü‚·B
+	/// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆã™ã‚‹
+	/// ã‚·ãƒ³ãƒ—ãƒ«ãªImGuiã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆã—ã€ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+	/// ImGuiã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆãƒ»ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤ºã®åŸºæœ¬çš„ãªä½¿ã„æ–¹ã‚’ç¢ºèªã§ãã¾ã™ã€‚
 	/// </summary>
 	void TestSimpleWindow()
 	{
-		// ‰‰ñ‚Ì‚İƒEƒBƒ“ƒhƒEƒTƒCƒY‚ğ300x200‚Éİ’è‚µ‚Ü‚·iImGuiCond_Once‚Åˆê“x‚¾‚¯“K—pjB
+		// åˆå›ã®ã¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’300x200ã«è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
 		ImGui::SetNextWindowSize(ImVec2(300, 200), ImGuiCond_Once);
 
-		// "Simple Window" ‚Æ‚¢‚¤ƒ^ƒCƒgƒ‹‚ÌƒEƒBƒ“ƒhƒE‚ğŠJn‚µ‚Ü‚·B
+		// "Simple Window" ã¨ã„ã†ã‚¿ã‚¤ãƒˆãƒ«ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹ã—ã¾ã™ã€‚
 		ImGui::Begin("Simple Window");
 
-		// ƒEƒBƒ“ƒhƒE“à‚ÉƒeƒLƒXƒg‚ğ1s•\¦‚µ‚Ü‚·B
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã«ãƒ†ã‚­ã‚¹ãƒˆã‚’1è¡Œè¡¨ç¤ºã—ã¾ã™ã€‚
 		ImGui::Text("Hello ImGui!");
 
-		// ƒEƒBƒ“ƒhƒE‚Ì•`‰æ‚ğI—¹‚µ‚Ü‚·B
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
 		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ƒVƒ“ƒvƒ‹‚ÈImGuiƒEƒBƒ“ƒhƒE“à‚Éƒ{ƒ^ƒ“‚ğ•\¦‚·‚éƒeƒXƒgŠÖ”B
-	/// ƒ{ƒ^ƒ“‚ğ‰Ÿ‚·‚ÆuButton was clicked!v‚Æ‚¢‚¤ƒeƒLƒXƒg‚ª•\¦‚³‚ê‚Ü‚·B
-	/// ImGui‚Ìƒ{ƒ^ƒ“ƒEƒBƒWƒFƒbƒg‚ÌŠî–{“I‚Èg‚¢•û‚ğŠm”F‚Å‚«‚Ü‚·B
+	/// ã‚·ãƒ³ãƒ—ãƒ«ãªImGuiã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã«ãƒœã‚¿ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ãƒ†ã‚¹ãƒˆé–¢æ•°ã€‚
+	/// ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™ã¨ã€ŒButton was clicked!ã€ã¨ã„ã†ãƒ†ã‚­ã‚¹ãƒˆãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚
+	/// ImGuiã®ãƒœã‚¿ãƒ³ã‚¦ã‚£ã‚¸ã‚§ãƒƒãƒˆã®åŸºæœ¬çš„ãªä½¿ã„æ–¹ã‚’ç¢ºèªã§ãã¾ã™ã€‚
 	/// </summary>
 	void TestSimpleButton()
 	{
-		// ‰‰ñ‚Ì‚İƒEƒBƒ“ƒhƒEƒTƒCƒY‚ğ200x100‚Éİ’è‚µ‚Ü‚·iImGuiCond_Once‚Åˆê“x‚¾‚¯“K—pjB
-		ImGui::SetNextWindowSize(ImVec2(200, 100), ImGuiCond_Once);
-		// "Button Window" ‚Æ‚¢‚¤ƒ^ƒCƒgƒ‹‚ÌƒEƒBƒ“ƒhƒE‚ğŠJn‚µ‚Ü‚·B
+		// åˆå›ã®ã¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’100x100ã«è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(100, 100), ImGuiCond_Once);
+
+		// "Button Window" ã¨ã„ã†ã‚¿ã‚¤ãƒˆãƒ«ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹ã—ã¾ã™ã€‚
 		ImGui::Begin("Button Window");
-		// ƒ{ƒ^ƒ“‚ğ•\¦‚µA‰Ÿ‚³‚ê‚½ê‡‚ÍƒeƒLƒXƒg‚ğ•\¦‚µ‚Ü‚·B
-		if (ImGui::Button("Click Me"))
-		{
-			// ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ì‚İ•\¦‚³‚ê‚éƒeƒLƒXƒg
-			ImGui::Text("Button was clicked!");
+
+		// ãƒœã‚¿ãƒ³ã‚’è¡¨ç¤ºã—ã€æŠ¼ã•ã‚ŒãŸå ´åˆã¯ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+		if (ImGui::Button("ButtonA")){
+			// ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®ã¿è¡¨ç¤ºã•ã‚Œã‚‹ãƒ†ã‚­ã‚¹ãƒˆï¼ˆä¸€ç¬ï¼‰
+			ImGui::Text("ButtonA was clicked!");
 		}
-		// ƒEƒBƒ“ƒhƒE‚Ì•`‰æ‚ğI—¹‚µ‚Ü‚·B
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
 		ImGui::End();
 	}
 	/// <summary>
-	/// ƒeƒLƒXƒg‚ğ•\¦‚·‚é
+	/// ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã™ã‚‹
 	/// </summary>
 	void TestShowText()
 	{
-		// ‰‰ñ‚Ì‚İƒEƒBƒ“ƒhƒEƒTƒCƒY‚ğ200x200‚Éİ’è‚µ‚Ü‚·iImGuiCond_Once‚Åˆê“x‚¾‚¯“K—pjB
+		// åˆå›ã®ã¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’200x200ã«è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
 		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-		// "Text Window" ‚Æ‚¢‚¤ƒ^ƒCƒgƒ‹‚ÌƒEƒBƒ“ƒhƒE‚ğŠJn‚µ‚Ü‚·B
+		// "Text Window" ã¨ã„ã†ã‚¿ã‚¤ãƒˆãƒ«ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹ã—ã¾ã™ã€‚
 		ImGui::Begin("Text Window");
 
-		// ®”’l‚ğ–„‚ß‚ñ‚¾ƒeƒLƒXƒg‚ğ•\¦‚µ‚Ü‚·B
+		// æ•´æ•°å€¤ã‚’åŸ‹ã‚è¾¼ã‚“ã ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
 		int value = 42;
 		ImGui::Text("Value: %d", value);
 
-		// ÔF‚ÅƒeƒLƒXƒg‚ğ•\¦‚µ‚Ü‚·B
+		// èµ¤è‰²ã§ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
 		ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "This is red text");
 
-		// Push/PopStyleColor‚Åˆê“I‚ÉƒeƒLƒXƒgF‚ğ•ÏX‚µ‚Ä•\¦‚µ‚Ü‚·B
+		// Push/PopStyleColorã§ä¸€æ™‚çš„ã«ãƒ†ã‚­ã‚¹ãƒˆè‰²ã‚’å¤‰æ›´ã—ã¦è¡¨ç¤ºã—ã¾ã™ã€‚
 		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 0.7f, 0.0f, 1.0f));
 		ImGui::Text("This is green text using Push/PopStyleColor");
 		ImGui::PopStyleColor();
 
-		// ƒEƒBƒ“ƒhƒE‚Ì•`‰æ‚ğI—¹‚µ‚Ü‚·B
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
 		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ƒ`ƒFƒbƒNƒ{ƒbƒNƒX‚ğì¬‚·‚é
+	/// ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ã‚’ä½œæˆã™ã‚‹
 	/// </summary>
 	void TestCheckBox()
 	{
+        // ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ã®çŠ¶æ…‹ã‚’ä¿æŒã™ã‚‹å¤‰æ•°
+		static bool isChecked;
+
+        // åˆå›ã®ã¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’150x70ã«è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(150, 70), ImGuiCond_Once);
+
+        // "TestCheckBox" ã¨ã„ã†ã‚¿ã‚¤ãƒˆãƒ«ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Begin("TestCheckBox");
+
+        // ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ã‚’è¡¨ç¤ºã—ã€çŠ¶æ…‹ã‚’isCheckedå¤‰æ•°ã§ç®¡ç†ã—ã¾ã™ã€‚
+		ImGui::Checkbox("Checkbox!", &isChecked);
+		if (isChecked) {
+			ImGui::Text("Checked!!!!");
+		}
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End(); 
 		return;
 	}
 
 	/// <summary>
-	/// ƒXƒ‰ƒCƒ_[‚ğ‘€ì‚·‚é
+	/// ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã‚’æ“ä½œã™ã‚‹
 	/// </summary>
 	void TestFloatSlider()
 	{
+		static float SliderValue = 0.0f;
+
+		// åˆå›ã®ã¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’220x100ã«è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(220, 100), ImGuiCond_Once);
+
+		// "Sample Window" ã¨ã„ã†ã‚¿ã‚¤ãƒˆãƒ«ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Begin("TestFloatSlider");
+
+        // ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã‚’è¡¨ç¤ºã—ã€å€¤ã‚’0.0ã‹ã‚‰100.0ã®ç¯„å›²ã§èª¿æ•´ã—ã¾ã™ã€‚
+		ImGui::SliderFloat("Slider", &SliderValue, 0.0f, 100.0f);
+
+		// æ•´æ•°å€¤ã‚’åŸ‹ã‚è¾¼ã‚“ã ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+		ImGui::Text("SliderValue: %f", SliderValue);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ƒhƒƒbƒvƒ_ƒEƒ“ƒŠƒXƒg‚ğì¬
+	/// ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã‚’ä½œæˆ
 	/// </summary>
 	void TestComboBox()
 	{
+        // ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã®é¸æŠçŠ¶æ…‹ã‚’ä¿æŒã™ã‚‹å¤‰æ•°
+		static int ComboBoxValue = 0;
+
+        // ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã‚’å®šç¾©ã—ã¾ã™ã€‚
+		const char* items[] = { "Apple", "Banana", "Cherry" };
+
+		// åˆå›ã®ã¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’220x100ã«è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(200, 100), ImGuiCond_Once);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Begin("TestComboBox");
+
+        // ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã‚’è¡¨ç¤ºã—ã€é¸æŠã•ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ComboBoxValueã§ç®¡ç†ã—ã¾ã™ã€‚
+		if (ImGui::Combo("Fruits", &ComboBoxValue, items, IM_ARRAYSIZE(items)))
+		{
+            // ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹ã®é¸æŠãŒå¤‰æ›´ã•ã‚ŒãŸå ´åˆã€é¸æŠã•ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ãƒ­ã‚°ã«å‡ºåŠ›ã—ã¾ã™ã€‚
+			UE_LOG(LogTemp, Log, TEXT("ComboBoxValue: %d"), ComboBoxValue);
+		}
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ‰æ‘œ‚ğ•\¦‚·‚é
+	/// ç”»åƒã‚’è¡¨ç¤ºã™ã‚‹
 	/// </summary>
 	void TestShowImage()
 	{
@@ -211,87 +267,276 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒ‰ƒxƒ‹•t‚«“ü—ÍƒtƒB[ƒ‹ƒh
+	/// ãƒ©ãƒ™ãƒ«ä»˜ãå…¥åŠ›ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 	/// </summary>
 	void TestInputField()
 	{
+
+		static char InputText[128] = "default";
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(200, 70), ImGuiCond_Once);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Begin("TestInputField");
+
+        // å…¥åŠ›ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒãƒ†ã‚­ã‚¹ãƒˆã‚’å…¥åŠ›ã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚
+		ImGui::InputText("Label", InputText, IM_ARRAYSIZE(InputText));
+
+		// æ•´æ•°å€¤ã‚’åŸ‹ã‚è¾¼ã‚“ã ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+		ImGui::Text("Text: %s", InputText);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
+
 		return;
 	}
 
 	/// <summary>
-	/// ƒe[ƒuƒ‹‚ğ•\¦‚·‚é
+	/// ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
 	/// </summary>
 	void TestSimpleTable()
 	{
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Begin("TestSimpleTable");
+
+        // ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’é–‹å§‹ã—ã¾ã™ã€‚3åˆ—ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã§ã€å¢ƒç•Œç·šã¨è¡ŒèƒŒæ™¯ã‚’æœ‰åŠ¹ã«ã—ã¦ã„ã¾ã™ã€‚
+		if (ImGui::BeginTable("Table1", 3, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg))
+		{
+            // ãƒ†ãƒ¼ãƒ–ãƒ«ã®åˆ—ã‚’è¨­å®šã—ã¾ã™ã€‚ã“ã“ã§ã¯3ã¤ã®åˆ—ã‚’å®šç¾©ã—ã¦ã„ã¾ã™ã€‚
+			ImGui::TableSetupColumn("COL 1");
+			ImGui::TableSetupColumn("COL 2");
+			ImGui::TableSetupColumn("COL 3");
+
+            // ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒ˜ãƒƒãƒ€ãƒ¼è¡Œã‚’æç”»ã—ã¾ã™ã€‚
+			ImGui::TableHeadersRow();
+
+            // ãƒ†ãƒ¼ãƒ–ãƒ«ã®è¡Œã‚’ãƒ«ãƒ¼ãƒ—ã—ã¦ã€å„ã‚»ãƒ«ã«ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+			for (int row = 0; row < 5; ++row)
+			{
+                // æ–°ã—ã„è¡Œã‚’é–‹å§‹ã—ã¾ã™ã€‚
+				ImGui::TableNextRow();
+
+                // å„åˆ—ã«ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+				for (int column = 0; column < 3; ++column)
+				{
+                    // åˆ—ã‚’è¨­å®šã—ã€ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+					ImGui::TableSetColumnIndex(column);
+					ImGui::Text("%d-%d", row, column);
+				}
+			}
+
+            // ãƒ†ãƒ¼ãƒ–ãƒ«ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+			ImGui::EndTable();
+		}
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
+
 		return;
 	}
 
 	/// <summary>
-	/// ƒŠƒXƒgƒ{ƒbƒNƒX‚ğì¬
-	/// </summary>
-	void TestListBox()
-	{
-		return;
-	}
-
-	/// <summary>
-	/// ƒcƒŠ[ƒm[ƒh‚ğì¬
+	/// ãƒ„ãƒªãƒ¼ãƒãƒ¼ãƒ‰ã‚’ä½œæˆ
 	/// </summary>
 	void TestTreeNode()
 	{
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Begin("TestSimpleTable");
+
+        // ãƒ„ãƒªãƒ¼ãƒãƒ¼ãƒ‰ã‚’ä½œæˆã—ã¾ã™ã€‚ãƒ„ãƒªãƒ¼ãƒãƒ¼ãƒ‰ã¯éšå±¤çš„ãªãƒ‡ãƒ¼ã‚¿æ§‹é€ ã‚’è¡¨ç¾ã™ã‚‹ãŸã‚ã«ä½¿ç”¨ã•ã‚Œã¾ã™ã€‚
+		if (ImGui::TreeNode("Root Node"))
+		{
+            // ãƒ„ãƒªãƒ¼ãƒãƒ¼ãƒ‰ã®å­ãƒãƒ¼ãƒ‰ã‚’ä½œæˆã—ã¾ã™ã€‚ã“ã“ã§ã¯2ã¤ã®å­ãƒãƒ¼ãƒ‰ã‚’æŒã¤ä¾‹ã§ã™ã€‚
+			if (ImGui::TreeNode("Child Node A"))
+			{
+                // å­ãƒãƒ¼ãƒ‰å†…ã«ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+				ImGui::BulletText("Text");
+                // å­ãƒãƒ¼ãƒ‰ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+				ImGui::TreePop();
+			}
+
+            // ã‚‚ã†1ã¤ã®å­ãƒãƒ¼ãƒ‰ã‚’ä½œæˆã—ã¾ã™ã€‚
+			if (ImGui::TreeNode("Child Node B"))
+			{
+                // å­ãƒãƒ¼ãƒ‰å†…ã«ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+				ImGui::BulletText("Text");
+                // å­ãƒãƒ¼ãƒ‰ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+				ImGui::TreePop();
+            }
+
+            // ãƒ„ãƒªãƒ¼ãƒãƒ¼ãƒ‰ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+			ImGui::TreePop();
+		}
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
+
 		return;
 	}
 
 	/// <summary>
-	/// ƒc[ƒ‹ƒ`ƒbƒv‚ğ•\¦
+	/// ãƒ„ãƒ¼ãƒ«ãƒãƒƒãƒ—ã‚’è¡¨ç¤º
 	/// </summary>
 	void TestShowTooltip()
 	{
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(150, 75), ImGuiCond_Once);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Begin("TestShowTooltip");
+
+		// ä½•ã‚‰ã‹ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’è¡¨ç¤ºï¼ˆä¾‹ï¼šãƒ†ã‚­ã‚¹ãƒˆï¼‰
+		ImGui::Text("Hover over me");
+
+		// ãƒã‚¦ã‚¹ãŒã“ã®ã‚¢ã‚¤ãƒ†ãƒ ã«ãƒ›ãƒãƒ¼ã•ã‚Œã¦ã„ã‚‹ã‹åˆ¤å®šã—ã¦ãƒ„ãƒ¼ãƒ«ãƒãƒƒãƒ—ã‚’è¡¨ç¤º
+		if (ImGui::IsItemHovered())
+		{
+			ImGui::SetTooltip("This is a tooltip");
+		}
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
+
 		return;
 	}
 
 	/// <summary>
-	/// ƒJƒ‰[‘I‘ğƒ_ƒCƒAƒƒO‚ğ•\¦
+	/// ã‚«ãƒ©ãƒ¼é¸æŠãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤º
 	/// </summary>
 	void TestColorPicker()
 	{
+
+		// ã‚«ãƒ©ãƒ¼ã‚’ä¿å­˜ã™ã‚‹å¤‰æ•°
+		static ImVec4 color = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(350, 100), ImGuiCond_Once);
+
+		// ImGuiã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹
+		ImGui::Begin("TestColorPicker");
+
+		// è‰²ã®é¸æŠã‚¦ã‚£ã‚¸ã‚§ãƒƒãƒˆã€‚colorã®å†…å®¹ãŒãƒ¦ãƒ¼ã‚¶ãƒ¼æ“ä½œã§å¤‰æ›´ã•ã‚Œã‚‹
+		ImGui::ColorEdit4("RGBA", (float*)&color);
+
+        // é¸æŠã•ã‚ŒãŸè‰²ã®å€¤ã‚’è¡¨ç¤º
+		ImGui::Text("SelectColor - R: %.2f, G: %.2f, B: %.2f, A: %.2f", color.x, color.y, color.z, color.w);
+
+        // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚	
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ƒvƒƒOƒŒƒXƒo[‚ğ•\¦
+	/// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã‚’è¡¨ç¤º
 	/// </summary>
 	void TestProgressBar()
 	{
+        static float fraction = 0.7f;
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(350, 100), ImGuiCond_Once);
+
+		// ImGuiã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹
+		ImGui::Begin("TestProgressBar");
+
+		// ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã®è¡¨ç¤ºã€‚fractionã¯0.0(0%)ã€œ1.0(100%)ã®ç¯„å›²ã§é€²æ—ã‚’è¡¨ã™
+		ImGui::ProgressBar(fraction, ImVec2(0.0f, 0.0f)); // ã‚µã‚¤ã‚º(0,0)ã¯è‡ªå‹•çš„ã«å¹…ã„ã£ã±ã„ã§é«˜ã•ã¯è¦å®šå€¤
+
+		// é€²æ—ç‡ã‚’ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤ºï¼ˆ%è¡¨è¨˜ï¼‰
+		ImGui::Text("Progress: %.1f%%", fraction * 100.0f);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ƒƒjƒ…[‚ğì¬‚·‚é
+	/// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã‚’ä½œæˆã™ã‚‹
 	/// </summary>
 	void TestMenuBar()
 	{
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
+
+		// ImGuiã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹
+		ImGui::Begin("TestMenuBar", nullptr, ImGuiWindowFlags_MenuBar);
+
+        // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã‚’é–‹å§‹ã—ã¾ã™ã€‚ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸Šéƒ¨ã«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚
+		if (ImGui::BeginMenuBar()) 
+		{
+            // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã«ã€ŒFileã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¿½åŠ ã—ã¾ã™ã€‚
+			if (ImGui::BeginMenu("File")) 
+			{
+                // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ã‚¤ãƒ†ãƒ ã‚’è¿½åŠ ã—ã¾ã™ã€‚
+				if (ImGui::MenuItem("Open")) {
+				}
+				if (ImGui::MenuItem("Save")) {
+				}
+
+                // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®åŒºåˆ‡ã‚Šç·šã‚’è¿½åŠ ã—ã¾ã™ã€‚	
+				ImGui::Separator();
+
+                // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã•ã‚‰ã«è¿½åŠ ã—ã¾ã™ã€‚
+				if (ImGui::MenuItem("Exit", "Alt+F4")) {
+				}
+
+                // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®çµ‚äº†
+				ImGui::EndMenu();
+			}
+
+            // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+			ImGui::EndMenuBar();
+		}
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ƒXƒe[ƒ^ƒXƒo[‚ğì¬‚·‚é
-	/// </summary>
-	void TestStatusBar()
-	{
-		return;
-	}
-
-	/// <summary>
-	/// ƒ^ƒu‚ğì¬‚·‚é
+	/// ã‚¿ãƒ–ã‚’ä½œæˆã™ã‚‹
 	/// </summary>
 	void TestTabWidget()
 	{
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
+
+        // ImGuiã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹
+		ImGui::Begin("TestTabWidget");
+
+        // ã‚¿ãƒ–ãƒãƒ¼ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		if (ImGui::BeginTabBar("##tabs"))
+		{
+            // ã‚¿ãƒ–1ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+			if (ImGui::BeginTabItem("Tab1"))
+			{
+				ImGui::Text("Tab 1");
+				ImGui::EndTabItem();
+			}
+            // ã‚¿ãƒ–2ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+			if (ImGui::BeginTabItem("Tab2"))
+			{
+				ImGui::Text("Tab 2");
+				ImGui::EndTabItem();
+			}
+            // ã‚¿ãƒ–ãƒãƒ¼ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+			ImGui::EndTabBar();
+		}
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ƒtƒHƒ“ƒg‚ğ•ÏX
+	/// ãƒ•ã‚©ãƒ³ãƒˆã‚’å¤‰æ›´
 	/// </summary>
 	void TestFontChange()
 	{
@@ -299,47 +544,188 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒXƒ^ƒCƒ‹‚ğ•ÏX‚·‚é
+	/// ã‚¹ã‚¿ã‚¤ãƒ«ã‚’å¤‰æ›´ã™ã‚‹
 	/// </summary>
 	void TestStyleControl()
 	{
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(100, 100), ImGuiCond_Once);
+
+		// ImGuiã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹
+		ImGui::Begin("TestStyleControl");
+
+		// ImGuiã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’å¤‰æ›´ã™ã‚‹ãŸã‚ã®é–¢æ•°ã§ã™ã€‚
+		ImGuiStyle& style = ImGui::GetStyle();
+
+        // ã‚¹ã‚¿ã‚¤ãƒ«ã®è‰²ã‚’å–å¾—ã—ã¾ã™ã€‚
+        const ImVec4 styleColor = style.Colors[ImGuiCol_Text];
+
+        // ã‚¹ã‚¿ã‚¤ãƒ«ã®è‰²ã‚’å¤‰æ›´ã—ã¾ã™ã€‚
+		style.Colors[ImGuiCol_Text] = ImVec4(1.0f, 0.5f, 0.5f, 1.0f); 
+		ImGui::Text("Text A");
+		style.Colors[ImGuiCol_Text] = ImVec4(0.5f, 1.0f, 0.5f, 1.0f);
+		ImGui::Text("Text B");
+		style.Colors[ImGuiCol_Text] = ImVec4(0.5f, 0.5f, 1.0f, 1.0f);
+		ImGui::Text("Text C");
+
+        // ã‚¹ã‚¿ã‚¤ãƒ«ã®è‰²ã‚’å…ƒã«æˆ»ã—ã¾ã™ã€‚
+		style.Colors[ImGuiCol_Text] = styleColor;
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
+
 		return;
 	}
 
 	/// <summary>
-	/// ƒtƒH[ƒJƒX§Œä
+	/// ãƒ•ã‚©ãƒ¼ã‚«ã‚¹åˆ¶å¾¡
 	/// </summary>
 	void TestFocusControl()
 	{
+		static char buf1[128] = "First";
+		static char buf2[128] = "Second";
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(200, 100), ImGuiCond_Once);
+
+		// ImGuiã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹
+		ImGui::Begin("TestFocusControl");
+
+        // 1ã¤ç›®ã®å…¥åŠ›ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’ä½œæˆã—ã¾ã™ã€‚
+		ImGui::InputText("First", buf1, 128);
+
+        // 1ã¤ç›®ã®å…¥åŠ›ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãŒãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã•ã‚Œã¦ã„ã‚‹å ´åˆã€æ¬¡ã®InputTextã«ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’ç§»å‹•ã—ã¾ã™ã€‚
+		ImGui::SetKeyboardFocusHere();
+
+        // 2ã¤ç›®ã®å…¥åŠ›ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’ä½œæˆã—ã¾ã™ã€‚
+		ImGui::InputText("Second", buf2, 128);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ƒhƒ‰ƒbƒO&ƒhƒƒbƒv‚ğÀ‘•‚·‚é
+	/// ãƒ‰ãƒ©ãƒƒã‚°&ãƒ‰ãƒ­ãƒƒãƒ—ã‚’å®Ÿè£…ã™ã‚‹
 	/// </summary>
 	void TestDragDrop()
 	{
+        // ãƒ‰ãƒ©ãƒƒã‚°&ãƒ‰ãƒ­ãƒƒãƒ—ã®ãƒ†ã‚¹ãƒˆç”¨ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆ
+		static std::vector<std::string> items = { "Item 1", "Item 2", "Item 3", "Item 4" };
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(150, 200), ImGuiCond_Once);
+
+        // ImGuiã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹
+		ImGui::Begin("TestDragDrop");
+
+		for (int i = 0; i < items.size(); i++)
+		{
+            // ã‚¢ã‚¤ãƒ†ãƒ ã‚’é¸æŠå¯èƒ½ãªãƒªã‚¹ãƒˆã¨ã—ã¦è¡¨ç¤ºã—ã¾ã™ã€‚
+			ImGui::Selectable(items[i].c_str());
+
+			// ãƒ‰ãƒ©ãƒƒã‚°ã®é–‹å§‹
+			if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID))
+			{
+                // ãƒ‰ãƒ©ãƒƒã‚°&ãƒ‰ãƒ­ãƒƒãƒ—ã®ãƒšã‚¤ãƒ­ãƒ¼ãƒ‰ã‚’è¨­å®šã—ã¾ã™ã€‚
+				ImGui::SetDragDropPayload("DND_DEMO_ITEM", &i, sizeof(int));
+
+                // ãƒ‰ãƒ©ãƒƒã‚°&ãƒ‰ãƒ­ãƒƒãƒ—ã®ã‚½ãƒ¼ã‚¹ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+				ImGui::EndDragDropSource();
+			}
+
+            // ãƒ‰ãƒ©ãƒƒã‚°&ãƒ‰ãƒ­ãƒƒãƒ—ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’è¨­å®šã—ã¾ã™ã€‚
+			if (ImGui::BeginDragDropTarget())
+			{
+                // ãƒ‰ãƒ©ãƒƒã‚°&ãƒ‰ãƒ­ãƒƒãƒ—ã®ãƒšã‚¤ãƒ­ãƒ¼ãƒ‰ã‚’å—ã‘å…¥ã‚Œã¾ã™ã€‚
+				if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_DEMO_ITEM"))
+				{
+                    // ãƒšã‚¤ãƒ­ãƒ¼ãƒ‰ã‹ã‚‰ãƒ‰ãƒ©ãƒƒã‚°å…ƒã®ã‚¢ã‚¤ãƒ†ãƒ ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã—ã¾ã™ã€‚
+					const int source_idx = *(const int*)payload->Data;
+					if (source_idx != i)
+					{
+						// ãƒ‰ãƒ©ãƒƒã‚°å…ƒã¨ãƒ‰ãƒ­ãƒƒãƒ—å…ˆã‚’å…¥ã‚Œæ›¿ãˆã‚‹
+						std::swap(items[source_idx], items[i]);
+					}
+				}
+
+                // ãƒ‰ãƒ©ãƒƒã‚°&ãƒ‰ãƒ­ãƒƒãƒ—ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’çµ‚äº†ã—ã¾ã™ã€‚
+				ImGui::EndDragDropTarget();
+			}
+		}
+
+        // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// qƒEƒBƒ“ƒhƒEE—Ìˆæ‚ğì‚é
+	/// å­ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ»é ˜åŸŸã‚’ä½œã‚‹
 	/// </summary>
 	void TestChildWindow()
 	{
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(220, 170), ImGuiCond_Once);
+
+        // è¦ªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Begin("TestChildWindow");
+
+		// å­ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹ï¼ˆã‚µã‚¤ã‚ºã¯ (width=200, height=150)ï¼‰
+		ImGui::BeginChild("ChildWindowID", ImVec2(200, 150), true); // ç¬¬3å¼•æ•°ã¯ãƒœãƒ¼ãƒ€ãƒ¼è¡¨ç¤ºã®æœ‰ç„¡
+
+        // å­ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã«ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+		for (int i = 0; i < 20; i++) {
+			ImGui::Text("ChildWindowText %d", i);
+		}
+
+		// å­ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦çµ‚äº†
+		ImGui::EndChild();
+
+		// è¦ªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦çµ‚äº†
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// “ü—Íó‘Ô‚ğŠÄ‹
+	/// å…¥åŠ›çŠ¶æ…‹ã‚’ç›£è¦–
 	/// </summary>
 	void TestInputMonitor()
 	{
+		ImGuiIO& io = ImGui::GetIO();
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(250, 170), ImGuiCond_Once);
+
+		// è¦ªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Begin("TestInputMonitor");
+
+		// ãƒã‚¦ã‚¹ã®ä½ç½®å–å¾—
+		ImVec2 mousePos = io.MousePos;
+		ImGui::Text("Mouse Position: (%.1f, %.1f)", mousePos.x, mousePos.y);
+
+		// ãƒã‚¦ã‚¹ãƒœã‚¿ãƒ³ã®çŠ¶æ…‹
+		bool mouseLeftDown = io.MouseDown[0];
+		ImGui::Text("Left Mouse Button: %s", mouseLeftDown ? "Down" : "Up");
+
+		// ã‚­ãƒ¼ã®æŠ¼ä¸‹çŠ¶æ…‹ç›£è¦–ï¼ˆä¾‹ï¼šã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ï¼‰
+		bool spacePressed = ImGui::IsKeyPressed(ImGuiKey_Space);
+		ImGui::Text("Space Key: %s", spacePressed ? "Pressed" : "Released");
+
+		// ImGuiãŒã‚­ãƒ¼ãƒœãƒ¼ãƒ‰å…¥åŠ›ã‚’å—ã‘ä»˜ã‘ä¸­ã‹åˆ¤å®š
+		if (io.WantCaptureKeyboard)
+			ImGui::Text("ImGui is capturing keyboard input");
+
+		// ImGuiãŒãƒã‚¦ã‚¹å…¥åŠ›ã‚’å—ã‘ä»˜ã‘ä¸­ã‹åˆ¤å®š
+		if (io.WantCaptureMouse)
+			ImGui::Text("ImGui is capturing mouse input");
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ‰æ‘œƒ{ƒ^ƒ“‚ğİ’u
+	/// ç”»åƒãƒœã‚¿ãƒ³ã‚’è¨­ç½®
 	/// </summary>
 	void TestImageButton()
 	{
@@ -347,167 +733,333 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒŒƒCƒAƒEƒg‚ğƒXƒy[ƒX‚Å’²®
+	/// ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’ã‚¹ãƒšãƒ¼ã‚¹ã§èª¿æ•´
 	/// </summary>
 	void TestLayoutAdjust()
 	{
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(250, 170), ImGuiCond_Once);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Begin("TestLayoutAdjust");
+
+
+		// ç¸¦ã®ã‚¹ãƒšãƒ¼ã‚¹èª¿æ•´
+		ImGui::Text("Text above spacing");
+		ImGui::Spacing();  // æ¨™æº–ã‚¹ãƒšãƒ¼ã‚¹
+		ImGui::Dummy(ImVec2(0.0f, 20.0f));  // 20pxã®ç©ºç™½
+		ImGui::Text("Text below custom spacing");
+
+		// æ¨ªã®ã‚¹ãƒšãƒ¼ã‚¹èª¿æ•´
+		ImGui::Button("Button A");
+		ImGui::SameLine(150, 10);  // 150pxã‹ã‚‰é–‹å§‹ã€10pxã®é–“éš”ã‚’ç©ºã‘ã‚‹
+		ImGui::Button("Button B");
+
+		// è¦ªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦çµ‚äº†
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// s‚â—ñ‚ğ•ªŠ„”z’u
+	/// è¡Œã‚„åˆ—ã‚’åˆ†å‰²é…ç½®
 	/// </summary>
 	void TestColumnLayout()
 	{
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Begin("TestColumnLayout");
+
+        // 3åˆ—ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Columns(3, nullptr, false);
+
+        // å„åˆ—ã«ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+		ImGui::Text("Column 1");
+		ImGui::NextColumn();
+		ImGui::Text("Column 2");
+		ImGui::NextColumn();
+		ImGui::Text("Column 3");
+
+		// åˆ—çµ‚äº†ï¼ˆå…ƒã«æˆ»ã™ï¼‰
+		ImGui::Columns(1);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ƒ‚[ƒ_ƒ‹ƒ_ƒCƒAƒƒO‚ğ•\¦
+	/// ãƒ¢ãƒ¼ãƒ€ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤º
 	/// </summary>
 	void TestModalDialog()
 	{
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(150, 65), ImGuiCond_Once);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Begin("TestModalDialog");
+
+        // ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™ã¨ãƒ¢ãƒ¼ãƒ€ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ãŒé–‹ãã¾ã™ã€‚
+		if (ImGui::Button("Open Dialog"))
+		{
+            // ãƒ¢ãƒ¼ãƒ€ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’é–‹ã
+			ImGui::OpenPopup("Modal Dialog");
+		}
+
+        // ãƒ¢ãƒ¼ãƒ€ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®å†…å®¹ã‚’å®šç¾©ã—ã¾ã™ã€‚
+		if (ImGui::BeginPopupModal("Modal Dialog", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+		{
+            // ãƒ€ã‚¤ã‚¢ãƒ­ã‚°å†…ã®ãƒ†ã‚­ã‚¹ãƒˆ
+			ImGui::Text("Are you sure you want to continue?");
+
+            // OKã¨Cancelãƒœã‚¿ãƒ³ã€‚ã²ã¨ã¾ãšé–‰ã˜ã‚‹ã ã‘ã€‚
+			if (ImGui::Button("OK")) {
+                ImGui::CloseCurrentPopup();
+			}
+			ImGui::SameLine();
+			if (ImGui::Button("Cancel")) {
+                ImGui::CloseCurrentPopup();
+			}
+
+            // ãƒ¢ãƒ¼ãƒ€ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+			ImGui::EndPopup();
+		}
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ƒCƒxƒ“ƒgƒnƒ“ƒhƒŠƒ“ƒO
-	/// </summary>
-	void TestEventInput()
-	{
-		return;
-	}
-
-	/// <summary>
-	/// ƒEƒBƒ“ƒhƒE‚ÌˆÊ’uEƒTƒCƒYŒÅ’è
+	/// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ãƒ»ã‚µã‚¤ã‚ºå›ºå®š
 	/// </summary>
 	void TestWindowPosition()
 	{
+        // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®ã‚’(100,100)ã«å›ºå®šï¼ˆImGuiCond_Alwaysã§æ¯ãƒ•ãƒ¬ãƒ¼ãƒ é©ç”¨ï¼‰    
+		ImGui::SetNextWindowPos(ImVec2(100, 100), ImGuiCond_Always);
+
+        // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’(400,300)ã«å›ºå®šï¼ˆImGuiCond_Alwaysã§æ¯ãƒ•ãƒ¬ãƒ¼ãƒ é©ç”¨ï¼‰
+		ImGui::SetNextWindowSize(ImVec2(400, 300), ImGuiCond_Always);
+
+        // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹ã—ã¾ã™ã€‚ãƒªã‚µã‚¤ã‚ºã¨ç§»å‹•ã‚’ç¦æ­¢ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’æŒ‡å®šã€‚
+		ImGui::Begin("TestWindowPosition", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
+
+        // å›ºå®šä½ç½®ãƒ»ã‚µã‚¤ã‚ºã®èª¬æ˜ãƒ†ã‚­ã‚¹ãƒˆ
+		ImGui::Text("This window has fixed position and size.");
+
+        // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ƒAƒjƒ[ƒVƒ‡ƒ“‚ğì¬
-	/// </summary>
-	void TestSimpleAnimation()
-	{
-		return;
-	}
-
-	/// <summary>
-	/// ƒtƒ@ƒCƒ‹ƒpƒX“ü—Í
-	/// </summary>
-	void TestFileInput()
-	{
-		return;
-	}
-
-	/// <summary>
-	/// ƒXƒNƒ[ƒ‹§Œä
-	/// </summary>
-	void TestScrollControl()
-	{
-		return;
-	}
-
-	/// <summary>
-	/// ƒfƒoƒbƒOƒEƒBƒ“ƒhƒE•\¦
-	/// </summary>
-	void TestDebugWindow()
-	{
-		return;
-	}
-
-	/// <summary>
-	/// ƒVƒ‡[ƒgƒJƒbƒgƒL[w’è
-	/// </summary>
-	void TestHotKeySupport()
-	{
-		return;
-	}
-
-	/// <summary>
-	/// ƒf[ƒ^‚ğƒRƒs[&ƒy[ƒXƒg
+	/// ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼&ãƒšãƒ¼ã‚¹ãƒˆ
 	/// </summary>
 	void TestClipboard()
 	{
+		static char buf[256] = "";
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(200, 70), ImGuiCond_Once);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹
+		ImGui::Begin("TestClipboard");
+
+		// ãƒ†ã‚­ã‚¹ãƒˆå…¥åŠ›
+		ImGui::InputText("Input", buf, sizeof(buf));
+
+		// ã‚³ãƒ”ãƒ¼ ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‚‰ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆã‚’ã‚»ãƒƒãƒˆ
+		if (ImGui::Button("Copy"))
+		{
+			ImGui::SetClipboardText(buf);
+		}
+
+		// ãƒšãƒ¼ã‚¹ãƒˆ ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‚‰ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‹ã‚‰ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—ã—ã¦ãƒãƒƒãƒ•ã‚¡ã«ã‚»ãƒƒãƒˆ
+		if (ImGui::Button("Paste"))
+		{
+			const char* clipboard = ImGui::GetClipboardText();
+			if (clipboard)
+			{
+				strncpy(buf, clipboard, sizeof(buf) - 1);
+				buf[sizeof(buf) - 1] = '\0'; // å¿µã®ãŸã‚çµ‚ç«¯ã‚’ä¿è¨¼
+			}
+		}
+
+		// ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã™ã‚‹
+		ImGui::Text("Buffer: %s", buf);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// •¡”ƒEƒBƒWƒFƒbƒg˜A“®
-	/// </summary>
-	void TestWidgetGroup()
-	{
-		return;
-	}
-
-	/// <summary>
-	/// ƒm[ƒg‚âƒwƒ‹ƒvƒEƒBƒ“ƒhƒE
+	/// ãƒãƒ¼ãƒˆã‚„ãƒ˜ãƒ«ãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	/// </summary>
 	void TestHelpNote()
 	{
+		static bool show_help = true;
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(500, 400), ImGuiCond_Once);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Begin("TestHelpNote");
+
+        // ImGuiã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¬ã‚¤ãƒ‰ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+		ImGui::ShowUserGuide();
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// “ü—Í—š—ğŠÇ—
-	/// </summary>
-	void TestInputHistory()
-	{
-		return;
-	}
-
-	/// <summary>
-	/// ŠÈˆÕƒhƒbƒLƒ“ƒOUI
-	/// </summary>
-	void TestDockingUI()
-	{
-		return;
-	}
-
-	/// <summary>
-	/// ƒ‚ƒoƒCƒ‹ƒ^ƒbƒ`ƒWƒFƒXƒ`ƒƒ[
-	/// </summary>
-	void TestTouchGesture()
-	{
-		return;
-	}
-
-	/// <summary>
-	/// ƒY[ƒ€/ƒpƒ“‘€ì
+	/// ã‚ºãƒ¼ãƒ /ãƒ‘ãƒ³æ“ä½œ
 	/// </summary>
 	void TestZoomPan()
 	{
+        // ã‚ºãƒ¼ãƒ ã¨ãƒ‘ãƒ³ã®çŠ¶æ…‹ã‚’ä¿æŒã™ã‚‹å¤‰æ•°
+		static float zoom = 1.0f;
+		static ImVec2 pan = { 0,0 };
+
+		ImGuiIO& io = ImGui::GetIO();
+
+        // ãƒã‚¦ã‚¹ãƒ›ã‚¤ãƒ¼ãƒ«ã§ã‚ºãƒ¼ãƒ ã‚¤ãƒ³ãƒ»ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ
+		if (io.MouseWheel != 0)
+		{
+			 zoom *= (io.MouseWheel > 0) ? 1.1f : 0.9f;
+		}
+
+        // å³ãƒ‰ãƒ©ãƒƒã‚°ã§ãƒ‘ãƒ³æ“ä½œ
+		if (ImGui::IsMouseDragging(ImGuiMouseButton_Right))
+		{
+			pan = ImVec2(pan.x + io.MouseDelta.x, pan.y + io.MouseDelta.y);
+		}
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(300, 300), ImGuiCond_Once);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Begin("TestHelpNote");
+
+        // ã‚ºãƒ¼ãƒ ã¨ãƒ‘ãƒ³ã®æƒ…å ±ã‚’è¡¨ç¤º
+		ImGui::Text("Zoom: %.2f Pan: (%.1f, %.1f)", zoom, pan.x, pan.y);
+
+        // æç”»é ˜åŸŸã®é–‹å§‹ä½ç½®ã‚’å–å¾—
+		ImVec2 p = ImGui::GetCursorScreenPos();
+
+        // æç”»ãƒªã‚¹ãƒˆã‚’å–å¾—
+		ImDrawList* dl = ImGui::GetWindowDrawList();
+
+        // ã‚ºãƒ¼ãƒ ã¨ãƒ‘ãƒ³ã‚’åæ˜ ã—ãŸå††ã‚’æç”»
+		dl->AddCircleFilled(ImVec2(p.x + pan.x, p.y + pan.y), 50 * zoom, IM_COL32(255, 0, 0, 255));
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ‡˜“ü‘ÖƒŠƒXƒgƒ{ƒbƒNƒX
+	/// é †åºå…¥æ›¿ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹
 	/// </summary>
 	void TestReorderListBox()
 	{
+        // ãƒ‰ãƒ©ãƒƒã‚°&ãƒ‰ãƒ­ãƒƒãƒ—ã§é †åºã‚’å…¥ã‚Œæ›¿ãˆå¯èƒ½ãªãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã®ä¾‹
+		static std::vector<std::string> items = { "Item 1", "Item 2", "Item 3", "Item 4" };
+		static int dragged_item = -1;
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(100, 100), ImGuiCond_Once);
+
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+		ImGui::Begin("TestReorderListBox");
+
+        // ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹å†…ã®å„ã‚¢ã‚¤ãƒ†ãƒ ã‚’è¡¨ç¤º
+		for (int i = 0; i < items.size(); i++) 
+		{
+            // ã‚¢ã‚¤ãƒ†ãƒ ã‚’é¸æŠå¯èƒ½ãªãƒªã‚¹ãƒˆã¨ã—ã¦è¡¨ç¤º
+			ImGui::Selectable(items[i].c_str());
+
+            // ãƒ‰ãƒ©ãƒƒã‚°é–‹å§‹åˆ¤å®š
+			if (ImGui::IsItemActive() && ImGui::IsMouseDragging(0)) {
+                dragged_item = i; // ãƒ‰ãƒ©ãƒƒã‚°ä¸­ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä¿å­˜
+			}
+
+			// ãƒ‰ãƒ­ãƒƒãƒ—ä½ç½®åˆ¤å®š
+			if (dragged_item >= 0 && dragged_item != i && ImGui::IsItemHovered())
+ {
+                // ã“ã“ã«ãƒ‰ãƒ­ãƒƒãƒ—ã•ã‚ŒãŸå ´åˆã®å‡¦ç†
+				if (ImGui::IsMouseReleased(0)) {
+                    std::swap(items[dragged_item], items[i]); // ã‚¢ã‚¤ãƒ†ãƒ ã®é †åºã‚’å…¥ã‚Œæ›¿ãˆ
+                    dragged_item = -1; // ãƒ‰ãƒ©ãƒƒã‚°çŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆ
+				}
+			}
+		}
+
+        // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ƒLƒƒƒ“ƒoƒX•`‰æ
+	/// ã‚­ãƒ£ãƒ³ãƒã‚¹æç”»
 	/// </summary>
 	void TestCanvasDraw()
 	{
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’è¨­å®šã—ã¾ã™ï¼ˆImGuiCond_Onceã§ä¸€åº¦ã ã‘é©ç”¨ï¼‰ã€‚
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
+
+        // ImGuiã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹
+		ImGui::Begin("TestCanvasDraw");
+
+		// ã‚­ãƒ£ãƒ³ãƒã‚¹ã®ã‚µã‚¤ã‚ºã‚’æŒ‡å®š
+		ImVec2 canvas_size = ImVec2(200, 190);
+		ImGui::Text("Canvas Area");
+		ImGui::InvisibleButton("canvas", canvas_size);
+
+		// æç”»ãƒªã‚¹ãƒˆå–å¾—
+		ImDrawList* draw_list = ImGui::GetWindowDrawList();
+		ImVec2 origin = ImGui::GetItemRectMin();  // ã‚­ãƒ£ãƒ³ãƒã‚¹å·¦ä¸Šã®åº§æ¨™
+
+		// ãƒã‚¦ã‚¹ä½ç½®ï¼ˆã‚­ãƒ£ãƒ³ãƒã‚¹åº§æ¨™ç³»ï¼‰
+		ImVec2 mouse_pos_in_canvas = ImGui::GetIO().MousePos - origin;
+
+		// ãƒã‚¤ãƒ³ãƒˆé…åˆ—ï¼ˆstaticã§ä¿æŒï¼‰
+		static ImVector<ImVec2> points;
+
+		// ã‚­ãƒ£ãƒ³ãƒã‚¹å†…ã«ãƒã‚¦ã‚¹ãŒã‚ã‚‹ã‹ã¤å·¦ã‚¯ãƒªãƒƒã‚¯ãŒã‚ã‚Œã°ãƒã‚¤ãƒ³ãƒˆè¿½åŠ 
+		if (ImGui::IsItemHovered())
+		{
+			if (ImGui::IsMouseClicked(0))
+			{
+				points.push_back(mouse_pos_in_canvas);
+			}
+		}
+
+		// æ—¢å­˜ã®ãƒã‚¤ãƒ³ãƒˆã‚’ç›´ç·šã§çµã¶
+		for (int i = 0; i < points.Size - 1; i++)
+		{
+			draw_list->AddLine(origin + points[i], origin + points[i + 1], IM_COL32(255, 0, 0, 255), 2.0f);
+		}
+
+        // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒEƒBƒ“ƒhƒE
+	/// ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	/// </summary>
 	void TestFullScreenWindow()
 	{
+        // æ²¡
 		return;
 	}
 
 	/// <summary>
-	/// ƒŒƒ“ƒ_[ƒŒƒCƒ„[ŠÇ—
+	/// ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ¬ã‚¤ãƒ¤ãƒ¼ç®¡ç†
 	/// </summary>
 	void TestRenderLayer()
 	{
@@ -515,7 +1067,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒXƒNƒ[ƒ‹“¯Šú
+	/// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
 	/// </summary>
 	void TestScrollSync()
 	{
@@ -523,7 +1075,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒŒƒXƒ|ƒ“ƒVƒuƒfƒUƒCƒ“
+	/// ãƒ¬ã‚¹ãƒãƒ³ã‚·ãƒ–ãƒ‡ã‚¶ã‚¤ãƒ³
 	/// </summary>
 	void TestResponsiveWindow()
 	{
@@ -531,7 +1083,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒ_[ƒN/ƒ‰ƒCƒgØ‚è‘Ö‚¦
+	/// ãƒ€ãƒ¼ã‚¯/ãƒ©ã‚¤ãƒˆåˆ‡ã‚Šæ›¿ãˆ
 	/// </summary>
 	void TestDarkModeToggle()
 	{
@@ -539,7 +1091,7 @@ namespace
 	}
 
 	/// <summary>
-	/// •\¦”ñ•\¦‚ğØ‚è‘Ö‚¦
+	/// è¡¨ç¤ºéè¡¨ç¤ºã‚’åˆ‡ã‚Šæ›¿ãˆ
 	/// </summary>
 	void TestVisibilityToggle()
 	{
@@ -547,7 +1099,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒOƒ‹[ƒv‰»‚µ‚ÄˆêŠ‡‘€ì
+	/// ã‚°ãƒ«ãƒ¼ãƒ—åŒ–ã—ã¦ä¸€æ‹¬æ“ä½œ
 	/// </summary>
 	void TestWidgetGrouping()
 	{
@@ -555,7 +1107,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒ^ƒCƒ€ƒ‰ƒCƒ“ii’»•t‚«ƒo[j
+	/// ã‚¿ã‚¤ãƒ ãƒ©ã‚¤ãƒ³ï¼ˆé€²æ—ä»˜ããƒãƒ¼ï¼‰
 	/// </summary>
 	void TestTimelineBar()
 	{
@@ -563,7 +1115,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒJƒXƒ^ƒ€ƒ|ƒbƒvƒAƒbƒv
+	/// ã‚«ã‚¹ã‚¿ãƒ ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—
 	/// </summary>
 	void TestCustomPopup()
 	{
@@ -571,7 +1123,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ‹­’²•\¦
+	/// å¼·èª¿è¡¨ç¤º
 	/// </summary>
 	void TestHighlightText()
 	{
@@ -579,7 +1131,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒŠƒXƒg
+	/// ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒªã‚¹ãƒˆ
 	/// </summary>
 	void TestFilterList()
 	{
@@ -587,7 +1139,7 @@ namespace
 	}
 
 	/// <summary>
-	/// •¡”‘I‘ğƒŠƒXƒgƒ{ƒbƒNƒX
+	/// è¤‡æ•°é¸æŠãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹
 	/// </summary>
 	void TestMultiSelectList()
 	{
@@ -595,7 +1147,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒI[ƒo[ƒŒƒC•\¦
+	/// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤è¡¨ç¤º
 	/// </summary>
 	void TestOverlayText()
 	{
@@ -603,7 +1155,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒ}ƒ‹ƒ`ƒ‰ƒCƒ““ü—Í
+	/// ãƒãƒ«ãƒãƒ©ã‚¤ãƒ³å…¥åŠ›
 	/// </summary>
 	void TestMultiLineInput()
 	{
@@ -611,7 +1163,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ”’lƒXƒeƒbƒp[
+	/// æ•°å€¤ã‚¹ãƒ†ãƒƒãƒ‘ãƒ¼
 	/// </summary>
 	void TestNumberStepper()
 	{
@@ -619,7 +1171,7 @@ namespace
 	}
 
 	/// <summary>
-	/// F•ÏXUI
+	/// è‰²å¤‰æ›´UI
 	/// </summary>
 	void TestColorEdit()
 	{
@@ -627,7 +1179,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒLƒƒƒ“ƒZƒ‹‘€ì
+	/// ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ“ä½œ
 	/// </summary>
 	void TestCancelDialog()
 	{
@@ -635,7 +1187,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ‰ñ“]/ƒXƒP[ƒ‹UI
+	/// å›è»¢/ã‚¹ã‚±ãƒ¼ãƒ«UI
 	/// </summary>
 	void TestTransformWidget()
 	{
@@ -643,7 +1195,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒpƒlƒ‹Œ^UI
+	/// ãƒ‘ãƒãƒ«å‹UI
 	/// </summary>
 	void TestPanelLayout()
 	{
@@ -651,7 +1203,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ‰æ‘œ•`‰æƒJƒXƒ^ƒ}ƒCƒY
+	/// ç”»åƒæç”»ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚º
 	/// </summary>
 	void TestCustomImage()
 	{
@@ -659,7 +1211,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒTƒuƒEƒBƒ“ƒhƒE’Ç‰Á
+	/// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¿½åŠ 
 	/// </summary>
 	void TestAddSubwindow()
 	{
@@ -667,7 +1219,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ‰æ–ÊƒLƒƒƒvƒ`ƒƒ
+	/// ç”»é¢ã‚­ãƒ£ãƒ—ãƒãƒ£
 	/// </summary>
 	void TestScreenShot()
 	{
@@ -675,7 +1227,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒpƒXƒ[ƒh“ü—Í
+	/// ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å…¥åŠ›
 	/// </summary>
 	void TestPasswordInput()
 	{
@@ -683,7 +1235,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒCƒxƒ“ƒg’Ê’miƒg[ƒXƒgj
+	/// ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ï¼ˆãƒˆãƒ¼ã‚¹ãƒˆï¼‰
 	/// </summary>
 	void TestNotification()
 	{
@@ -691,7 +1243,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒAƒNƒZƒVƒrƒŠƒeƒB
+	/// ã‚¢ã‚¯ã‚»ã‚·ãƒ“ãƒªãƒ†ã‚£
 	/// </summary>
 	void TestAccessibility()
 	{
@@ -699,7 +1251,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒzƒo[Ú×î•ñ
+	/// ãƒ›ãƒãƒ¼æ™‚è©³ç´°æƒ…å ±
 	/// </summary>
 	void TestOnHoverDetail()
 	{
@@ -707,7 +1259,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒoƒbƒ`Ø‘ÖUI
+	/// ãƒãƒƒãƒåˆ‡æ›¿UI
 	/// </summary>
 	void TestBatchSwitch()
 	{
@@ -715,7 +1267,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒƒOo—ÍƒEƒBƒ“ƒhƒE
+	/// ãƒ­ã‚°å‡ºåŠ›ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	/// </summary>
 	void TestLogWindow()
 	{
@@ -723,7 +1275,7 @@ namespace
 	}
 
 	/// <summary>
-	/// •¨—ƒXƒ‰ƒCƒ_[‘€ì
+	/// ç‰©ç†ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼æ“ä½œ
 	/// </summary>
 	void TestDragSlider()
 	{
@@ -731,7 +1283,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒ}ƒeƒŠƒAƒ‹’²®ƒEƒBƒ“ƒhƒE
+	/// ãƒãƒ†ãƒªã‚¢ãƒ«èª¿æ•´ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	/// </summary>
 	void TestMaterialEdit()
 	{
@@ -739,7 +1291,7 @@ namespace
 	}
 
 	/// <summary>
-	/// GPUƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“g—p
+	/// GPUã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ä½¿ç”¨
 	/// </summary>
 	void TestGPUAccelUse()
 	{
@@ -747,7 +1299,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ‰¹ºÄ¶UI
+	/// éŸ³å£°å†ç”ŸUI
 	/// </summary>
 	void TestAudioControl()
 	{
@@ -755,7 +1307,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒrƒfƒI–„‚ß‚İUI
+	/// ãƒ“ãƒ‡ã‚ªåŸ‹ã‚è¾¼ã¿UI
 	/// </summary>
 	void TestVideoEmbed()
 	{
@@ -763,7 +1315,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒVƒ‡[ƒgƒJƒbƒg•\¦
+	/// ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆè¡¨ç¤º
 	/// </summary>
 	void TestShowShortcuts()
 	{
@@ -771,7 +1323,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒ^ƒO‘I‘ğUI
+	/// ã‚¿ã‚°é¸æŠUI
 	/// </summary>
 	void TestTagSelector()
 	{
@@ -779,7 +1331,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒwƒbƒ_[‚ÅÜ‚è‚½‚½‚İ
+	/// ãƒ˜ãƒƒãƒ€ãƒ¼ã§æŠ˜ã‚ŠãŸãŸã¿
 	/// </summary>
 	void TestHeaderCollapse()
 	{
@@ -787,7 +1339,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒNƒƒXƒvƒ‰ƒbƒgƒtƒH[ƒ€UI
+	/// ã‚¯ãƒ­ã‚¹ãƒ—ãƒ©ãƒƒãƒˆãƒ•ã‚©ãƒ¼ãƒ UI
 	/// </summary>
 	void TestCrossPlatformUI()
 	{
@@ -795,7 +1347,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ’Ê’mƒoƒbƒW•\¦
+	/// é€šçŸ¥ãƒãƒƒã‚¸è¡¨ç¤º
 	/// </summary>
 	void TestBadgeNotify()
 	{
@@ -803,7 +1355,7 @@ namespace
 	}
 
 	/// <summary>
-	/// s”EƒJƒ‰ƒ€”•ÏX‰Â”\ƒe[ƒuƒ‹
+	/// è¡Œæ•°ãƒ»ã‚«ãƒ©ãƒ æ•°å¤‰æ›´å¯èƒ½ãƒ†ãƒ¼ãƒ–ãƒ«
 	/// </summary>
 	void TestFlexibleTable()
 	{
@@ -811,7 +1363,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒc[ƒ‹ƒo[ì¬
+	/// ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ä½œæˆ
 	/// </summary>
 	void TestToolbar()
 	{
@@ -819,7 +1371,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒCƒ“ƒ^ƒ‰ƒNƒeƒBƒuƒ`ƒƒ[ƒg•ÒW
+	/// ã‚¤ãƒ³ã‚¿ãƒ©ã‚¯ãƒ†ã‚£ãƒ–ãƒãƒ£ãƒ¼ãƒˆç·¨é›†
 	/// </summary>
 	void TestChartEditor()
 	{
@@ -827,7 +1379,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒe[ƒ}Ø‘Öi•¡”ƒe[ƒ}‘Î‰j
+	/// ãƒ†ãƒ¼ãƒåˆ‡æ›¿ï¼ˆè¤‡æ•°ãƒ†ãƒ¼ãƒå¯¾å¿œï¼‰
 	/// </summary>
 	void TestThemeToggle()
 	{
@@ -835,7 +1387,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒŠƒTƒCƒY‘Î‰ƒEƒBƒ“ƒhƒE
+	/// ãƒªã‚µã‚¤ã‚ºå¯¾å¿œã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	/// </summary>
 	void TestResizableWin()
 	{
@@ -843,7 +1395,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒ}ƒEƒXƒJ[ƒ\ƒ‹ƒJƒXƒ^ƒ}ƒCƒY
+	/// ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚º
 	/// </summary>
 	void TestCursorCustom()
 	{
@@ -851,7 +1403,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒrƒWƒ…ƒAƒ‹ƒGƒtƒFƒNƒg’Ç‰Á
+	/// ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¿½åŠ 
 	/// </summary>
 	void TestVisualEffect()
 	{
@@ -859,7 +1411,7 @@ namespace
 	}
 
 	/// <summary>
-	/// s‚Ì•À‚Ñ‘Ö‚¦
+	/// è¡Œã®ä¸¦ã³æ›¿ãˆ
 	/// </summary>
 	void TestRowSortControl()
 	{
@@ -867,7 +1419,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒƒ‚ƒŠg—pó‹µ•\¦
+	/// ãƒ¡ãƒ¢ãƒªä½¿ç”¨çŠ¶æ³è¡¨ç¤º
 	/// </summary>
 	void TestMemoryStats()
 	{
@@ -875,7 +1427,7 @@ namespace
 	}
 
 	/// <summary>
-	/// “ü—Í•âŠ®UI
+	/// å…¥åŠ›è£œå®ŒUI
 	/// </summary>
 	void TestInputCompletion()
 	{
@@ -883,7 +1435,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ƒoƒŠƒf[ƒVƒ‡ƒ“i’lƒ`ƒFƒbƒNj
+	/// ãƒãƒªãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ï¼ˆå€¤ãƒã‚§ãƒƒã‚¯ï¼‰
 	/// </summary>
 	void TestValidation()
 	{
@@ -891,7 +1443,7 @@ namespace
 	}
 
 	/// <summary>
-	/// İ’èƒtƒ@ƒCƒ‹‚Ì•Û‘¶/“Ç
+	/// è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜/èª­è¾¼
 	/// </summary>
 	void TestConfigIO()
 	{
@@ -899,7 +1451,7 @@ namespace
 	}
 
 	/// <summary>
-	/// Undo/Redo‘Î‰UI
+	/// Undo/Redoå¯¾å¿œUI
 	/// </summary>
 	void TestUndoRedo()
 	{
@@ -911,150 +1463,141 @@ namespace
 
 
 /**
- * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
- * ImGuiƒeƒXƒgƒP[ƒX‚Ì‰Šú‰»‚âTickİ’è‚ğs‚¢‚Ü‚·B
+ * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+ * ImGuiãƒ†ã‚¹ãƒˆã‚±ãƒ¼ã‚¹ã®åˆæœŸåŒ–ã‚„Tickè¨­å®šã‚’è¡Œã„ã¾ã™ã€‚
  */
 AImGuiActor::AImGuiActor()
 {
+
 	PrimaryActorTick.bCanEverTick = true;
 
-	// ƒeƒXƒgƒP[ƒXî•ñ‚ğ’Ç‰Á
-	TestCases.Add(FtestCase(TestImGuiBeginAndEnd, TEXT("BeginAndEnd"))); // ImGui‚ÌBegin/End‚ÌƒeƒXƒg
-	TestCases.Add(FtestCase(TestFuncBeginChild, TEXT("BeginChild")));    // ImGui‚ÌBeginChild/EndChild‚ÌƒeƒXƒg
-	TestCases.Add(FtestCase(TestWindowFlags, TEXT("WindowFlags")));      // ImGuiƒEƒBƒ“ƒhƒEƒtƒ‰ƒO‚ÌƒeƒXƒg
-	TestCases.Add(FtestCase(TestSimpleWindow, TEXT("SimpleWindow")));    // ƒEƒBƒ“ƒhƒE‚ğì¬‚·‚é
-	TestCases.Add(FtestCase(TestSimpleButton, TEXT("SimpleButton")));    // ƒ{ƒ^ƒ“‚ğ•\¦‚·‚é
-	TestCases.Add(FtestCase(TestShowText, TEXT("ShowText")));            // ƒeƒLƒXƒg‚ğ•\¦‚·‚é
-	TestCases.Add(FtestCase(TestCheckBox, TEXT("CheckBox")));            // ƒ`ƒFƒbƒNƒ{ƒbƒNƒX‚ğì¬‚·‚é
-	TestCases.Add(FtestCase(TestFloatSlider, TEXT("FloatSlider")));      // ƒXƒ‰ƒCƒ_[‚ğ‘€ì‚·‚é
-	TestCases.Add(FtestCase(TestComboBox, TEXT("ComboBox")));            // ƒhƒƒbƒvƒ_ƒEƒ“ƒŠƒXƒg‚ğì¬
-	TestCases.Add(FtestCase(TestShowImage, TEXT("ShowImage")));          // ‰æ‘œ‚ğ•\¦‚·‚é
-	TestCases.Add(FtestCase(TestInputField, TEXT("InputField")));        // ƒ‰ƒxƒ‹•t‚«“ü—ÍƒtƒB[ƒ‹ƒh
-	TestCases.Add(FtestCase(TestSimpleTable, TEXT("SimpleTable")));      // ƒe[ƒuƒ‹‚ğ•\¦‚·‚é
-	TestCases.Add(FtestCase(TestListBox, TEXT("ListBox")));              // ƒŠƒXƒgƒ{ƒbƒNƒX‚ğì¬
-	TestCases.Add(FtestCase(TestTreeNode, TEXT("TreeNode")));            // ƒcƒŠ[ƒm[ƒh‚ğì¬
-	TestCases.Add(FtestCase(TestShowTooltip, TEXT("ShowTooltip")));      // ƒc[ƒ‹ƒ`ƒbƒv‚ğ•\¦
-	TestCases.Add(FtestCase(TestColorPicker, TEXT("ColorPicker")));      // ƒJƒ‰[‘I‘ğƒ_ƒCƒAƒƒO‚ğ•\¦
-	TestCases.Add(FtestCase(TestProgressBar, TEXT("ProgressBar")));      // ƒvƒƒOƒŒƒXƒo[‚ğ•\¦
-	TestCases.Add(FtestCase(TestMenuBar, TEXT("MenuBar")));              // ƒƒjƒ…[‚ğì¬‚·‚é
-	TestCases.Add(FtestCase(TestStatusBar, TEXT("StatusBar")));          // ƒXƒe[ƒ^ƒXƒo[‚ğì¬‚·‚é
-	TestCases.Add(FtestCase(TestTabWidget, TEXT("TabWidget")));          // ƒ^ƒu‚ğì¬‚·‚é
-	TestCases.Add(FtestCase(TestFontChange, TEXT("FontChange")));        // ƒtƒHƒ“ƒg‚ğ•ÏX
-	TestCases.Add(FtestCase(TestStyleControl, TEXT("StyleControl")));    // ƒXƒ^ƒCƒ‹‚ğ•ÏX‚·‚é
-	TestCases.Add(FtestCase(TestFocusControl, TEXT("FocusControl")));    // ƒtƒH[ƒJƒX§Œä
-	TestCases.Add(FtestCase(TestDragDrop, TEXT("DragDrop")));            // ƒhƒ‰ƒbƒO&ƒhƒƒbƒv‚ğÀ‘•‚·‚é
-	TestCases.Add(FtestCase(TestChildWindow, TEXT("ChildWindow")));      // qƒEƒBƒ“ƒhƒEE—Ìˆæ‚ğì‚é
-	TestCases.Add(FtestCase(TestInputMonitor, TEXT("InputMonitor")));    // “ü—Íó‘Ô‚ğŠÄ‹
-	TestCases.Add(FtestCase(TestImageButton, TEXT("ImageButton")));      // ‰æ‘œƒ{ƒ^ƒ“‚ğİ’u
-	TestCases.Add(FtestCase(TestLayoutAdjust, TEXT("LayoutAdjust")));    // ƒŒƒCƒAƒEƒg‚ğƒXƒy[ƒX‚Å’²®
-	TestCases.Add(FtestCase(TestColumnLayout, TEXT("ColumnLayout")));    // s‚â—ñ‚ğ•ªŠ„”z’u
-	TestCases.Add(FtestCase(TestModalDialog, TEXT("ModalDialog")));      // ƒ‚[ƒ_ƒ‹ƒ_ƒCƒAƒƒO‚ğ•\¦
-	TestCases.Add(FtestCase(TestEventInput, TEXT("EventInput")));        // ƒCƒxƒ“ƒgƒnƒ“ƒhƒŠƒ“ƒO
-	TestCases.Add(FtestCase(TestWindowPosition, TEXT("WindowPosition"))); // ƒEƒBƒ“ƒhƒE‚ÌˆÊ’uEƒTƒCƒYŒÅ’è
-	TestCases.Add(FtestCase(TestSimpleAnimation, TEXT("SimpleAnimation"))); // ƒAƒjƒ[ƒVƒ‡ƒ“‚ğì¬
-	TestCases.Add(FtestCase(TestFileInput, TEXT("FileInput")));          // ƒtƒ@ƒCƒ‹ƒpƒX“ü—Í
-	TestCases.Add(FtestCase(TestScrollControl, TEXT("ScrollControl")));  // ƒXƒNƒ[ƒ‹§Œä
-	TestCases.Add(FtestCase(TestDebugWindow, TEXT("DebugWindow")));      // ƒfƒoƒbƒOƒEƒBƒ“ƒhƒE•\¦
-	TestCases.Add(FtestCase(TestHotKeySupport, TEXT("HotKeySupport")));  // ƒVƒ‡[ƒgƒJƒbƒgƒL[w’è
-	TestCases.Add(FtestCase(TestClipboard, TEXT("Clipboard")));          // ƒf[ƒ^‚ğƒRƒs[&ƒy[ƒXƒg
-	TestCases.Add(FtestCase(TestWidgetGroup, TEXT("WidgetGroup")));      // •¡”ƒEƒBƒWƒFƒbƒg˜A“®
-	TestCases.Add(FtestCase(TestHelpNote, TEXT("HelpNote")));            // ƒm[ƒg‚âƒwƒ‹ƒvƒEƒBƒ“ƒhƒE
-	TestCases.Add(FtestCase(TestInputHistory, TEXT("InputHistory")));    // “ü—Í—š—ğŠÇ—
-	TestCases.Add(FtestCase(TestDockingUI, TEXT("DockingUI")));          // ŠÈˆÕƒhƒbƒLƒ“ƒOUI
-	TestCases.Add(FtestCase(TestTouchGesture, TEXT("TouchGesture")));    // ƒ‚ƒoƒCƒ‹ƒ^ƒbƒ`ƒWƒFƒXƒ`ƒƒ[
-	TestCases.Add(FtestCase(TestZoomPan, TEXT("ZoomPan")));              // ƒY[ƒ€/ƒpƒ“‘€ì
-	TestCases.Add(FtestCase(TestReorderListBox, TEXT("ReorderListBox"))); // ‡˜“ü‘ÖƒŠƒXƒgƒ{ƒbƒNƒX
-	TestCases.Add(FtestCase(TestCanvasDraw, TEXT("CanvasDraw")));        // ƒLƒƒƒ“ƒoƒX•`‰æ
-	TestCases.Add(FtestCase(TestFullScreenWindow, TEXT("FullScreenWindow"))); // ƒtƒ‹ƒXƒNƒŠ[ƒ“ƒEƒBƒ“ƒhƒE
-	TestCases.Add(FtestCase(TestRenderLayer, TEXT("RenderLayer")));      // ƒŒƒ“ƒ_[ƒŒƒCƒ„[ŠÇ—
-	TestCases.Add(FtestCase(TestScrollSync, TEXT("ScrollSync")));        // ƒXƒNƒ[ƒ‹“¯Šú
-	TestCases.Add(FtestCase(TestResponsiveWindow, TEXT("ResponsiveWindow"))); // ƒŒƒXƒ|ƒ“ƒVƒuƒfƒUƒCƒ“
-	TestCases.Add(FtestCase(TestDarkModeToggle, TEXT("DarkModeToggle"))); // ƒ_[ƒN/ƒ‰ƒCƒgØ‚è‘Ö‚¦
-	TestCases.Add(FtestCase(TestVisibilityToggle, TEXT("VisibilityToggle"))); // •\¦”ñ•\¦‚ğØ‚è‘Ö‚¦
-	TestCases.Add(FtestCase(TestWidgetGrouping, TEXT("WidgetGrouping"))); // ƒOƒ‹[ƒv‰»‚µ‚ÄˆêŠ‡‘€ì
-	TestCases.Add(FtestCase(TestTimelineBar, TEXT("TimelineBar")));      // ƒ^ƒCƒ€ƒ‰ƒCƒ“ii’»•t‚«ƒo[j
-	TestCases.Add(FtestCase(TestCustomPopup, TEXT("CustomPopup")));      // ƒJƒXƒ^ƒ€ƒ|ƒbƒvƒAƒbƒv
-	TestCases.Add(FtestCase(TestHighlightText, TEXT("HighlightText")));  // ‹­’²•\¦
-	TestCases.Add(FtestCase(TestFilterList, TEXT("FilterList")));        // ƒtƒBƒ‹ƒ^ƒŠƒ“ƒOƒŠƒXƒg
-	TestCases.Add(FtestCase(TestMultiSelectList, TEXT("MultiSelectList"))); // •¡”‘I‘ğƒŠƒXƒgƒ{ƒbƒNƒX
-	TestCases.Add(FtestCase(TestOverlayText, TEXT("OverlayText")));      // ƒI[ƒo[ƒŒƒC•\¦
-	TestCases.Add(FtestCase(TestMultiLineInput, TEXT("MultiLineInput"))); // ƒ}ƒ‹ƒ`ƒ‰ƒCƒ““ü—Í
-	TestCases.Add(FtestCase(TestNumberStepper, TEXT("NumberStepper")));  // ”’lƒXƒeƒbƒp[
-	TestCases.Add(FtestCase(TestColorEdit, TEXT("ColorEdit")));          // F•ÏXUI
-	TestCases.Add(FtestCase(TestCancelDialog, TEXT("CancelDialog")));    // ƒLƒƒƒ“ƒZƒ‹‘€ì
-	TestCases.Add(FtestCase(TestTransformWidget, TEXT("TransformWidget"))); // ‰ñ“]/ƒXƒP[ƒ‹UI
-	TestCases.Add(FtestCase(TestPanelLayout, TEXT("PanelLayout")));      // ƒpƒlƒ‹Œ^UI
-	TestCases.Add(FtestCase(TestCustomImage, TEXT("CustomImage")));      // ‰æ‘œ•`‰æƒJƒXƒ^ƒ}ƒCƒY
-	TestCases.Add(FtestCase(TestAddSubwindow, TEXT("AddSubwindow")));    // ƒTƒuƒEƒBƒ“ƒhƒE’Ç‰Á
-	TestCases.Add(FtestCase(TestScreenShot, TEXT("ScreenShot")));        // ‰æ–ÊƒLƒƒƒvƒ`ƒƒ
-	TestCases.Add(FtestCase(TestPasswordInput, TEXT("PasswordInput")));  // ƒpƒXƒ[ƒh“ü—Í
-	TestCases.Add(FtestCase(TestNotification, TEXT("Notification")));    // ƒCƒxƒ“ƒg’Ê’miƒg[ƒXƒgj
-	TestCases.Add(FtestCase(TestAccessibility, TEXT("Accessibility")));  // ƒAƒNƒZƒVƒrƒŠƒeƒB
-	TestCases.Add(FtestCase(TestOnHoverDetail, TEXT("OnHoverDetail")));  // ƒzƒo[Ú×î•ñ
-	TestCases.Add(FtestCase(TestBatchSwitch, TEXT("BatchSwitch")));      // ƒoƒbƒ`Ø‘ÖUI
-	TestCases.Add(FtestCase(TestLogWindow, TEXT("LogWindow")));          // ƒƒOo—ÍƒEƒBƒ“ƒhƒE
-	TestCases.Add(FtestCase(TestDragSlider, TEXT("DragSlider")));        // •¨—ƒXƒ‰ƒCƒ_[‘€ì
-	TestCases.Add(FtestCase(TestMaterialEdit, TEXT("MaterialEdit")));    // ƒ}ƒeƒŠƒAƒ‹’²®ƒEƒBƒ“ƒhƒE
-	TestCases.Add(FtestCase(TestGPUAccelUse, TEXT("GPUAccelUse")));      // GPUƒAƒNƒZƒ‰ƒŒ[ƒVƒ‡ƒ“g—p
-	TestCases.Add(FtestCase(TestAudioControl, TEXT("AudioControl")));    // ‰¹ºÄ¶UI
-	TestCases.Add(FtestCase(TestVideoEmbed, TEXT("VideoEmbed")));        // ƒrƒfƒI–„‚ß‚İUI
-	TestCases.Add(FtestCase(TestShowShortcuts, TEXT("ShowShortcuts")));  // ƒVƒ‡[ƒgƒJƒbƒg•\¦
-	TestCases.Add(FtestCase(TestTagSelector, TEXT("TagSelector")));      // ƒ^ƒO‘I‘ğUI
-	TestCases.Add(FtestCase(TestHeaderCollapse, TEXT("HeaderCollapse"))); // ƒwƒbƒ_[‚ÅÜ‚è‚½‚½‚İ
-	TestCases.Add(FtestCase(TestCrossPlatformUI, TEXT("CrossPlatformUI"))); // ƒNƒƒXƒvƒ‰ƒbƒgƒtƒH[ƒ€UI
-	TestCases.Add(FtestCase(TestBadgeNotify, TEXT("BadgeNotify")));      // ’Ê’mƒoƒbƒW•\¦
-	TestCases.Add(FtestCase(TestFlexibleTable, TEXT("FlexibleTable")));  // s”EƒJƒ‰ƒ€”•ÏX‰Â”\ƒe[ƒuƒ‹
-	TestCases.Add(FtestCase(TestToolbar, TEXT("Toolbar")));              // ƒc[ƒ‹ƒo[ì¬
-	TestCases.Add(FtestCase(TestChartEditor, TEXT("ChartEditor")));      // ƒCƒ“ƒ^ƒ‰ƒNƒeƒBƒuƒ`ƒƒ[ƒg•ÒW
-	TestCases.Add(FtestCase(TestThemeToggle, TEXT("ThemeToggle")));      // ƒe[ƒ}Ø‘Öi•¡”ƒe[ƒ}‘Î‰j
-	TestCases.Add(FtestCase(TestResizableWin, TEXT("ResizableWin")));    // ƒŠƒTƒCƒY‘Î‰ƒEƒBƒ“ƒhƒE
-	TestCases.Add(FtestCase(TestCursorCustom, TEXT("CursorCustom")));    // ƒ}ƒEƒXƒJ[ƒ\ƒ‹ƒJƒXƒ^ƒ}ƒCƒY
-	TestCases.Add(FtestCase(TestVisualEffect, TEXT("VisualEffect")));    // ƒrƒWƒ…ƒAƒ‹ƒGƒtƒFƒNƒg’Ç‰Á
-	TestCases.Add(FtestCase(TestRowSortControl, TEXT("RowSortControl"))); // s‚Ì•À‚Ñ‘Ö‚¦
-	TestCases.Add(FtestCase(TestMemoryStats, TEXT("MemoryStats")));      // ƒƒ‚ƒŠg—pó‹µ•\¦
-	TestCases.Add(FtestCase(TestInputCompletion, TEXT("InputCompletion"))); // “ü—Í•âŠ®UI
-	TestCases.Add(FtestCase(TestValidation, TEXT("Validation")));        // ƒoƒŠƒf[ƒVƒ‡ƒ“i’lƒ`ƒFƒbƒNj
-	TestCases.Add(FtestCase(TestConfigIO, TEXT("ConfigIO")));            // İ’èƒtƒ@ƒCƒ‹‚Ì•Û‘¶/“Ç
-	TestCases.Add(FtestCase(TestUndoRedo, TEXT("UndoRedo")));            // Undo/Redo‘Î‰UI
+	// ãƒ†ã‚¹ãƒˆã‚±ãƒ¼ã‚¹æƒ…å ±ã‚’è¿½åŠ 
+	///TestCases.Add(FtestCase(TestImGuiBeginAndEnd, TEXT("BeginAndEnd"))); // ImGuiã®Begin/Endã®ãƒ†ã‚¹ãƒˆ
+	///TestCases.Add(FtestCase(TestFuncBeginChild, TEXT("BeginChild")));    // ImGuiã®BeginChild/EndChildã®ãƒ†ã‚¹ãƒˆ
+	///TestCases.Add(FtestCase(TestWindowFlags, TEXT("WindowFlags")));      // ImGuiã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ãƒ©ã‚°ã®ãƒ†ã‚¹ãƒˆ
+	TestCases.Add(FtestCase(TestSimpleWindow, TEXT("SimpleWindow")));    // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆã™ã‚‹
+	TestCases.Add(FtestCase(TestSimpleButton, TEXT("SimpleButton")));    // ãƒœã‚¿ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹
+	TestCases.Add(FtestCase(TestShowText, TEXT("ShowText")));            // ãƒ†ã‚­ã‚¹ãƒˆã‚’è¡¨ç¤ºã™ã‚‹
+	TestCases.Add(FtestCase(TestCheckBox, TEXT("CheckBox")));            // ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ã‚’ä½œæˆã™ã‚‹
+	TestCases.Add(FtestCase(TestFloatSlider, TEXT("FloatSlider")));      // ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã‚’æ“ä½œã™ã‚‹
+	TestCases.Add(FtestCase(TestComboBox, TEXT("ComboBox")));            // ãƒ‰ãƒ­ãƒƒãƒ—ãƒ€ã‚¦ãƒ³ãƒªã‚¹ãƒˆã‚’ä½œæˆ
+	///TestCases.Add(FtestCase(TestShowImage, TEXT("ShowImage")));          // ç”»åƒã‚’è¡¨ç¤ºã™ã‚‹
+	TestCases.Add(FtestCase(TestInputField, TEXT("InputField")));        // ãƒ©ãƒ™ãƒ«ä»˜ãå…¥åŠ›ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
+	TestCases.Add(FtestCase(TestSimpleTable, TEXT("SimpleTable")));      // ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
+	///TestCases.Add(FtestCase(TestListBox, TEXT("ListBox")));              // ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã‚’ä½œæˆ
+	TestCases.Add(FtestCase(TestTreeNode, TEXT("TreeNode")));            // ãƒ„ãƒªãƒ¼ãƒãƒ¼ãƒ‰ã‚’ä½œæˆ
+	TestCases.Add(FtestCase(TestShowTooltip, TEXT("ShowTooltip")));      // ãƒ„ãƒ¼ãƒ«ãƒãƒƒãƒ—ã‚’è¡¨ç¤º
+	TestCases.Add(FtestCase(TestColorPicker, TEXT("ColorPicker")));      // ã‚«ãƒ©ãƒ¼é¸æŠãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤º
+	TestCases.Add(FtestCase(TestProgressBar, TEXT("ProgressBar")));      // ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã‚’è¡¨ç¤º
+	TestCases.Add(FtestCase(TestMenuBar, TEXT("MenuBar")));              // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ä½œæˆã™ã‚‹
+	TestCases.Add(FtestCase(TestTabWidget, TEXT("TabWidget")));          // ã‚¿ãƒ–ã‚’ä½œæˆã™ã‚‹
+	TestCases.Add(FtestCase(TestFontChange, TEXT("FontChange")));        // ãƒ•ã‚©ãƒ³ãƒˆã‚’å¤‰æ›´
+	TestCases.Add(FtestCase(TestStyleControl, TEXT("StyleControl")));    // ã‚¹ã‚¿ã‚¤ãƒ«ã‚’å¤‰æ›´ã™ã‚‹
+	TestCases.Add(FtestCase(TestFocusControl, TEXT("FocusControl")));    // ãƒ•ã‚©ãƒ¼ã‚«ã‚¹åˆ¶å¾¡
+	TestCases.Add(FtestCase(TestDragDrop, TEXT("DragDrop")));            // ãƒ‰ãƒ©ãƒƒã‚°&ãƒ‰ãƒ­ãƒƒãƒ—ã‚’å®Ÿè£…ã™ã‚‹
+	TestCases.Add(FtestCase(TestChildWindow, TEXT("ChildWindow")));      // å­ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ»é ˜åŸŸã‚’ä½œã‚‹
+	TestCases.Add(FtestCase(TestInputMonitor, TEXT("InputMonitor")));    // å…¥åŠ›çŠ¶æ…‹ã‚’ç›£è¦–
+	TestCases.Add(FtestCase(TestImageButton, TEXT("ImageButton")));      // ç”»åƒãƒœã‚¿ãƒ³ã‚’è¨­ç½®
+	TestCases.Add(FtestCase(TestLayoutAdjust, TEXT("LayoutAdjust")));    // ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’ã‚¹ãƒšãƒ¼ã‚¹ã§èª¿æ•´
+	TestCases.Add(FtestCase(TestColumnLayout, TEXT("ColumnLayout")));    // è¡Œã‚„åˆ—ã‚’åˆ†å‰²é…ç½®
+	TestCases.Add(FtestCase(TestModalDialog, TEXT("ModalDialog")));      // ãƒ¢ãƒ¼ãƒ€ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚’è¡¨ç¤º
+	TestCases.Add(FtestCase(TestWindowPosition, TEXT("WindowPosition"))); // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½ç½®ãƒ»ã‚µã‚¤ã‚ºå›ºå®š
+	TestCases.Add(FtestCase(TestClipboard, TEXT("Clipboard")));          // ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼&ãƒšãƒ¼ã‚¹ãƒˆ
+	TestCases.Add(FtestCase(TestHelpNote, TEXT("HelpNote")));            // ãƒãƒ¼ãƒˆã‚„ãƒ˜ãƒ«ãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	TestCases.Add(FtestCase(TestZoomPan, TEXT("ZoomPan")));              // ã‚ºãƒ¼ãƒ /ãƒ‘ãƒ³æ“ä½œ
+	TestCases.Add(FtestCase(TestReorderListBox, TEXT("ReorderListBox"))); // é †åºå…¥æ›¿ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹
+	TestCases.Add(FtestCase(TestCanvasDraw, TEXT("CanvasDraw")));        // ã‚­ãƒ£ãƒ³ãƒã‚¹æç”»
+	TestCases.Add(FtestCase(TestFullScreenWindow, TEXT("FullScreenWindow"))); // ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	TestCases.Add(FtestCase(TestRenderLayer, TEXT("RenderLayer")));      // ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ¬ã‚¤ãƒ¤ãƒ¼ç®¡ç†
+	TestCases.Add(FtestCase(TestScrollSync, TEXT("ScrollSync")));        // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åŒæœŸ
+	TestCases.Add(FtestCase(TestResponsiveWindow, TEXT("ResponsiveWindow"))); // ãƒ¬ã‚¹ãƒãƒ³ã‚·ãƒ–ãƒ‡ã‚¶ã‚¤ãƒ³
+	TestCases.Add(FtestCase(TestDarkModeToggle, TEXT("DarkModeToggle"))); // ãƒ€ãƒ¼ã‚¯/ãƒ©ã‚¤ãƒˆåˆ‡ã‚Šæ›¿ãˆ
+	TestCases.Add(FtestCase(TestVisibilityToggle, TEXT("VisibilityToggle"))); // è¡¨ç¤ºéè¡¨ç¤ºã‚’åˆ‡ã‚Šæ›¿ãˆ
+	TestCases.Add(FtestCase(TestWidgetGrouping, TEXT("WidgetGrouping"))); // ã‚°ãƒ«ãƒ¼ãƒ—åŒ–ã—ã¦ä¸€æ‹¬æ“ä½œ
+	TestCases.Add(FtestCase(TestTimelineBar, TEXT("TimelineBar")));      // ã‚¿ã‚¤ãƒ ãƒ©ã‚¤ãƒ³ï¼ˆé€²æ—ä»˜ããƒãƒ¼ï¼‰
+	TestCases.Add(FtestCase(TestCustomPopup, TEXT("CustomPopup")));      // ã‚«ã‚¹ã‚¿ãƒ ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—
+	TestCases.Add(FtestCase(TestHighlightText, TEXT("HighlightText")));  // å¼·èª¿è¡¨ç¤º
+	TestCases.Add(FtestCase(TestFilterList, TEXT("FilterList")));        // ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°ãƒªã‚¹ãƒˆ
+	TestCases.Add(FtestCase(TestMultiSelectList, TEXT("MultiSelectList"))); // è¤‡æ•°é¸æŠãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹
+	TestCases.Add(FtestCase(TestOverlayText, TEXT("OverlayText")));      // ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤è¡¨ç¤º
+	TestCases.Add(FtestCase(TestMultiLineInput, TEXT("MultiLineInput"))); // ãƒãƒ«ãƒãƒ©ã‚¤ãƒ³å…¥åŠ›
+	TestCases.Add(FtestCase(TestNumberStepper, TEXT("NumberStepper")));  // æ•°å€¤ã‚¹ãƒ†ãƒƒãƒ‘ãƒ¼
+	TestCases.Add(FtestCase(TestColorEdit, TEXT("ColorEdit")));          // è‰²å¤‰æ›´UI
+	TestCases.Add(FtestCase(TestCancelDialog, TEXT("CancelDialog")));    // ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ“ä½œ
+	TestCases.Add(FtestCase(TestTransformWidget, TEXT("TransformWidget"))); // å›è»¢/ã‚¹ã‚±ãƒ¼ãƒ«UI
+	TestCases.Add(FtestCase(TestPanelLayout, TEXT("PanelLayout")));      // ãƒ‘ãƒãƒ«å‹UI
+	TestCases.Add(FtestCase(TestCustomImage, TEXT("CustomImage")));      // ç”»åƒæç”»ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚º
+	TestCases.Add(FtestCase(TestAddSubwindow, TEXT("AddSubwindow")));    // ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¿½åŠ 
+	TestCases.Add(FtestCase(TestScreenShot, TEXT("ScreenShot")));        // ç”»é¢ã‚­ãƒ£ãƒ—ãƒãƒ£
+	TestCases.Add(FtestCase(TestPasswordInput, TEXT("PasswordInput")));  // ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å…¥åŠ›
+	TestCases.Add(FtestCase(TestNotification, TEXT("Notification")));    // ã‚¤ãƒ™ãƒ³ãƒˆé€šçŸ¥ï¼ˆãƒˆãƒ¼ã‚¹ãƒˆï¼‰
+	TestCases.Add(FtestCase(TestAccessibility, TEXT("Accessibility")));  // ã‚¢ã‚¯ã‚»ã‚·ãƒ“ãƒªãƒ†ã‚£
+	TestCases.Add(FtestCase(TestOnHoverDetail, TEXT("OnHoverDetail")));  // ãƒ›ãƒãƒ¼æ™‚è©³ç´°æƒ…å ±
+	TestCases.Add(FtestCase(TestBatchSwitch, TEXT("BatchSwitch")));      // ãƒãƒƒãƒåˆ‡æ›¿UI
+	TestCases.Add(FtestCase(TestLogWindow, TEXT("LogWindow")));          // ãƒ­ã‚°å‡ºåŠ›ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	TestCases.Add(FtestCase(TestDragSlider, TEXT("DragSlider")));        // ç‰©ç†ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼æ“ä½œ
+	TestCases.Add(FtestCase(TestMaterialEdit, TEXT("MaterialEdit")));    // ãƒãƒ†ãƒªã‚¢ãƒ«èª¿æ•´ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	TestCases.Add(FtestCase(TestGPUAccelUse, TEXT("GPUAccelUse")));      // GPUã‚¢ã‚¯ã‚»ãƒ©ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ä½¿ç”¨
+	TestCases.Add(FtestCase(TestAudioControl, TEXT("AudioControl")));    // éŸ³å£°å†ç”ŸUI
+	TestCases.Add(FtestCase(TestVideoEmbed, TEXT("VideoEmbed")));        // ãƒ“ãƒ‡ã‚ªåŸ‹ã‚è¾¼ã¿UI
+	TestCases.Add(FtestCase(TestShowShortcuts, TEXT("ShowShortcuts")));  // ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆè¡¨ç¤º
+	TestCases.Add(FtestCase(TestTagSelector, TEXT("TagSelector")));      // ã‚¿ã‚°é¸æŠUI
+	TestCases.Add(FtestCase(TestHeaderCollapse, TEXT("HeaderCollapse"))); // ãƒ˜ãƒƒãƒ€ãƒ¼ã§æŠ˜ã‚ŠãŸãŸã¿
+	TestCases.Add(FtestCase(TestCrossPlatformUI, TEXT("CrossPlatformUI"))); // ã‚¯ãƒ­ã‚¹ãƒ—ãƒ©ãƒƒãƒˆãƒ•ã‚©ãƒ¼ãƒ UI
+	TestCases.Add(FtestCase(TestBadgeNotify, TEXT("BadgeNotify")));      // é€šçŸ¥ãƒãƒƒã‚¸è¡¨ç¤º
+	TestCases.Add(FtestCase(TestFlexibleTable, TEXT("FlexibleTable")));  // è¡Œæ•°ãƒ»ã‚«ãƒ©ãƒ æ•°å¤‰æ›´å¯èƒ½ãƒ†ãƒ¼ãƒ–ãƒ«
+	TestCases.Add(FtestCase(TestToolbar, TEXT("Toolbar")));              // ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ä½œæˆ
+	TestCases.Add(FtestCase(TestChartEditor, TEXT("ChartEditor")));      // ã‚¤ãƒ³ã‚¿ãƒ©ã‚¯ãƒ†ã‚£ãƒ–ãƒãƒ£ãƒ¼ãƒˆç·¨é›†
+	TestCases.Add(FtestCase(TestThemeToggle, TEXT("ThemeToggle")));      // ãƒ†ãƒ¼ãƒåˆ‡æ›¿ï¼ˆè¤‡æ•°ãƒ†ãƒ¼ãƒå¯¾å¿œï¼‰
+	TestCases.Add(FtestCase(TestResizableWin, TEXT("ResizableWin")));    // ãƒªã‚µã‚¤ã‚ºå¯¾å¿œã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	TestCases.Add(FtestCase(TestCursorCustom, TEXT("CursorCustom")));    // ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚º
+	TestCases.Add(FtestCase(TestVisualEffect, TEXT("VisualEffect")));    // ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¿½åŠ 
+	TestCases.Add(FtestCase(TestRowSortControl, TEXT("RowSortControl"))); // è¡Œã®ä¸¦ã³æ›¿ãˆ
+	TestCases.Add(FtestCase(TestMemoryStats, TEXT("MemoryStats")));      // ãƒ¡ãƒ¢ãƒªä½¿ç”¨çŠ¶æ³è¡¨ç¤º
+	TestCases.Add(FtestCase(TestInputCompletion, TEXT("InputCompletion"))); // å…¥åŠ›è£œå®ŒUI
+	TestCases.Add(FtestCase(TestValidation, TEXT("Validation")));        // ãƒãƒªãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ï¼ˆå€¤ãƒã‚§ãƒƒã‚¯ï¼‰
+	TestCases.Add(FtestCase(TestConfigIO, TEXT("ConfigIO")));            // è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜/èª­è¾¼
+	TestCases.Add(FtestCase(TestUndoRedo, TEXT("UndoRedo")));            // Undo/Redoå¯¾å¿œUI
 }
 
 /**
- * ƒQ[ƒ€ŠJn‚Ü‚½‚ÍƒAƒNƒ^[‚ªƒXƒ|[ƒ“‚³‚ê‚½Û‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
- * ImGui‚ÌTickŠÖ”‚ğƒfƒŠƒQ[ƒg‚ÉƒoƒCƒ“ƒh‚µ‚Ü‚·B
+ * ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã¾ãŸã¯ã‚¢ã‚¯ã‚¿ãƒ¼ãŒã‚¹ãƒãƒ¼ãƒ³ã•ã‚ŒãŸéš›ã«å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
+ * ImGuiã®Tické–¢æ•°ã‚’ãƒ‡ãƒªã‚²ãƒ¼ãƒˆã«ãƒã‚¤ãƒ³ãƒ‰ã—ã¾ã™ã€‚
  */
 void AImGuiActor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ImGuiTickŠÖ”‚ğOnWorldDebugƒfƒŠƒQ[ƒg‚ÉƒoƒCƒ“ƒh
+
+	// ImGuiTické–¢æ•°ã‚’OnWorldDebugãƒ‡ãƒªã‚²ãƒ¼ãƒˆã«ãƒã‚¤ãƒ³ãƒ‰
 	FImGuiDelegates::OnWorldDebug().AddUObject(this, &AImGuiActor::ImGuiTick);
 
-    // ImGui‚Ì“ü—Íƒ‚[ƒh‚ğ—LŒø‰»
+    // ImGuiã®å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ã‚’æœ‰åŠ¹åŒ–
 	FImGuiModule& ImGuiModule = FImGuiModule::Get();
 	ImGuiModule.SetInputMode(true);
 }
 
 /**
- * ƒAƒNƒ^[‚ÌI—¹‚âƒŒƒxƒ‹‘JˆÚ‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
- * ImGui‚ÌTickŠÖ”‚ÌƒfƒŠƒQ[ƒg“o˜^‚ğ‰ğœ‚µ‚Ü‚·B
- * @param EndPlayReason I—¹——R
+ * ã‚¢ã‚¯ã‚¿ãƒ¼ã®çµ‚äº†æ™‚ã‚„ãƒ¬ãƒ™ãƒ«é·ç§»æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
+ * ImGuiã®Tické–¢æ•°ã®ãƒ‡ãƒªã‚²ãƒ¼ãƒˆç™»éŒ²ã‚’è§£é™¤ã—ã¾ã™ã€‚
+ * @param EndPlayReason çµ‚äº†ç†ç”±
  */
 void AImGuiActor::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
 
-	// ImGuiTickŠÖ”‚ÌƒfƒŠƒQ[ƒg“o˜^‚ğ‰ğœ
+	// ImGuiTické–¢æ•°ã®ãƒ‡ãƒªã‚²ãƒ¼ãƒˆç™»éŒ²ã‚’è§£é™¤
 	FImGuiDelegates::OnWorldDebug().RemoveAll(this);
 
-	// ImGui‚Ì“ü—Íƒ‚[ƒh‚ğ–³Œø‰»
+	// ImGuiã®å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ã‚’ç„¡åŠ¹åŒ–
 	FImGuiModule& ImGuiModule = FImGuiModule::Get();
 	ImGuiModule.SetInputMode(false);
 }
 
 /**
- * –ˆƒtƒŒ[ƒ€ŒÄ‚Ño‚³‚ê‚éTickŠÖ”B
- * •K—v‚É‰‚¶‚ÄƒAƒNƒ^[‚Ìó‘ÔXV‚È‚Ç‚ğs‚¢‚Ü‚·B
- * @param DeltaTime ‘OƒtƒŒ[ƒ€‚©‚ç‚ÌŒo‰ßŠÔi•bj
+ * æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å‘¼ã³å‡ºã•ã‚Œã‚‹Tické–¢æ•°ã€‚
+ * å¿…è¦ã«å¿œã˜ã¦ã‚¢ã‚¯ã‚¿ãƒ¼ã®çŠ¶æ…‹æ›´æ–°ãªã©ã‚’è¡Œã„ã¾ã™ã€‚
+ * @param DeltaTime å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰ã®çµŒéæ™‚é–“ï¼ˆç§’ï¼‰
  */
 void AImGuiActor::Tick(float DeltaTime)
 {
@@ -1062,21 +1605,21 @@ void AImGuiActor::Tick(float DeltaTime)
 }
 
 /**
- * ImGui•`‰æ—p‚ÌTickŠÖ”B
- * ImGui‚ÌƒEƒBƒ“ƒhƒE•\¦‚âƒeƒXƒgƒP[ƒX‚ÌUI§ŒäEÀs‚ğs‚¢‚Ü‚·B
+ * ImGuiæç”»ç”¨ã®Tické–¢æ•°ã€‚
+ * ImGuiã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºã‚„ãƒ†ã‚¹ãƒˆã‚±ãƒ¼ã‚¹ã®UIåˆ¶å¾¡ãƒ»å®Ÿè¡Œã‚’è¡Œã„ã¾ã™ã€‚
  */
 void AImGuiActor::ImGuiTick()
 {
-	// ImGui‚ÌƒEƒBƒ“ƒhƒE‚ğŠJn
+	// ImGuiã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹å§‹
 	ImGui::Begin("TestMenu", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
-	// ƒeƒXƒgƒP[ƒX‚²‚Æ‚Éƒ{ƒ^ƒ“‚Æà–¾‚ğ•\¦
+	// ãƒ†ã‚¹ãƒˆã‚±ãƒ¼ã‚¹ã”ã¨ã«ãƒœã‚¿ãƒ³ã¨èª¬æ˜ã‚’è¡¨ç¤º
 	for (FtestCase& TestCase : TestCases)
 	{
 		std::string NameStr = TCHAR_TO_UTF8(*TestCase.Name);
 		if (ImGui::Button(NameStr.c_str()))
 		{
-			// ƒ{ƒ^ƒ“‰Ÿ‰º‚ÅƒeƒXƒgƒP[ƒX‚Ì—LŒø/–³Œø‚ğØ‚è‘Ö‚¦
+			// ãƒœã‚¿ãƒ³æŠ¼ä¸‹ã§ãƒ†ã‚¹ãƒˆã‚±ãƒ¼ã‚¹ã®æœ‰åŠ¹/ç„¡åŠ¹ã‚’åˆ‡ã‚Šæ›¿ãˆ
 			TestCase.bDisplayed = !TestCase.bDisplayed;
 		}
 
@@ -1091,7 +1634,7 @@ void AImGuiActor::ImGuiTick()
 
 	ImGui::End();
 
-	// —LŒø‚ÈƒeƒXƒgƒP[ƒX‚ğÀs
+	// æœ‰åŠ¹ãªãƒ†ã‚¹ãƒˆã‚±ãƒ¼ã‚¹ã‚’å®Ÿè¡Œ
 	for (const FtestCase& TestCase : TestCases)
 	{
 		if (TestCase.bDisplayed)
