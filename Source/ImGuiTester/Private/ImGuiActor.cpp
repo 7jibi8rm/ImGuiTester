@@ -120,7 +120,7 @@ namespace
 		ImGui::SetNextWindowSize(ImVec2(300, 200), ImGuiCond_Once);
 
 		// "Simple Window" というタイトルのウィンドウを開始します。
-		ImGui::Begin("Simple Window");
+		ImGui::Begin("TestSimpleWindowテスト");
 
 		// ウィンドウ内にテキストを1行表示します。
 		ImGui::Text("Hello ImGui!");
@@ -141,7 +141,7 @@ namespace
 		ImGui::SetNextWindowSize(ImVec2(100, 100), ImGuiCond_Once);
 
 		// "Button Window" というタイトルのウィンドウを開始します。
-		ImGui::Begin("Button Window");
+		ImGui::Begin("TestSimpleButton");
 
 		// ボタンを表示し、押された場合はテキストを表示します。
 		if (ImGui::Button("ButtonA")){
@@ -1050,59 +1050,58 @@ namespace
 	}
 
 	/// <summary>
-	/// フルスクリーンウィンドウ
-	/// </summary>
-	void TestFullScreenWindow()
-	{
-        // 没
-		return;
-	}
-
-	/// <summary>
-	/// レンダーレイヤー管理
-	/// </summary>
-	void TestRenderLayer()
-	{
-		return;
-	}
-
-	/// <summary>
 	/// スクロール同期
 	/// </summary>
 	void TestScrollSync()
 	{
-		return;
-	}
+		static float synced_scroll = 0.0f; // 同期するスクロール位置
 
-	/// <summary>
-	/// レスポンシブデザイン
-	/// </summary>
-	void TestResponsiveWindow()
-	{
-		return;
-	}
+        // ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+        ImGui::SetNextWindowSize(ImVec2(450, 200), ImGuiCond_Once);
 
-	/// <summary>
-	/// ダーク/ライト切り替え
-	/// </summary>
-	void TestDarkModeToggle()
-	{
-		return;
-	}
+        // ウィンドウ開始
+		ImGui::Begin("TestScrollSync");
 
-	/// <summary>
-	/// 表示非表示を切り替え
-	/// </summary>
-	void TestVisibilityToggle()
-	{
-		return;
-	}
+        // Child 1
+		{
+            // Childウィンドウ開始（サイズは (width=200, height=150)）
+			ImGui::BeginChild("Child1", ImVec2(200, 150), true, ImGuiWindowFlags_HorizontalScrollbar);
+			for (int i = 0; i < 100; i++){
+				ImGui::Text("Item %d", i);
+			}
+			// フォーカスまたはホバーされている場合、スクロール位置を取得
+			if (ImGui::IsWindowFocused() || ImGui::IsWindowHovered()){
+				synced_scroll = ImGui::GetScrollY();             // スクロール位置取得
+			}
+			else{
+				ImGui::SetScrollY(synced_scroll);                // 他方の値に合わせる
+			}
+            // Childウィンドウ終了	
+			ImGui::EndChild();
+		}
 
-	/// <summary>
-	/// グループ化して一括操作
-	/// </summary>
-	void TestWidgetGrouping()
-	{
+        // 同じラインに配置
+		ImGui::SameLine();
+
+		// Child 2
+		{
+            // Childウィンドウ開始（サイズは (width=200, height=150)）
+			ImGui::BeginChild("Child2", ImVec2(200, 150), true, ImGuiWindowFlags_HorizontalScrollbar);
+			for (int i = 0; i < 100; i++){
+				ImGui::Text("Item %d", i);
+			}
+            // フォーカスまたはホバーされている場合、スクロール位置を取得
+			if (ImGui::IsWindowFocused() || ImGui::IsWindowHovered()){
+				synced_scroll = ImGui::GetScrollY();
+			}
+			else{
+				ImGui::SetScrollY(synced_scroll);
+            }
+            // Childウィンドウ終了
+			ImGui::EndChild();
+		}
+
+		ImGui::End();
 		return;
 	}
 
@@ -1111,22 +1110,26 @@ namespace
 	/// </summary>
 	void TestTimelineBar()
 	{
-		return;
-	}
+		// 進捗バーを描画するシンプルな例
+		static float progress = 0.0f;
 
-	/// <summary>
-	/// カスタムポップアップ
-	/// </summary>
-	void TestCustomPopup()
-	{
-		return;
-	}
+        // ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+        ImGui::SetNextWindowSize(ImVec2(250, 100), ImGuiCond_Once);
 
-	/// <summary>
-	/// 強調表示
-	/// </summary>
-	void TestHighlightText()
-	{
+        // ウィンドウを開始します。
+        ImGui::Begin("TestTimelineBar");
+
+		// 毎フレームで進捗を更新（例として時間経過でループ）
+		progress += 0.01f;
+		if (progress > 1.0f) progress = 0.0f;
+
+        // 進捗バーを表示
+		ImGui::Text("Timeline Progress Bar Example");
+		ImGui::ProgressBar(progress, ImVec2(200, 20), "Progress");
+		ImGui::Text("Progress: %.1f%%", progress * 100.0f);
+
+        // ウィンドウの描画を終了します。
+        ImGui::End();
 		return;
 	}
 
@@ -1135,6 +1138,34 @@ namespace
 	/// </summary>
 	void TestFilterList()
 	{
+		const char* items[] = {
+			"Apple",
+			"Banana",
+			"Orange",
+			"Grapefruit",
+			"Pineapple",
+			"Mango"
+		};
+
+		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		ImGui::SetNextWindowSize(ImVec2(200, 250), ImGuiCond_Once);
+
+		// ウィンドウを開始します。
+		ImGui::Begin("TestFilterList");
+
+        // フィルタ入力ボックスを表示
+		static ImGuiTextFilter filter;
+		filter.Draw("Filter");
+
+		// フィルタにマッチするアイテムのみ表示
+		for (int i = 0; i < IM_ARRAYSIZE(items); i++) {
+			if (filter.PassFilter(items[i])) {
+				ImGui::Text("%s", items[i]);
+			}
+		}
+
+		// ウィンドウの描画を終了します。
+		ImGui::End();
 		return;
 	}
 
@@ -1143,14 +1174,45 @@ namespace
 	/// </summary>
 	void TestMultiSelectList()
 	{
-		return;
-	}
+        // 選択肢の配列
+		static const char* items[] = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+		// 選択中のインデックス
+		static ImVector<int> selected_indices;
 
-	/// <summary>
-	/// オーバーレイ表示
-	/// </summary>
-	void TestOverlayText()
-	{
+        // ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+        ImGui::SetNextWindowSize(ImVec2(150, 200), ImGuiCond_Once);
+
+        // ウィンドウを開始します。
+		ImGui::Begin("TestMultiSelectList");
+
+        // 複数選択可能なリストボックスを表示
+		for (int i = 0; i < IM_ARRAYSIZE(items); i++)
+		{
+            // 選択状態を判定
+			bool is_selected = selected_indices.contains(i);
+			if (ImGui::Selectable(items[i], is_selected))
+			{
+				if (!is_selected)
+				{
+					selected_indices.push_back(i); // 選択追加
+				}
+				else
+				{
+					// 選択解除のためにselected_indicesからiを削除
+					for (int j = 0; j < selected_indices.Size; j++)
+					{
+						if (selected_indices[j] == i)
+						{
+							selected_indices.erase(selected_indices.begin() + j);
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		// ウィンドウの描画を終了します。
+		ImGui::End();
 		return;
 	}
 
@@ -1159,7 +1221,22 @@ namespace
 	/// </summary>
 	void TestMultiLineInput()
 	{
+		static char buf[1024] = "default text";
+
+        // ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+        ImGui::SetNextWindowSize(ImVec2(450, 300), ImGuiCond_Once);
+
+        // ウィンドウを開始します。
+        ImGui::Begin("TestMultiLineInput");
+
+        // マルチラインテキスト入力フィールドを表示
+		ImGui::InputTextMultiline("##multiline", buf, IM_ARRAYSIZE(buf),ImVec2(400, 200), ImGuiInputTextFlags_None);
+
+		// ウィンドウの描画を終了します。
+		ImGui::End();
+
 		return;
+
 	}
 
 	/// <summary>
@@ -1167,6 +1244,22 @@ namespace
 	/// </summary>
 	void TestNumberStepper()
 	{
+		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		ImGui::SetNextWindowSize(ImVec2(200, 150), ImGuiCond_Once);
+
+		// ウィンドウを開始します。
+		ImGui::Begin("TestNumberStepper");
+
+		// ステップサイズ付きInputInt（+-ボタン付き）
+		static int stepValue = 0;
+		ImGui::InputInt("Step Int", &stepValue, 1, 10);
+
+		// マウスドラッグで値を増減
+		static int dragValue = 50;
+		ImGui::DragInt("Drag Int", &dragValue, 1.0f, 0, 100);
+
+		// ウィンドウの描画を終了します。
+		ImGui::End();
 		return;
 	}
 
@@ -1175,6 +1268,22 @@ namespace
 	/// </summary>
 	void TestColorEdit()
 	{
+		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		ImGui::SetNextWindowSize(ImVec2(200, 150), ImGuiCond_Once);
+
+		// ウィンドウを開始します。
+		ImGui::Begin("TestColorEdit");
+
+		// RGBカラーの編集（アルファなし）
+		static float color[3] = { 1.0f, 0.0f, 0.0f };  // 初期色：赤
+		ImGui::ColorEdit3("Color", color);
+
+		// RGBAカラーの編集（アルファあり）
+		static float colorAlpha[4] = { 0.0f, 1.0f, 0.0f, 1.0f };  // 初期色：緑、不透明
+		ImGui::ColorEdit4("Color with Alpha", colorAlpha);
+
+		// ウィンドウの描画を終了します。
+		ImGui::End();
 		return;
 	}
 
@@ -1507,19 +1616,10 @@ AImGuiActor::AImGuiActor()
 	TestCases.Add(FtestCase(TestZoomPan, TEXT("ZoomPan")));              // ズーム/パン操作
 	TestCases.Add(FtestCase(TestReorderListBox, TEXT("ReorderListBox"))); // 順序入替リストボックス
 	TestCases.Add(FtestCase(TestCanvasDraw, TEXT("CanvasDraw")));        // キャンバス描画
-	TestCases.Add(FtestCase(TestFullScreenWindow, TEXT("FullScreenWindow"))); // フルスクリーンウィンドウ
-	TestCases.Add(FtestCase(TestRenderLayer, TEXT("RenderLayer")));      // レンダーレイヤー管理
 	TestCases.Add(FtestCase(TestScrollSync, TEXT("ScrollSync")));        // スクロール同期
-	TestCases.Add(FtestCase(TestResponsiveWindow, TEXT("ResponsiveWindow"))); // レスポンシブデザイン
-	TestCases.Add(FtestCase(TestDarkModeToggle, TEXT("DarkModeToggle"))); // ダーク/ライト切り替え
-	TestCases.Add(FtestCase(TestVisibilityToggle, TEXT("VisibilityToggle"))); // 表示非表示を切り替え
-	TestCases.Add(FtestCase(TestWidgetGrouping, TEXT("WidgetGrouping"))); // グループ化して一括操作
 	TestCases.Add(FtestCase(TestTimelineBar, TEXT("TimelineBar")));      // タイムライン（進捗付きバー）
-	TestCases.Add(FtestCase(TestCustomPopup, TEXT("CustomPopup")));      // カスタムポップアップ
-	TestCases.Add(FtestCase(TestHighlightText, TEXT("HighlightText")));  // 強調表示
 	TestCases.Add(FtestCase(TestFilterList, TEXT("FilterList")));        // フィルタリングリスト
 	TestCases.Add(FtestCase(TestMultiSelectList, TEXT("MultiSelectList"))); // 複数選択リストボックス
-	TestCases.Add(FtestCase(TestOverlayText, TEXT("OverlayText")));      // オーバーレイ表示
 	TestCases.Add(FtestCase(TestMultiLineInput, TEXT("MultiLineInput"))); // マルチライン入力
 	TestCases.Add(FtestCase(TestNumberStepper, TEXT("NumberStepper")));  // 数値ステッパー
 	TestCases.Add(FtestCase(TestColorEdit, TEXT("ColorEdit")));          // 色変更UI

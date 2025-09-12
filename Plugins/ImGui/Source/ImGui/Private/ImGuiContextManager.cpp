@@ -11,6 +11,7 @@
 
 #include <imgui.h>
 
+#include "NotoSansJP.cpp"
 
 // TODO: Refactor ImGui Context Manager, to handle different types of worlds.
 
@@ -284,7 +285,13 @@ void FImGuiContextManager::BuildFontAtlas(const TMap<FName, TSharedPtr<ImFontCon
 			ImFont* font{FontAtlas.AddFont(CustomFontConfig.Get())};
 			font->ContainerAtlas = &FontAtlas;
 		}
-
+#if 1
+		// デフォルトフォントの置き換え.
+		FontAtlas.Clear();
+		FPlatformString::Strcpy(FontConfig.Name, sizeof(FontConfig.Name), "NotoSansJP");
+		FontAtlas.AddFontFromMemoryCompressedTTF(NotoSansJP_compressed_data, NotoSansJP_compressed_size, 16.0f * DPIScale, &FontConfig, FontAtlas.GetGlyphRangesJapanese());
+		FontAtlas.Build();
+#endif
 		unsigned char* Pixels;
 		int Width, Height, Bpp;
 		FontAtlas.GetTexDataAsRGBA32(&Pixels, &Width, &Height, &Bpp);
