@@ -1,6 +1,6 @@
 # ImGuiTester
 
-[test](.Document/Document.md)
+[test](./Document/Document.md)
 
 ## 概要
 ImGuiTesterは、Unreal Engine 5プロジェクト上で[Dear ImGui](https://github.com/ocornut/imgui)の各種ウィジェットやウィンドウ機能をテスト・デモ表示するためのサンプルプロジェクトです。  
