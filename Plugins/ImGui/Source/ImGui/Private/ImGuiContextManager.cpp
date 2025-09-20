@@ -11,7 +11,7 @@
 
 #include <imgui.h>
 
-#include "NotoSansJP.cpp"
+#include "NotoSansJP.h"
 
 // TODO: Refactor ImGui Context Manager, to handle different types of worlds.
 

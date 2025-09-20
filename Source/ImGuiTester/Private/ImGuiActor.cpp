@@ -152,6 +152,7 @@ namespace
 		// ウィンドウの描画を終了します。
 		ImGui::End();
 	}
+
 	/// <summary>
 	/// テキストを表示する
 	/// </summary>
@@ -881,7 +882,7 @@ namespace
 			const char* clipboard = ImGui::GetClipboardText();
 			if (clipboard)
 			{
-				strncpy(buf, clipboard, sizeof(buf) - 1);
+				strncpy_s(buf, clipboard, sizeof(buf) - 1);
 				buf[sizeof(buf) - 1] = '\0'; // 念のため終端を保証
 			}
 		}
@@ -1292,6 +1293,7 @@ namespace
 	/// </summary>
 	void TestCancelDialog()
 	{
+		// 没
 		return;
 	}
 
@@ -1300,38 +1302,51 @@ namespace
 	/// </summary>
 	void TestTransformWidget()
 	{
-		return;
-	}
+		static float angle = 0.0f;
+		static float scale = 1.0f;
 
-	/// <summary>
-	/// パネル型UI
-	/// </summary>
-	void TestPanelLayout()
-	{
-		return;
-	}
+		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		ImGui::SetNextWindowSize(ImVec2(400, 400), ImGuiCond_Once);
 
-	/// <summary>
-	/// 画像描画カスタマイズ
-	/// </summary>
-	void TestCustomImage()
-	{
-		return;
-	}
+        // ウィンドウを開始します。
+		ImGui::Begin("TestTransformWidget");
 
-	/// <summary>
-	/// サブウィンドウ追加
-	/// </summary>
-	void TestAddSubwindow()
-	{
-		return;
-	}
+		ImGui::SliderFloat("Angle", &angle, 0.0f, 360.0f);
+		ImGui::SliderFloat("Scale", &scale, 0.1f, 3.0f);
 
-	/// <summary>
-	/// 画面キャプチャ
-	/// </summary>
-	void TestScreenShot()
-	{
+		ImVec2 center = ImGui::GetCursorScreenPos();
+		ImVec2 size = ImVec2(100 * scale, 100 * scale);
+
+		// 中心位置を画面内にオフセットして調整
+		center.x += 150;
+		center.y += 100;
+
+		// 回転計算用ラジアンに変換
+		float rad = angle * 3.14159265f / 180.0f;
+		float cos_a = cosf(rad);
+		float sin_a = sinf(rad);
+
+		// 4頂点の座標（中心(0,0)で計算後、centerオフセット）
+		ImVec2 points[4] = {
+			ImVec2(-size.x * 0.5f, -size.y * 0.5f),
+			ImVec2(+size.x * 0.5f, -size.y * 0.5f),
+			ImVec2(+size.x * 0.5f, +size.y * 0.5f),
+			ImVec2(-size.x * 0.5f, +size.y * 0.5f)
+		};
+
+		for (int i = 0; i < 4; i++) {
+			float x = points[i].x, y = points[i].y;
+			points[i].x = center.x + x * cos_a - y * sin_a;
+			points[i].y = center.y + x * sin_a + y * cos_a;
+		}
+
+		ImDrawList* draw_list = ImGui::GetWindowDrawList();
+		ImU32 col = IM_COL32(255, 100, 100, 255);
+
+		// 回転・スケールした四角形を描画
+		draw_list->AddPolyline(points, 4, col, true, 3.0f);
+
+		ImGui::End();
 		return;
 	}
 
@@ -1340,22 +1355,22 @@ namespace
 	/// </summary>
 	void TestPasswordInput()
 	{
-		return;
-	}
+		static char password[64] = ""; // パスワード入力用バッファ
 
-	/// <summary>
-	/// イベント通知（トースト）
-	/// </summary>
-	void TestNotification()
-	{
-		return;
-	}
+		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-	/// <summary>
-	/// アクセシビリティ
-	/// </summary>
-	void TestAccessibility()
-	{
+        // ウィンドウを開始します。
+		ImGui::Begin("TestPasswordInput");
+
+        // パスワード入力フィールド（入力内容は'*'で表示）
+		ImGui::InputText("Password", password, sizeof(password), ImGuiInputTextFlags_Password);
+
+        // 入力されたパスワードを表示（デバッグ用、実際は安全管理に注意）
+		ImGui::Text("You entered: %s", password); // デバッグ用表示（実際は安全管理に注意）
+
+        // ウィンドウの描画を終了します。
+		ImGui::End();
 		return;
 	}
 
@@ -1364,22 +1379,26 @@ namespace
 	/// </summary>
 	void TestOnHoverDetail()
 	{
-		return;
-	}
+		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-	/// <summary>
-	/// バッチ切替UI
-	/// </summary>
-	void TestBatchSwitch()
-	{
-		return;
-	}
+        // ウィンドウを開始します。
+		ImGui::Begin("TestOnHoverDetail");
 
-	/// <summary>
-	/// ログ出力ウィンドウ
-	/// </summary>
-	void TestLogWindow()
-	{
+        // 説明テキスト
+		ImGui::Text("ホバーしてください");
+
+        // ホバー対象のUI要素（例：ボタン）
+		if (ImGui::IsItemHovered())
+		{
+			ImGui::TextColored(ImVec4(1, 1, 0, 1), "詳細情報:");
+			ImGui::BulletText("項目1の説明");
+			ImGui::BulletText("項目2の説明");
+		}
+
+        // ウィンドウの描画を終了します。
+		ImGui::End();
+
 		return;
 	}
 
@@ -1388,22 +1407,22 @@ namespace
 	/// </summary>
 	void TestDragSlider()
 	{
-		return;
-	}
+		static float value = 0.5f; // スライダーの制御変数
 
-	/// <summary>
-	/// マテリアル調整ウィンドウ
-	/// </summary>
-	void TestMaterialEdit()
-	{
-		return;
-	}
+		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		ImGui::SetNextWindowSize(ImVec2(250, 100), ImGuiCond_Once);
 
-	/// <summary>
-	/// GPUアクセラレーション使用
-	/// </summary>
-	void TestGPUAccelUse()
-	{
+        // ウィンドウを開始します。
+		ImGui::Begin("TestDragSlider");
+
+		// DragFloat : ラベル、変数へのポインタ、ドラッグ速度、最小値、最大値
+		ImGui::DragFloat("Drag Float", &value, 0.01f, 0.0f, 1.0f);
+
+		// 現在の値を表示
+		ImGui::Text("Current Value: %.3f", value);
+
+        // ウィンドウの描画を終了します。
+		ImGui::End();
 		return;
 	}
 
@@ -1424,18 +1443,52 @@ namespace
 	}
 
 	/// <summary>
-	/// ショートカット表示
-	/// </summary>
-	void TestShowShortcuts()
-	{
-		return;
-	}
-
-	/// <summary>
 	/// タグ選択UI
 	/// </summary>
 	void TestTagSelector()
 	{
+		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		ImGui::SetNextWindowSize(ImVec2(250, 100), ImGuiCond_Once);
+
+		// ウィンドウを開始します。
+		ImGui::Begin("TestTagSelector");
+
+		// タグの数
+		const int numTags = 4;
+
+		// タグの配列
+		const char* tags[numTags] = { "Tag1", "Tag2", "Tag3", "Tag4" };
+
+		// 選択状態を保持する配列
+		static bool selected[numTags] = { false, false, false, false };
+
+		// タグボタンを表示
+		for (int i = 0; i < numTags; ++i) {
+			// ボタンが押されたら選択状態をトグル
+			if (ImGui::SmallButton(tags[i])) {
+				selected[i] = !selected[i];
+			}
+			// 選択されているボタンに色を付ける例
+			if (selected[i]) {
+				ImGui::SameLine();
+				ImGui::TextColored(ImVec4(0, 1, 0, 1), "[Selected]");
+			}
+			// ボタン間にスペースを入れる
+			ImGui::SameLine();
+		}
+		ImGui::NewLine();
+
+		// 選択されたタグを表示
+		ImGui::Text("Selected Tags:");
+		for (int i = 0; i < numTags; ++i) {
+			if (selected[i]) {
+				ImGui::Text("%s", tags[i]);
+			}
+		}
+
+		// ウィンドウの描画を終了します。
+		ImGui::End();
+
 		return;
 	}
 
@@ -1444,22 +1497,25 @@ namespace
 	/// </summary>
 	void TestHeaderCollapse()
 	{
-		return;
-	}
+		// 折りたたみヘッダーの状態を保持するbool変数
+		static bool open = true;
 
-	/// <summary>
-	/// クロスプラットフォームUI
-	/// </summary>
-	void TestCrossPlatformUI()
-	{
-		return;
-	}
+		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		ImGui::SetNextWindowSize(ImVec2(250, 150), ImGuiCond_Once);
 
-	/// <summary>
-	/// 通知バッジ表示
-	/// </summary>
-	void TestBadgeNotify()
-	{
+		// ウィンドウを開始します。
+		ImGui::Begin("TestHeaderCollapse");
+
+		// CollapsingHeader: 折りたたみ可能なヘッダーを作成
+		if (ImGui::CollapsingHeader("折りたたみヘッダー"))
+		{
+			// ヘッダーが開かれている時だけ表示される内容
+			ImGui::Text("ここに折りたたみ内部の内容を記述します。");
+			ImGui::Button("ボタン");
+		}
+
+		// ウィンドウの描画を終了します。
+		ImGui::End();
 		return;
 	}
 
@@ -1468,6 +1524,45 @@ namespace
 	/// </summary>
 	void TestFlexibleTable()
 	{
+		// 動的に変える行数・カラム数（内部変数）
+		static int rows = 5;
+		static int columns = 3;
+
+		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		ImGui::SetNextWindowSize(ImVec2(400, 400), ImGuiCond_Once);
+
+		// ウィンドウを開始します。
+		ImGui::Begin("TestHeaderCollapse");
+
+		// 行数・カラム数を変更するUI（スライダーなど）
+		ImGui::SliderInt("Rows", &rows, 1, 20);
+		ImGui::SliderInt("Columns", &columns, 1, 10);
+
+        // テーブルの開始
+		if (ImGui::BeginTable("DynamicTable", columns, ImGuiTableFlags_Resizable | ImGuiTableFlags_RowBg | ImGuiTableFlags_Borders))
+		{
+            // ヘッダー行を作成
+			ImGui::TableHeadersRow();
+
+            // 各セルにデータを配置
+			for (int row = 0; row < rows; row++)
+			{
+                // 新しい行を開始
+				ImGui::TableNextRow();
+
+                // 各カラムにデータをセット	
+				for (int col = 0; col < columns; col++){
+					ImGui::TableSetColumnIndex(col);
+					ImGui::Text("Row %d Col %d", row + 1, col + 1);
+				}
+			}
+
+            // テーブルの描画を終了
+			ImGui::EndTable();
+		}
+
+        // ウィンドウの描画を終了します。
+        ImGui::End();
 		return;
 	}
 
@@ -1581,9 +1676,6 @@ AImGuiActor::AImGuiActor()
 	PrimaryActorTick.bCanEverTick = true;
 
 	// テストケース情報を追加
-	///TestCases.Add(FtestCase(TestImGuiBeginAndEnd, TEXT("BeginAndEnd"))); // ImGuiのBegin/Endのテスト
-	///TestCases.Add(FtestCase(TestFuncBeginChild, TEXT("BeginChild")));    // ImGuiのBeginChild/EndChildのテスト
-	///TestCases.Add(FtestCase(TestWindowFlags, TEXT("WindowFlags")));      // ImGuiウィンドウフラグのテスト
 	TestCases.Add(FtestCase(TestSimpleWindow, TEXT("SimpleWindow")));    // ウィンドウを作成する
 	TestCases.Add(FtestCase(TestSimpleButton, TEXT("SimpleButton")));    // ボタンを表示する
 	TestCases.Add(FtestCase(TestShowText, TEXT("ShowText")));            // テキストを表示する
@@ -1625,26 +1717,13 @@ AImGuiActor::AImGuiActor()
 	TestCases.Add(FtestCase(TestColorEdit, TEXT("ColorEdit")));          // 色変更UI
 	TestCases.Add(FtestCase(TestCancelDialog, TEXT("CancelDialog")));    // キャンセル操作
 	TestCases.Add(FtestCase(TestTransformWidget, TEXT("TransformWidget"))); // 回転/スケールUI
-	TestCases.Add(FtestCase(TestPanelLayout, TEXT("PanelLayout")));      // パネル型UI
-	TestCases.Add(FtestCase(TestCustomImage, TEXT("CustomImage")));      // 画像描画カスタマイズ
-	TestCases.Add(FtestCase(TestAddSubwindow, TEXT("AddSubwindow")));    // サブウィンドウ追加
-	TestCases.Add(FtestCase(TestScreenShot, TEXT("ScreenShot")));        // 画面キャプチャ
 	TestCases.Add(FtestCase(TestPasswordInput, TEXT("PasswordInput")));  // パスワード入力
-	TestCases.Add(FtestCase(TestNotification, TEXT("Notification")));    // イベント通知（トースト）
-	TestCases.Add(FtestCase(TestAccessibility, TEXT("Accessibility")));  // アクセシビリティ
 	TestCases.Add(FtestCase(TestOnHoverDetail, TEXT("OnHoverDetail")));  // ホバー時詳細情報
-	TestCases.Add(FtestCase(TestBatchSwitch, TEXT("BatchSwitch")));      // バッチ切替UI
-	TestCases.Add(FtestCase(TestLogWindow, TEXT("LogWindow")));          // ログ出力ウィンドウ
 	TestCases.Add(FtestCase(TestDragSlider, TEXT("DragSlider")));        // 物理スライダー操作
-	TestCases.Add(FtestCase(TestMaterialEdit, TEXT("MaterialEdit")));    // マテリアル調整ウィンドウ
-	TestCases.Add(FtestCase(TestGPUAccelUse, TEXT("GPUAccelUse")));      // GPUアクセラレーション使用
 	TestCases.Add(FtestCase(TestAudioControl, TEXT("AudioControl")));    // 音声再生UI
 	TestCases.Add(FtestCase(TestVideoEmbed, TEXT("VideoEmbed")));        // ビデオ埋め込みUI
-	TestCases.Add(FtestCase(TestShowShortcuts, TEXT("ShowShortcuts")));  // ショートカット表示
 	TestCases.Add(FtestCase(TestTagSelector, TEXT("TagSelector")));      // タグ選択UI
 	TestCases.Add(FtestCase(TestHeaderCollapse, TEXT("HeaderCollapse"))); // ヘッダーで折りたたみ
-	TestCases.Add(FtestCase(TestCrossPlatformUI, TEXT("CrossPlatformUI"))); // クロスプラットフォームUI
-	TestCases.Add(FtestCase(TestBadgeNotify, TEXT("BadgeNotify")));      // 通知バッジ表示
 	TestCases.Add(FtestCase(TestFlexibleTable, TEXT("FlexibleTable")));  // 行数・カラム数変更可能テーブル
 	TestCases.Add(FtestCase(TestToolbar, TEXT("Toolbar")));              // ツールバー作成
 	TestCases.Add(FtestCase(TestChartEditor, TEXT("ChartEditor")));      // インタラクティブチャート編集
@@ -1667,7 +1746,6 @@ AImGuiActor::AImGuiActor()
 void AImGuiActor::BeginPlay()
 {
 	Super::BeginPlay();
-
 
 	// ImGuiTick関数をOnWorldDebugデリゲートにバインド
 	FImGuiDelegates::OnWorldDebug().AddUObject(this, &AImGuiActor::ImGuiTick);

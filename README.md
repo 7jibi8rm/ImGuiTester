@@ -1,7 +1,7 @@
 # ImGuiTester
 
 ## 概要
-ImGuiTesterは、Unreal Engine 5プロジェクト上で[Dear ImGui](https://github.com/ocornut/imgui)の各種ウィジェットやウィンドウ機能をテスト・デモ表示するためのサンプルプロジェクトです。  
+ImGuiTesterは、Unreal Engine 5プロジェクト上で[Dear ImGui](https://github.com/ocornut/imgui)のテスト・デモ表示するためのサンプルプロジェクトです。  
 ImGuiの描画・入力制御をUE5アクター経由で行い、ウィンドウ・子ウィンドウ・各種フラグの動作確認ができます。
 
 ## 主な機能
@@ -32,9 +32,6 @@ ImGuiの描画・入力制御をUE5アクター経由で行い、ウィンドウ
   ImGuiテスト用アクターのヘッダ
 - `Plugins/ImGui/`  
   Dear ImGuiプラグイン本体
-
-## ライセンス
-本プロジェクトはMITライセンスです。Dear ImGui本体のライセンスもご確認ください。
 
 ## 備考
 - ImGuiプラグインの導入・設定方法は各プラグインのREADMEを参照してください。
