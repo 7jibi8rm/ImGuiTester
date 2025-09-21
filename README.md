@@ -45,7 +45,7 @@ ImGuiの描画・入力制御をUE5アクター経由で行い、ウィンドウ
 
 <table>
   <tr>
-    <td><img src="./Document/Image/TestSimpleWindow.png" width="128" height="128" /></td>
+    <td><img src="./Image/TestSimpleWindow.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
       <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L118-L132">ウィンドウを作成する</a><br>
       <span style="font-size:small;color:#555;">シンプルなImGuiウィンドウを作成し、テキストを表示します。</span><br>
