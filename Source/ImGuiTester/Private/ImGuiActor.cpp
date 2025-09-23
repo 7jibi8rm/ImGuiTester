@@ -1575,34 +1575,131 @@ namespace
 	}
 
 	/// <summary>
-	/// インタラクティブチャート編集
+	/// 折れ線グラフ
+	///	ImDrawListを使ってウィンドウ内に折れ線グラフを描画します。
+	/// カスタム描画の工夫によりグラフを実現しています。グラフ機能が存在するわけではありません。
 	/// </summary>
-	void TestChartEditor()
+	void TestLineGraph()
 	{
+
+		ImGui::Begin("TestLineGraph");
+
+        // 描画リストと位置・サイズの設定
+		ImDrawList* dl = ImGui::GetWindowDrawList();
+		ImVec2 pos = ImGui::GetCursorScreenPos();
+		ImVec2 size(300, 100);
+
+        // 背景の四角形を描画
+		dl->AddRect(pos, ImVec2(pos.x + size.x, pos.y + size.y), IM_COL32(255, 255, 255, 255));
+
+        // サンプルデータ（固定配列）
+		float data[] = { 10, 20, 15, 30, 25 };
+		float minv = data[0], maxv = data[0];
+
+        // データの最小値・最大値を計算
+		for (float v : data){
+			if (v < minv) minv = v;
+			if (v > maxv) maxv = v;
+		}
+        // 最小値と最大値が同じ場合の対策
+		if (minv == maxv) maxv = minv + 1;
+
+        // 折れ線グラフを描画
+		for (int i = 0; i < (int)(sizeof(data) / sizeof(data[0])) - 1; i++){
+            // データポイントの位置を計算
+			float x1 = pos.x + size.x * i / 4;
+			float y1 = pos.y + size.y * (1.0f - (data[i] - minv) / (maxv - minv));
+			float x2 = pos.x + size.x * (i + 1) / 4;
+			float y2 = pos.y + size.y * (1.0f - (data[i + 1] - minv) / (maxv - minv));
+			dl->AddLine(ImVec2(x1, y1), ImVec2(x2, y2), IM_COL32(0, 255, 0, 255), 2.0f); // 線描画を利用してグラフ作成。
+		}
+        // 描画領域の確保
+		ImGui::Dummy(size);
+
+        // ウィンドウの描画を終了します。
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// テーマ切替（複数テーマ対応）
+	/// テーマ切替
+	///	テーマ切り替え用メソッドのテストです。
+	/// ダーク・ライト・クラシック・カスタムテーマの4種類への切り替えを行います。
 	/// </summary>
 	void TestThemeToggle()
 	{
-		return;
-	}
+		// 初期化時にスタイルを保存
+		ImGuiStyle original_style = ImGui::GetStyle();
 
-	/// <summary>
-	/// リサイズ対応ウィンドウ
-	/// </summary>
-	void TestResizableWin()
-	{
+		// テーマ切り替え用フラグ
+		static int theme_type = 0;
+
+        // ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+        ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
+
+        // ウィンドウを開始します。
+		ImGui::Begin("TestThemeToggle");
+
+        // テーマ切替ボタン
+        // ボタンが押されたら対応するテーマに切り替え
+		if (ImGui::Button("Dark Theme")) {
+			theme_type = 0;
+            ImGui::StyleColorsDark(); // ダークテーマに切り替え
+		}
+		if (ImGui::Button("Light Theme")) {
+			theme_type = 1;
+            ImGui::StyleColorsLight(); // ライトテーマに切り替え
+		}
+		if (ImGui::Button("Classic Theme")) {
+			theme_type = 2;
+            ImGui::StyleColorsClassic(); // クラシックテーマに切り替え
+		}
+		if (ImGui::Button("Custom Theme")) {
+			theme_type = 3;
+			ImGuiStyle& style = ImGui::GetStyle();
+			style.Colors[ImGuiCol_WindowBg] = ImVec4(0.1f, 0.1f, 0.2f, 1.0f);
+			style.Colors[ImGuiCol_Button] = ImVec4(0.2f, 0.5f, 0.7f, 1.0f);
+			style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.4f, 0.6f, 0.9f, 1.0f);
+			style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.4f, 0.5f, 0.9f, 1.0f);
+			// 自由なテーマカラー指定、他にも必要に応じて色を設定
+		}
+
+		// ウィンドウの描画を終了します。
+		ImGui::End();
 		return;
 	}
 
 	/// <summary>
 	/// マウスカーソルカスタマイズ
+    /// マウスカーソルの形を変更する方法の例です。
+	/// ホバー時は左右リサイズ用のカーソル、通常時は矢印カーソルを表示します。
+    /// ImGui::SetMouseCursor()によりカーソル形状を変更しています。
 	/// </summary>
 	void TestCursorCustom()
 	{
+		ImGuiIO& io = ImGui::GetIO();
+
+		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		ImGui::SetNextWindowSize(ImVec2(200, 150), ImGuiCond_Once);
+
+		// ウィンドウを開始します。
+		ImGui::Begin("TestCursorCustom");
+
+		// 通常のボタン
+		if (ImGui::Button("カーソルを合わせると形変更")) {
+			// ボタン処理（今回は使わない）
+		}
+
+		// マウスカーソルを変更
+		if (ImGui::IsItemHovered()) {
+			ImGui::SetMouseCursor(ImGuiMouseCursor_ResizeEW); // 手形カーソルに変更
+		}
+		else {
+			ImGui::SetMouseCursor(ImGuiMouseCursor_Arrow); // 通常の矢印カーソル
+		}
+
+		// ウィンドウの描画を終了します。
+		ImGui::End();
 		return;
 	}
 
@@ -1726,9 +1823,8 @@ AImGuiActor::AImGuiActor()
 	TestCases.Add(FtestCase(TestHeaderCollapse, TEXT("HeaderCollapse"))); // ヘッダーで折りたたみ
 	TestCases.Add(FtestCase(TestFlexibleTable, TEXT("FlexibleTable")));  // 行数・カラム数変更可能テーブル
 	TestCases.Add(FtestCase(TestToolbar, TEXT("Toolbar")));              // ツールバー作成
-	TestCases.Add(FtestCase(TestChartEditor, TEXT("ChartEditor")));      // インタラクティブチャート編集
+	TestCases.Add(FtestCase(TestLineGraph, TEXT("LineGraph")));			// 折れ線グラフ
 	TestCases.Add(FtestCase(TestThemeToggle, TEXT("ThemeToggle")));      // テーマ切替（複数テーマ対応）
-	TestCases.Add(FtestCase(TestResizableWin, TEXT("ResizableWin")));    // リサイズ対応ウィンドウ
 	TestCases.Add(FtestCase(TestCursorCustom, TEXT("CursorCustom")));    // マウスカーソルカスタマイズ
 	TestCases.Add(FtestCase(TestVisualEffect, TEXT("VisualEffect")));    // ビジュアルエフェクト追加
 	TestCases.Add(FtestCase(TestRowSortControl, TEXT("RowSortControl"))); // 行の並び替え
