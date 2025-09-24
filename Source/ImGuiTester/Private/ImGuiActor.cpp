@@ -7,108 +7,6 @@
 namespace
 {
 
-	// ImGuiのBegin/Endのテスト
-	void TestImGuiBeginAndEnd()
-	{
-		static bool bOpen = true;
-
-		// ImGui::Beginは新しいウィンドウを作成・表示し、そこにGUIパーツを配置するための関数です。
-		// これに対応するImGui::Endで必ずウィンドウの描画処理を終了させる必要があります。
-		// 内部でウィンドウ領域が作成され、その中にボタンやスライダー、テキストなどのウィジェットを追加します。
-		ImGui::Begin(
-			"ImGui Begin/End Test",				// ウィンドウのタイトル（識別名）
-			bOpen ? &bOpen : nullptr,			// ウィンドウ右上の「×」ボタンで閉じるかどうかを管理するポインタ（nullptrは表示しない）
-			ImGuiWindowFlags_AlwaysAutoResize	// ウィンドウの表示制御フラグ（タイトルバー非表示やリサイズ不可など）
-		);
-
-		if (ImGui::Button("bOpen")) {
-			bOpen = !bOpen; // ボタンを押すとウィンドウの開閉状態を切り替える
-		}
-
-		// ImGui::End は、ImGui::Begin で開始したウィンドウの描画処理を終了するための関数です。
-		// ImGuiウィンドウを作成・表示する際は、必ずペアで呼び出す必要があります。
-		ImGui::End();
-	}
-
-    // ImGuiのBeginChild/EndChildのテスト
-	void TestFuncBeginChild()
-	{
-		// ImGui::BeginChild は ImGui でサブ領域（「子ウィンドウ」）を作るときに使います。
-		// スクロール領域の作成や、UIのレイアウト分割などにも便利です。
-
-		ImGui::Begin("Parent Window");	// 親ウィンドウを開始
-		{
-			ImGui::Text("Parent Text");	// 親ウィンドウ内にテキストを表示
-
-			ImGui::BeginChild(
-				"Child1",				// 子ウィンドウの識別名
-				ImVec2(300, 200),		// 子ウィンドウのサイズ（幅300、高さ200）
-				true,					// スクロールバーを表示するかどうか
-				ImGuiWindowFlags_None);	// 子ウィンドウの表示制御フラグ（特に指定なし）
-
-			{
-				ImGui::Text("Child1 Text");	// 子ウィンドウ内にテキストを表示
-				ImGui::Button("Click Me!");	// 子ウィンドウ内にボタンを表示
-			}
-			ImGui::EndChild();	// 子ウィンドウの描画を終了
-		}
-		ImGui::End();	// 親ウィンドウの描画を終了
-	}
-
-	/**
-	 * ImGuiウィンドウフラグのテストを実行します。
-	 * ImGuiの各種ウィンドウフラグの動作確認用UIを表示します。
-	 */
-	void TestWindowFlags()
-	{
-		// ImGuiWindowFlagsは、ウィンドウの挙動や見た目を制御するためのビットフラグです。
-		// ウィンドウのタイトルバーの有無、サイズ変更や移動の可否、スクロールバーの表示設定など、さまざまなウィンドウの属性を細かく指定できます。
-
-		static std::map<ImGuiWindowFlags, std::string> WindowFlagNames = {
-			{ ImGuiWindowFlags_NoTitleBar, "ImGuiWindowFlags_NoTitleBar" },               // タイトルバーを表示しない
-			{ ImGuiWindowFlags_NoResize, "ImGuiWindowFlags_NoResize" },                   // ウィンドウのサイズ変更を禁止
-			{ ImGuiWindowFlags_NoMove, "ImGuiWindowFlags_NoMove" },                       // ウィンドウの移動を禁止
-			{ ImGuiWindowFlags_NoScrollbar, "ImGuiWindowFlags_NoScrollbar" },             // スクロールバーを表示しない
-			{ ImGuiWindowFlags_NoScrollWithMouse, "ImGuiWindowFlags_NoScrollWithMouse" }, // マウスホイールによるスクロールを禁止
-			{ ImGuiWindowFlags_NoCollapse, "ImGuiWindowFlags_NoCollapse" },               // ウィンドウの折りたたみ（最小化）を禁止
-			{ ImGuiWindowFlags_AlwaysAutoResize, "ImGuiWindowFlags_AlwaysAutoResize" },   // ウィンドウサイズを内容に合わせて自動調整
-			{ ImGuiWindowFlags_NoBackground, "ImGuiWindowFlags_NoBackground" },           // ウィンドウの背景を描画しない
-			{ ImGuiWindowFlags_NoSavedSettings, "ImGuiWindowFlags_NoSavedSettings" },     // ウィンドウの設定（位置やサイズなど）を保存しない
-			//{ ImGuiWindowFlags_NoMouseInputs, "ImGuiWindowFlags_NoMouseInputs" },         // ウィンドウ内でマウス入力を無効化
-			{ ImGuiWindowFlags_MenuBar, "ImGuiWindowFlags_MenuBar" },                     // メニューバーを表示
-			{ ImGuiWindowFlags_HorizontalScrollbar, "ImGuiWindowFlags_HorizontalScrollbar" }, // 水平スクロールバーを表示
-			{ ImGuiWindowFlags_NoFocusOnAppearing, "ImGuiWindowFlags_NoFocusOnAppearing" },   // ウィンドウ表示時にフォーカスを取得しない
-			{ ImGuiWindowFlags_NoBringToFrontOnFocus, "ImGuiWindowFlags_NoBringToFrontOnFocus" }, // フォーカス時にウィンドウを最前面にしない
-			{ ImGuiWindowFlags_AlwaysVerticalScrollbar, "ImGuiWindowFlags_AlwaysVerticalScrollbar" }, // 常に垂直スクロールバーを表示
-			{ ImGuiWindowFlags_AlwaysHorizontalScrollbar, "ImGuiWindowFlags_AlwaysHorizontalScrollbar" }, // 常に水平スクロールバーを表示
-			{ ImGuiWindowFlags_NoNavInputs, "ImGuiWindowFlags_NoNavInputs" },             // ナビゲーション入力（キーボード/ゲームパッド）を無効化
-			{ ImGuiWindowFlags_NoNavFocus, "ImGuiWindowFlags_NoNavFocus" },               // ナビゲーションによるフォーカスを無効化
-			{ ImGuiWindowFlags_UnsavedDocument, "ImGuiWindowFlags_UnsavedDocument" },     // 未保存ドキュメントとして表示（タブにアスタリスク等）
-		};
-
-		static uint64 WindowFlags = ImGuiWindowFlags_AlwaysAutoResize;
-
-		ImGui::Begin("Window Flags Test", nullptr, WindowFlags);
-		ImGui::Text("Current WindowFlags: %llu", WindowFlags);
-
-		// 各ウィンドウフラグのボタンを表示
-		for (auto& FlagName : WindowFlagNames) {
-			if (ImGui::Button(FlagName.second.c_str())) {
-				WindowFlags ^= FlagName.first;
-			}
-			ImGui::SameLine();
-			if ((WindowFlags & FlagName.first) != 0) {
-				ImGui::TextColored(ImVec4(0.0f, 1.0f, 0.0f, 1.0f), "ON");
-			}
-			else {
-				ImGui::TextColored(ImVec4(0.5f, 0.5f, 0.5f, 1.0f), "OFF");
-			}
-		}
-
-		ImGui::End();
-		return;
-	}
-
 	/// <summary>
 	/// ウィンドウを作成する
 	/// シンプルなImGuiウィンドウを作成し、テキストを表示します。
@@ -1705,15 +1603,6 @@ namespace
 	}
 
 	/// <summary>
-	/// ビジュアルエフェクト追加
-	/// </summary>
-	void TestVisualEffect()
-	{
-        // 没
-		return;
-	}
-
-	/// <summary>
 	/// 行の並び替え
 	/// テーブルソート機能を利用したシンプルなサンプル。
 	/// ソート可能なテーブルで行データ（ID・名前・値）を表示します。
@@ -1899,7 +1788,6 @@ AImGuiActor::AImGuiActor()
 	TestCases.Add(FtestCase(TestLineGraph, TEXT("LineGraph")));			// 折れ線グラフ
 	TestCases.Add(FtestCase(TestThemeToggle, TEXT("ThemeToggle")));      // テーマ切替（複数テーマ対応）
 	TestCases.Add(FtestCase(TestCursorCustom, TEXT("CursorCustom")));    // マウスカーソルカスタマイズ
-	TestCases.Add(FtestCase(TestVisualEffect, TEXT("VisualEffect")));    // ビジュアルエフェクト追加
 	TestCases.Add(FtestCase(TestRowSortControl, TEXT("RowSortControl"))); // 行の並び替え
 	TestCases.Add(FtestCase(TestMemoryStats, TEXT("MemoryStats")));      // メモリ使用状況表示
 	TestCases.Add(FtestCase(TestInputCompletion, TEXT("InputCompletion"))); // 入力補完UI
