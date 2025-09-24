@@ -1571,6 +1571,7 @@ namespace
 	/// </summary>
 	void TestToolbar()
 	{
+		// 没
 		return;
 	}
 
@@ -1708,14 +1709,84 @@ namespace
 	/// </summary>
 	void TestVisualEffect()
 	{
+        // 没
 		return;
 	}
 
 	/// <summary>
 	/// 行の並び替え
+	/// テーブルソート機能を利用したシンプルなサンプル。
+	/// ソート可能なテーブルで行データ（ID・名前・値）を表示します。
+	/// ヘッダークリックで昇順・降順の並び替えができます。
 	/// </summary>
 	void TestRowSortControl()
 	{
+        // 行データ構造
+		struct SimpleRow {
+			 int id;
+			 std::string name;
+			 float val;
+		};
+
+		// サンプルデータ
+		static std::vector<SimpleRow> rows = {
+			{1, "Apple", 9.5f},
+			{2, "Banana", 3.2f},
+			{3, "Cherry", 5.1f},
+			{4, "Date", 7.8f}
+		};
+
+		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		ImGui::SetNextWindowSize(ImVec2(300, 200), ImGuiCond_Once);
+        // ウィンドウを開始します。
+        ImGui::Begin("TestRowSortControl");
+
+		// テーブル開始（3列、ソート可能）
+		if (ImGui::BeginTable("SimpleSortTable", 3, ImGuiTableFlags_Sortable))
+		{
+            // 列ヘッダー設定
+			ImGui::TableSetupColumn("ID");
+			ImGui::TableSetupColumn("Name");
+			ImGui::TableSetupColumn("Value");
+			ImGui::TableHeadersRow();
+
+			// ソート条件取得
+			if (ImGuiTableSortSpecs* sortSpecs = ImGui::TableGetSortSpecs())
+			{
+                // ソートが必要な場合、行データを並べ替え
+				if (sortSpecs->SpecsDirty && sortSpecs->SpecsCount > 0)
+				{
+                    // 最初のソート条件のみ使用（複数条件は未対応）
+					const ImGuiTableColumnSortSpecs& spec = sortSpecs->Specs[0];
+                    // 比較関数をラムダで定義
+					auto compare = [&](const SimpleRow& a, const SimpleRow& b) {
+						bool less = false;
+                        if (spec.ColumnIndex == 0)      less = a.id < b.id; // ID列
+                        else if (spec.ColumnIndex == 1) less = a.name.compare(b.name)<0; // Name列
+                        else if (spec.ColumnIndex == 2) less = a.val < b.val; // Value列
+                        return (spec.SortDirection == ImGuiSortDirection_Ascending) ? less : !less; // 昇順/降順
+						};
+                    // 行データをソート
+					std::sort(rows.begin(), rows.end(), compare);
+                    // ソート完了フラグをクリア
+					sortSpecs->SpecsDirty = false;
+				}
+			}
+
+			// 行描画
+			for (const auto& r : rows)
+			{
+				ImGui::TableNextRow();
+				ImGui::TableSetColumnIndex(0); ImGui::Text("%d", r.id);
+				ImGui::TableSetColumnIndex(1); ImGui::Text("%s", r.name.c_str());
+				ImGui::TableSetColumnIndex(2); ImGui::Text("%.2f", r.val);
+			}
+
+            // テーブル終了
+			ImGui::EndTable();
+		}
+        // ウィンドウの描画を終了します。
+        ImGui::End();
 		return;
 	}
 
@@ -1724,6 +1795,7 @@ namespace
 	/// </summary>
 	void TestMemoryStats()
 	{
+		// 没
 		return;
 	}
 
@@ -1740,6 +1812,7 @@ namespace
 	/// </summary>
 	void TestValidation()
 	{
+		// 没
 		return;
 	}
 
