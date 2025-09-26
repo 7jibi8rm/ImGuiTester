@@ -8,7 +8,8 @@ namespace
 {
 
 	/// <summary>
-	/// 簡単なウィンドウ描画。
+	/// ウィンドウ表示
+	/// 一番単純なウィンドウを表示するだけの例です。
 	/// ウィンドウを１つ作成し、３行分のテキストを表示します。
 	/// </summary>
 	void TestSimpleWindow()
@@ -30,9 +31,9 @@ namespace
 	}
 
 	/// <summary>
-	/// 簡単なボタン作成。
-	/// ウィンドウ１つにボタンを３つ配置したもの。
-	/// ボタンをクリックすると対応した値が変わります。分かりやすさ重視でトグル式にしてあります。
+	/// ボタン作成
+	/// 単純なボタン配置の例です。
+	/// ウィンドウ１つにボタンを３つ配置、ボタンクリックで対応した値が変化します。
 	/// </summary>
 	void TestSimpleButton()
 	{
@@ -63,7 +64,8 @@ namespace
 
 	/// <summary>
 	/// 様々なテキスト表示。
-    /// 変数の値埋め込み、グレーアウト、色指定のテキスト表示。
+	/// 色変え等の特殊なテキストの例です。
+    /// 変数の値埋め込み、グレーアウト、色指定のテキスト表示を行います。
 	/// </summary>
 	void TestShowText()
 	{
@@ -95,50 +97,64 @@ namespace
 	}
 
 	/// <summary>
-	/// チェックボックスを作成する
+	/// チェックボックス
+    /// チェックボックス配置の例です。
+	/// チェックボックスを３つ配置、状態を変数で管理し、その状態表示。
 	/// </summary>
 	void TestCheckBox()
 	{
         // チェックボックスの状態を保持する変数
-		static bool isChecked;
+		static bool isCheckedA{ false };
+		static bool isCheckedB{ false };
+		static bool isCheckedC{ false };
 
-        // 初回のみウィンドウサイズを150x70に設定します（ImGuiCond_Onceで一度だけ適用）。
-		ImGui::SetNextWindowSize(ImVec2(150, 70), ImGuiCond_Once);
+		// 直近１つのウィンドウサイズ指定。
+		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
 
-        // "TestCheckBox" というタイトルのウィンドウを開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestCheckBox");
 
-        // チェックボックスを表示し、状態をisChecked変数で管理します。
-		ImGui::Checkbox("Checkbox!", &isChecked);
-		if (isChecked) {
-			ImGui::Text("Checked!!!!");
-		}
+        // チェックボックスを表示し、状態を変数で管理。
+		ImGui::Checkbox("チェックボックスA", &isCheckedA);
+		ImGui::Checkbox("チェックボックスB", &isCheckedB);
+		ImGui::Checkbox("チェックボックスC", &isCheckedC);
 
-		// ウィンドウの描画を終了します。
+        // チェックボックスの状態表示。
+		ImGui::Text("A:%d B:%d  C:%d", isCheckedA, isCheckedB, isCheckedC);
+
+		// ウィンドウ描画終了。
 		ImGui::End(); 
 		return;
 	}
 
 	/// <summary>
-	/// スライダーを操作する
+	/// スライダー
+    /// スライダー配置の例です。
+    /// スライダーを３つ配置、浮動小数版・整数版・度数版の三種類。
 	/// </summary>
-	void TestFloatSlider()
+	void TestSlider()
 	{
-		static float SliderValue = 0.0f;
+		static float sliderValueF = 0.0f;
+		static int sliderValueI = 0.0f;
+		static float sliderValueA = 0.0f;
 
-		// 初回のみウィンドウサイズを220x100に設定します（ImGuiCond_Onceで一度だけ適用）。
-		ImGui::SetNextWindowSize(ImVec2(220, 100), ImGuiCond_Once);
+		// 直近１つのウィンドウサイズ指定。
+		ImGui::SetNextWindowSize(ImVec2(230, 230), ImGuiCond_Once);
 
-		// "Sample Window" というタイトルのウィンドウを開始します。
-		ImGui::Begin("TestFloatSlider");
+		// ウィンドウ描画開始。
+		ImGui::Begin("TestSlider");
 
         // スライダーを表示し、値を0.0から100.0の範囲で調整します。
-		ImGui::SliderFloat("Slider", &SliderValue, 0.0f, 100.0f);
+		ImGui::SliderFloat("SliderFloat", &sliderValueF, 0.0f, 1.0f);
+		ImGui::SliderInt("SliderInt",  &sliderValueI, 0, 100);
+		ImGui::SliderAngle("SliderAngle", &sliderValueA);
 
 		// 整数値を埋め込んだテキストを表示します。
-		ImGui::Text("SliderValue: %f", SliderValue);
+		ImGui::Text("SliderFloat: %f", sliderValueF);
+		ImGui::Text("SliderInt: %d", sliderValueI);
+		ImGui::Text("SliderAngle: %f", sliderValueA);
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -1701,7 +1717,7 @@ AImGuiActor::AImGuiActor()
 	TestCases.Add(FtestCase(TestSimpleButton, TEXT("SimpleButton")));    // ボタンを表示する
 	TestCases.Add(FtestCase(TestShowText, TEXT("ShowText")));            // テキストを表示する
 	TestCases.Add(FtestCase(TestCheckBox, TEXT("CheckBox")));            // チェックボックスを作成する
-	TestCases.Add(FtestCase(TestFloatSlider, TEXT("FloatSlider")));      // スライダーを操作する
+	TestCases.Add(FtestCase(TestSlider, TEXT("Slider")));				// スライダーを操作する
 	TestCases.Add(FtestCase(TestComboBox, TEXT("ComboBox")));            // ドロップダウンリストを作成
 	///TestCases.Add(FtestCase(TestShowImage, TEXT("ShowImage")));          // 画像を表示する
 	TestCases.Add(FtestCase(TestInputField, TEXT("InputField")));        // ラベル付き入力フィールド
