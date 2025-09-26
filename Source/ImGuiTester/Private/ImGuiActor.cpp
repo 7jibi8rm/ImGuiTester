@@ -8,73 +8,88 @@ namespace
 {
 
 	/// <summary>
-	/// ウィンドウを作成する
-	/// シンプルなImGuiウィンドウを作成し、テキストを表示します。
-	/// ImGuiのウィンドウ生成・テキスト表示の基本的な使い方を確認できます。
+	/// 簡単なウィンドウ描画。
+	/// ウィンドウを１つ作成し、３行分のテキストを表示します。
 	/// </summary>
 	void TestSimpleWindow()
 	{
-		// 初回のみウィンドウサイズを300x200に設定します（ImGuiCond_Onceで一度だけ適用）。
-		ImGui::SetNextWindowSize(ImVec2(300, 200), ImGuiCond_Once);
+		// 直近１つのウィンドウサイズ指定。
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-		// "Simple Window" というタイトルのウィンドウを開始します。
-		ImGui::Begin("TestSimpleWindowテスト");
+		// ウィンドウ描画開始。
+		ImGui::Begin("TestSimpleWindow");
 
-		// ウィンドウ内にテキストを1行表示します。
-		ImGui::Text("Hello ImGui!");
+		// テキストを表示。
+		ImGui::Text("テキストを表示した１行目");
+		ImGui::Text("テキストを表示した２行目");
+		ImGui::Text("テキストを表示した３行目");
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
 
 	/// <summary>
-	/// シンプルなImGuiウィンドウ内にボタンを表示するテスト関数。
-	/// ボタンを押すと「Button was clicked!」というテキストが表示されます。
-	/// ImGuiのボタンウィジェットの基本的な使い方を確認できます。
+	/// 簡単なボタン作成。
+	/// ウィンドウ１つにボタンを３つ配置したもの。
+	/// ボタンをクリックすると対応した値が変わります。分かりやすさ重視でトグル式にしてあります。
 	/// </summary>
 	void TestSimpleButton()
 	{
-		// 初回のみウィンドウサイズを100x100に設定します（ImGuiCond_Onceで一度だけ適用）。
-		ImGui::SetNextWindowSize(ImVec2(100, 100), ImGuiCond_Once);
+		// 直近１つのウィンドウサイズ指定。
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-		// "Button Window" というタイトルのウィンドウを開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestSimpleButton");
 
-		// ボタンを表示し、押された場合はテキストを表示します。
-		if (ImGui::Button("ButtonA")){
-			// ボタンが押されたときのみ表示されるテキスト（一瞬）
-			ImGui::Text("ButtonA was clicked!");
-		}
+		// ボタンを表示し、押された瞬間テキストを表示します。
+        static bool value[3] = { false, false, false };
 
-		// ウィンドウの描画を終了します。
+		if (ImGui::Button("ボタンA 押してください")){
+            value[0] = !value[0];
+		}
+		if (ImGui::Button("ボタンB 押してください")) {
+			value[1] = !value[1];
+		}
+		if (ImGui::Button("ボタンC 押してください")) {
+			value[2] = !value[2];
+		}
+		ImGui::Text("ボタンA:%d ボタンB:%d  ボタンC:%d", value[0], value[1], value[2]);
+
+		// ウィンドウ描画終了。
 		ImGui::End();
+        return;
 	}
 
 	/// <summary>
-	/// テキストを表示する
+	/// 様々なテキスト表示。
+    /// 変数の値埋め込み、グレーアウト、色指定のテキスト表示。
 	/// </summary>
 	void TestShowText()
 	{
-		// 初回のみウィンドウサイズを200x200に設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-		// "Text Window" というタイトルのウィンドウを開始します。
-		ImGui::Begin("Text Window");
+		// ウィンドウ描画開始。
+		ImGui::Begin("TestShowText");
 
-		// 整数値を埋め込んだテキストを表示します。
+		// 整数値を埋め込んだテキスト表示。
 		int value = 42;
 		ImGui::Text("Value: %d", value);
 
-		// 赤色でテキストを表示します。
-		ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "This is red text");
+		// 色指定してテキスト表示。
+		ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "赤色指定テキスト");
 
-		// Push/PopStyleColorで一時的にテキスト色を変更して表示します。
+		// グレーアウトなテキスト表示。
+        ImGui::TextDisabled("グレーアウトテキスト");
+
+		// 一時的にテキストの色変え。
 		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 0.7f, 0.0f, 1.0f));
-		ImGui::Text("This is green text using Push/PopStyleColor");
+		ImGui::Text("一時的な色変え１");
+		ImGui::Text("一時的な色変え２");
 		ImGui::PopStyleColor();
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -1187,15 +1202,6 @@ namespace
 	}
 
 	/// <summary>
-	/// キャンセル操作
-	/// </summary>
-	void TestCancelDialog()
-	{
-		// 没
-		return;
-	}
-
-	/// <summary>
 	/// 回転/スケールUI
 	/// </summary>
 	void TestTransformWidget()
@@ -1678,50 +1684,6 @@ namespace
         ImGui::End();
 		return;
 	}
-
-	/// <summary>
-	/// メモリ使用状況表示
-	/// </summary>
-	void TestMemoryStats()
-	{
-		// 没
-		return;
-	}
-
-	/// <summary>
-	/// 入力補完UI
-	/// </summary>
-	void TestInputCompletion()
-	{
-		return;
-	}
-
-	/// <summary>
-	/// バリデーション（値チェック）
-	/// </summary>
-	void TestValidation()
-	{
-		// 没
-		return;
-	}
-
-	/// <summary>
-	/// 設定ファイルの保存/読込
-	/// </summary>
-	void TestConfigIO()
-	{
-		return;
-	}
-
-	/// <summary>
-	/// Undo/Redo対応UI
-	/// </summary>
-	void TestUndoRedo()
-	{
-		return;
-	}
-
-
 };
 
 
@@ -1774,7 +1736,6 @@ AImGuiActor::AImGuiActor()
 	TestCases.Add(FtestCase(TestMultiLineInput, TEXT("MultiLineInput"))); // マルチライン入力
 	TestCases.Add(FtestCase(TestNumberStepper, TEXT("NumberStepper")));  // 数値ステッパー
 	TestCases.Add(FtestCase(TestColorEdit, TEXT("ColorEdit")));          // 色変更UI
-	TestCases.Add(FtestCase(TestCancelDialog, TEXT("CancelDialog")));    // キャンセル操作
 	TestCases.Add(FtestCase(TestTransformWidget, TEXT("TransformWidget"))); // 回転/スケールUI
 	TestCases.Add(FtestCase(TestPasswordInput, TEXT("PasswordInput")));  // パスワード入力
 	TestCases.Add(FtestCase(TestOnHoverDetail, TEXT("OnHoverDetail")));  // ホバー時詳細情報
@@ -1789,11 +1750,6 @@ AImGuiActor::AImGuiActor()
 	TestCases.Add(FtestCase(TestThemeToggle, TEXT("ThemeToggle")));      // テーマ切替（複数テーマ対応）
 	TestCases.Add(FtestCase(TestCursorCustom, TEXT("CursorCustom")));    // マウスカーソルカスタマイズ
 	TestCases.Add(FtestCase(TestRowSortControl, TEXT("RowSortControl"))); // 行の並び替え
-	TestCases.Add(FtestCase(TestMemoryStats, TEXT("MemoryStats")));      // メモリ使用状況表示
-	TestCases.Add(FtestCase(TestInputCompletion, TEXT("InputCompletion"))); // 入力補完UI
-	TestCases.Add(FtestCase(TestValidation, TEXT("Validation")));        // バリデーション（値チェック）
-	TestCases.Add(FtestCase(TestConfigIO, TEXT("ConfigIO")));            // 設定ファイルの保存/読込
-	TestCases.Add(FtestCase(TestUndoRedo, TEXT("UndoRedo")));            // Undo/Redo対応UI
 }
 
 /**
