@@ -63,7 +63,7 @@ namespace
 	}
 
 	/// <summary>
-	/// 様々なテキスト表示。
+	/// 様々なテキスト表示
 	/// 色変え等の特殊なテキストの例です。
     /// 変数の値埋め込み、グレーアウト、色指定のテキスト表示を行います。
 	/// </summary>
@@ -192,9 +192,9 @@ namespace
 	}
 
 	/// <summary>
-	/// テクスチャの表示
+	/// テクスチャ表示
 	/// コンテンツブラウザの画像を参照して表示する例です。
-	/// テクスチャ利用にはFImGuiModuleを介す。詳細はAImGuiActor::BeginPlayを確認。
+	/// 外部データ利用にはFImGuiModuleが必要。詳細はAImGuiActor::BeginPlayを確認。
 	/// </summary>
 	void TestShowImage()
 	{
@@ -215,25 +215,32 @@ namespace
 
 	/// <summary>
 	/// ラベル付き入力フィールド
+    /// ユーザー入力可能なテキストフィールドを表示する例です。
+	/// ３つの入力フィールドを配置、通常・数字のみ・読み取り専用の３種類。
 	/// </summary>
 	void TestInputField()
 	{
+		static char InputTextA[128] = "文字列入力";
+		static char InputTextB[16] = "123456789";
+		static char InputTextC[128] = "読み取り専用";
 
-		static char InputText[128] = "default";
+		// 直近１つのウィンドウサイズ指定。
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
-		ImGui::SetNextWindowSize(ImVec2(200, 70), ImGuiCond_Once);
-
-		// ウィンドウの描画を開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestInputField");
 
-        // 入力フィールドを表示します。ユーザーがテキストを入力できるようになります。
-		ImGui::InputText("Label", InputText, IM_ARRAYSIZE(InputText));
+        // 入力フィールド表示、ユーザーがテキストを入力できるようになる
+		ImGui::InputText("LabelA", InputTextA, IM_ARRAYSIZE(InputTextA));
+        ImGui::InputText("LabelB", InputTextB, IM_ARRAYSIZE(InputTextB), ImGuiInputTextFlags_CharsDecimal); // 数字のみ入力可能
+        ImGui::InputText("LabelC", InputTextC, IM_ARRAYSIZE(InputTextC), ImGuiInputTextFlags_ReadOnly); // 読み取り専用
 
-		// 整数値を埋め込んだテキストを表示します。
-		ImGui::Text("Text: %s", InputText);
+		// 入力済みテキスト表示。。
+		ImGui::Text("TextA: %s", InputTextA);
+		ImGui::Text("TextB: %s", InputTextB);
+		ImGui::Text("TextC: %s", InputTextC);
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 
 		return;
