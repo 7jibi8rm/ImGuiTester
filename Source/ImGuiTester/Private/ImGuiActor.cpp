@@ -160,30 +160,33 @@ namespace
 	}
 
 	/// <summary>
-	/// コンボボックスを作成
+	/// コンボボックス
+	/// コンボボックス配置の例です。
+	/// 3項目設定したコンボボックスを１つ配置。
+    /// 補足、コンボボックスはプルダウン・ドロップダウンリストとも呼ばれる。
 	/// </summary>
 	void TestComboBox()
 	{
-        // コンボボックスの選択状態を保持する変数
+        // コンボボックスの選択状態管理。
 		static int ComboBoxValue = 0;
 
-        // コンボボックスアイテムを定義します。
+        // コンボボックスアイテムを定義。
 		const char* items[] = { "Apple", "Banana", "Cherry" };
 
-		// 初回のみウィンドウサイズを220x100に設定します（ImGuiCond_Onceで一度だけ適用）。
-		ImGui::SetNextWindowSize(ImVec2(200, 100), ImGuiCond_Once);
+		// 直近１つのウィンドウサイズ指定。
+		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
 
-		// ウィンドウの描画を開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestComboBox");
 
-        // コンボボックスを表示し、選択されたアイテムのインデックスをComboBoxValueで管理します。
+        // コンボボックスを表示、選択されたインデックスをComboBoxValueで管理。
 		if (ImGui::Combo("Fruits", &ComboBoxValue, items, IM_ARRAYSIZE(items)))
 		{
-            // コンボボックスの選択が変更された場合、選択されたアイテムのインデックスをログに出力します。
+            // 変更された際、インデックスをログに出力。
 			UE_LOG(LogTemp, Log, TEXT("ComboBoxValue: %d"), ComboBoxValue);
 		}
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
