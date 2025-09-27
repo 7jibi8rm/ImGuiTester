@@ -23,6 +23,10 @@ public:
 	 */
 	AImGuiActor();
 
+    /** サンプル用のテクスチャアセット。ImGuiウィンドウで表示するために使用されます。 */
+	UPROPERTY(EditAnywhere)
+	UTexture2D* SampleTexture;
+
 #if WITH_IMGUI
 protected:
 
@@ -53,6 +57,9 @@ public:
 	 * ImGuiのウィンドウ表示やテストケースのUI制御・実行を行います。
 	 */
 	void ImGuiTick();
+
+
+
 
 private:
 

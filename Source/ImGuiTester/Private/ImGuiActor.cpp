@@ -192,10 +192,24 @@ namespace
 	}
 
 	/// <summary>
-	/// 画像を表示する
+	/// テクスチャの表示
+	/// コンテンツブラウザの画像を参照して表示する例です。
+	/// テクスチャ利用にはFImGuiModuleを介す。詳細はAImGuiActor::BeginPlayを確認。
 	/// </summary>
 	void TestShowImage()
 	{
+		// 直近１つのウィンドウサイズ指定。
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
+
+		// ウィンドウ描画開始。
+		ImGui::Begin("TestShowImage");
+
+        // 登録済みテクスチャを呼び出し、ImGuiで表示。
+		FImGuiTextureHandle TextureHandle = FImGuiModule::Get().FindTextureHandle("SampleTexture");
+		ImGui::Image(TextureHandle, ImVec2(200, 200));
+
+		// ウィンドウ描画終了。
+		ImGui::End();
 		return;
 	}
 
@@ -1722,7 +1736,7 @@ AImGuiActor::AImGuiActor()
 	TestCases.Add(FtestCase(TestCheckBox, TEXT("CheckBox")));            // チェックボックスを作成する
 	TestCases.Add(FtestCase(TestSlider, TEXT("Slider")));				// スライダーを操作する
 	TestCases.Add(FtestCase(TestComboBox, TEXT("ComboBox")));            // ドロップダウンリストを作成
-	///TestCases.Add(FtestCase(TestShowImage, TEXT("ShowImage")));          // 画像を表示する
+	TestCases.Add(FtestCase(TestShowImage, TEXT("ShowImage")));          // 画像を表示する
 	TestCases.Add(FtestCase(TestInputField, TEXT("InputField")));        // ラベル付き入力フィールド
 	TestCases.Add(FtestCase(TestSimpleTable, TEXT("SimpleTable")));      // テーブルを表示する
 	///TestCases.Add(FtestCase(TestListBox, TEXT("ListBox")));              // リストボックスを作成
@@ -1785,6 +1799,9 @@ void AImGuiActor::BeginPlay()
     // ImGuiの入力モードを有効化
 	FImGuiModule& ImGuiModule = FImGuiModule::Get();
 	ImGuiModule.SetInputMode(true);
+
+    // サンプル画像をロードしてテクスチャとして登録
+	FImGuiModule::Get().RegisterTexture("SampleTexture", SampleTexture);
 }
 
 /**
@@ -1802,6 +1819,10 @@ void AImGuiActor::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	// ImGuiの入力モードを無効化
 	FImGuiModule& ImGuiModule = FImGuiModule::Get();
 	ImGuiModule.SetInputMode(false);
+
+    // 登録したテクスチャを解除
+	FImGuiTextureHandle TextureHandle = FImGuiModule::Get().FindTextureHandle("SampleTexture");
+	FImGuiModule::Get().ReleaseTexture(TextureHandle);
 }
 
 /**
