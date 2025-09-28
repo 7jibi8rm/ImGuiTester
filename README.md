@@ -108,19 +108,25 @@ ImGuiの描画・入力制御をUE5アクター経由で行い、ウィンドウ
   <tr>
     <td><img src="./Image/TestSimpleTable.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L253-L295">No.9 テーブルを表示する</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L255-L295">No.9 テーブル</a><br>
+      <span style="font-size:small;color:#555;">テーブル表示の例です。</span><br>
+      <span style="font-size:small;color:#555;">3列5行のテーブルを作成し、各セルに行列番号を表示します。</span><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestTreeNode.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L300-L337">No.10 ツリーノードを作成</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L302-L335">No.10 ツリーノード</a><br>
+      <span style="font-size:small;color:#555;">ツリーノード表示の例です。</span><br>
+      <span style="font-size:small;color:#555;">親ツリーと２つの子ツリー配置。ツリーノードは階層的なデータ構造の表現が可能。</span><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestShowTooltip.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L342-L363">No.11 ツールチップを表示</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L342-L363">No.11 ツールチップ表示</a><br>
+      <span style="font-size:small;color:#555;">ツールチップを表示させる例です。</span><br>
+      <span style="font-size:small;color:#555;">アイテムにマウスホバーでツールチップを表示。別名ポップアップヒント。</span><br>
     </td>
   </tr>
   <tr>
@@ -148,207 +154,201 @@ ImGuiの描画・入力制御をUE5アクター経由で行い、ウィンドウ
     </td>
   </tr>
   <tr>
-    <td><img src="./Image/TestFontChange.png" width="128" height="128" /></td>
-    <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L496-L499">No.16 フォントを変更</a><br>
-    </td>
-  </tr>
-  <tr>
     <td><img src="./Image/TestStyleControl.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L504-L533">No.17 スタイルを変更する</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L497-L526">No.16 スタイルを変更する</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestFocusControl.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L538-L561">No.18 フォーカス制御</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L531-L554">No.17 フォーカス制御</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestDragDrop.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L566-L615">No.19 ドラッグ&ドロップを実装する</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L559-L608">No.18 ドラッグ&ドロップを実装する</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestChildWindow.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L620-L642">No.20 子ウィンドウ・領域を作る</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L613-L635">No.19 子ウィンドウ・領域を作る</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestInputMonitor.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L647-L680">No.21 入力状態を監視</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L640-L673">No.20 入力状態を監視</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestImageButton.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L685-L688">No.22 画像ボタンを設置</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L678-L681">No.21 画像ボタンを設置</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestLayoutAdjust.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L693-L716">No.23 レイアウトをスペースで調整</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L686-L709">No.22 レイアウトをスペースで調整</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestColumnLayout.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L721-L745">No.24 行や列を分割配置</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L714-L738">No.23 行や列を分割配置</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestModalDialog.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L750-L787">No.25 モーダルダイアログを表示</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L743-L780">No.24 モーダルダイアログを表示</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestWindowPosition.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L792-L809">No.26 ウィンドウの位置・サイズ固定</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L785-L802">No.25 ウィンドウの位置・サイズ固定</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestClipboard.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L814-L850">No.27 データをコピー&ペースト</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L807-L843">No.26 データをコピー&ペースト</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestHelpNote.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L855-L871">No.28 ノートやヘルプウィンドウ</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L848-L864">No.27 ノートやヘルプウィンドウ</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestZoomPan.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L876-L917">No.29 ズーム/パン操作</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L869-L910">No.28 ズーム/パン操作</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestReorderListBox.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L922-L959">No.30 順序入替リストボックス</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L915-L952">No.29 順序入替リストボックス</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestCanvasDraw.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L964-L1005">No.31 キャンバス描画</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L957-L998">No.30 キャンバス描画</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestScrollSync.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1010-L1061">No.32 スクロール同期</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1003-L1054">No.31 スクロール同期</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestTimelineBar.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1066-L1089">No.33 タイムライン（進捗付きバー）</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1059-L1082">No.32 タイムライン（進捗付きバー）</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestFilterList.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1094-L1125">No.34 フィルタリングリスト</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1087-L1118">No.33 フィルタリングリスト</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestMultiSelectList.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1130-L1172">No.35 複数選択リストボックス</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1123-L1165">No.34 複数選択リストボックス</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestMultiLineInput.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1177-L1195">No.36 マルチライン入力</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1170-L1188">No.35 マルチライン入力</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestNumberStepper.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1200-L1219">No.37 数値ステッパー</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1193-L1212">No.36 数値ステッパー</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestColorEdit.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1224-L1243">No.38 色変更UI</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1217-L1236">No.37 色変更UI</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestTransformWidget.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1248-L1296">No.39 回転/スケールUI</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1241-L1289">No.38 回転/スケールUI</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestPasswordInput.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1301-L1320">No.40 パスワード入力</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1294-L1313">No.39 パスワード入力</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestOnHoverDetail.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1325-L1348">No.41 ホバー時詳細情報</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1318-L1341">No.40 ホバー時詳細情報</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestDragSlider.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1353-L1372">No.42 物理スライダー操作</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1346-L1365">No.41 物理スライダー操作</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestAudioControl.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1377-L1380">No.43 音声再生UI</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1370-L1373">No.42 音声再生UI</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestVideoEmbed.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1385-L1388">No.44 ビデオ埋め込みUI</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1378-L1381">No.43 ビデオ埋め込みUI</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestTagSelector.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1393-L1438">No.45 タグ選択UI</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1386-L1431">No.44 タグ選択UI</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestHeaderCollapse.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1443-L1465">No.46 ヘッダーで折りたたみ</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1436-L1458">No.45 ヘッダーで折りたたみ</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestFlexibleTable.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1470-L1512">No.47 行数・カラム数変更可能テーブル</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1463-L1505">No.46 行数・カラム数変更可能テーブル</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestToolbar.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1517-L1521">No.48 ツールバー作成</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1510-L1514">No.47 ツールバー作成</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestLineGraph.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1528-L1568">No.49 折れ線グラフ</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1521-L1561">No.48 折れ線グラフ</a><br>
       <span style="font-size:small;color:#555;">ImDrawListを使ってウィンドウ内に折れ線グラフを描画します。</span><br>
       <span style="font-size:small;color:#555;">カスタム描画の工夫によりグラフを実現しています。グラフ機能が存在するわけではありません。</span><br>
     </td>
@@ -356,7 +356,7 @@ ImGuiの描画・入力制御をUE5アクター経由で行い、ウィンドウ
   <tr>
     <td><img src="./Image/TestThemeToggle.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1575-L1616">No.50 テーマ切替</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1568-L1609">No.49 テーマ切替</a><br>
       <span style="font-size:small;color:#555;">テーマ切り替え用メソッドのテストです。</span><br>
       <span style="font-size:small;color:#555;">ダーク・ライト・クラシック・カスタムテーマの4種類への切り替えを行います。</span><br>
     </td>
@@ -364,7 +364,7 @@ ImGuiの描画・入力制御をUE5アクター経由で行い、ウィンドウ
   <tr>
     <td><img src="./Image/TestCursorCustom.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1624-L1650">No.51 マウスカーソルカスタマイズ</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1617-L1643">No.50 マウスカーソルカスタマイズ</a><br>
       <span style="font-size:small;color:#555;">マウスカーソルの形を変更する方法の例です。</span><br>
       <span style="font-size:small;color:#555;">ホバー時は左右リサイズ用のカーソル、通常時は矢印カーソルを表示します。</span><br>
       <span style="font-size:small;color:#555;">ImGui::SetMouseCursor()によりカーソル形状を変更しています。</span><br>
@@ -373,7 +373,7 @@ ImGuiの描画・入力制御をUE5アクター経由で行い、ウィンドウ
   <tr>
     <td><img src="./Image/TestRowSortControl.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1658-L1727">No.52 行の並び替え</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1651-L1720">No.51 行の並び替え</a><br>
       <span style="font-size:small;color:#555;">テーブルソート機能を利用したシンプルなサンプル。</span><br>
       <span style="font-size:small;color:#555;">ソート可能なテーブルで行データ（ID・名前・値）を表示します。</span><br>
       <span style="font-size:small;color:#555;">ヘッダークリックで昇順・降順の並び替えができます。</span><br>

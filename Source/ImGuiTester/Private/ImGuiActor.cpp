@@ -247,115 +247,115 @@ namespace
 	}
 
 	/// <summary>
-	/// テーブルを表示する
+	/// テーブル
+	/// テーブル表示の例です。
+	/// 3列5行のテーブルを作成し、各セルに行列番号を表示します。
 	/// </summary>
 	void TestSimpleTable()
 	{
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
-		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
+		// 直近１つのウィンドウサイズ指定。
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-		// ウィンドウの描画を開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestSimpleTable");
 
-        // テーブルを開始します。3列のテーブルで、境界線と行背景を有効にしています。
+        // テーブル開始。3列のテーブル、境界線と行背景を有効化。
 		if (ImGui::BeginTable("Table1", 3, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg))
 		{
-            // テーブルの列を設定します。ここでは3つの列を定義しています。
+            // テーブルの列を設定します。3つの列を定義。
 			ImGui::TableSetupColumn("COL 1");
 			ImGui::TableSetupColumn("COL 2");
 			ImGui::TableSetupColumn("COL 3");
 
-            // テーブルのヘッダー行を描画します。
+            // テーブルのヘッダー行を定義。
 			ImGui::TableHeadersRow();
 
-            // テーブルの行をループして、各セルにテキストを表示します。
+            // テーブルの行をループ、各セルにテキスト設定。
 			for (int row = 0; row < 5; ++row)
 			{
-                // 新しい行を開始します。
+                // 新しい行開始。
 				ImGui::TableNextRow();
 
-                // 各列にテキストを表示します。
+                // 各列にテキスト設定。
 				for (int column = 0; column < 3; ++column)
 				{
-                    // 列を設定し、テキストを表示します。
-					ImGui::TableSetColumnIndex(column);
+                    ImGui::TableSetColumnIndex(column); // 列を選択。
 					ImGui::Text("%d-%d", row, column);
 				}
 			}
-
-            // テーブルの描画を終了します。
+            // テーブル終了。
 			ImGui::EndTable();
 		}
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 
 		return;
 	}
 
 	/// <summary>
-	/// ツリーノードを作成
+	/// ツリーノード
+	/// ツリーノード表示の例です。
+	/// 親ツリーと２つの子ツリー配置。ツリーノードは階層的なデータ構造の表現が可能。
 	/// </summary>
 	void TestTreeNode()
 	{
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
 
-		// ウィンドウの描画を開始します。
-		ImGui::Begin("TestSimpleTable");
+		// ウィンドウ描画開始。
+		ImGui::Begin("TestTreeNode");
 
-        // ツリーノードを作成します。ツリーノードは階層的なデータ構造を表現するために使用されます。
+        // 親ノード開始。
 		if (ImGui::TreeNode("Root Node"))
 		{
-            // ツリーノードの子ノードを作成します。ここでは2つの子ノードを持つ例です。
+            // 子ノードその１開始。
 			if (ImGui::TreeNode("Child Node A"))
 			{
-                // 子ノード内にテキストを表示します。
 				ImGui::BulletText("Text");
-                // 子ノードの描画を終了します。
-				ImGui::TreePop();
+                ImGui::TreePop(); // 子ノードその１終了。
 			}
 
-            // もう1つの子ノードを作成します。
+			// 子ノードその２開始。
 			if (ImGui::TreeNode("Child Node B"))
 			{
-                // 子ノード内にテキストを表示します。
 				ImGui::BulletText("Text");
-                // 子ノードの描画を終了します。
-				ImGui::TreePop();
+                ImGui::TreePop(); // 子ノードその２終了。
             }
 
-            // ツリーノードの描画を終了します。
+            // 親ノード終了。
 			ImGui::TreePop();
 		}
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 
 		return;
 	}
 
 	/// <summary>
-	/// ツールチップを表示
+	/// ツールチップ表示
+	/// ツールチップを表示させる例です。
+    /// アイテムにマウスホバーでツールチップを表示。別名ポップアップヒント。
 	/// </summary>
 	void TestShowTooltip()
 	{
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
-		ImGui::SetNextWindowSize(ImVec2(150, 75), ImGuiCond_Once);
+		// 直近１つのウィンドウサイズ指定。
+		ImGui::SetNextWindowSize(ImVec2(150, 100), ImGuiCond_Once);
 
-		// ウィンドウの描画を開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestShowTooltip");
 
 		// 何らかのアイテムを表示（例：テキスト）
-		ImGui::Text("Hover over me");
+		ImGui::Text("マウスホバーで");
 
 		// マウスがこのアイテムにホバーされているか判定してツールチップを表示
 		if (ImGui::IsItemHovered())
 		{
-			ImGui::SetTooltip("This is a tooltip");
+			ImGui::SetTooltip("ツールチップ表示");
 		}
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 
 		return;
@@ -370,10 +370,10 @@ namespace
 		// カラーを保存する変数
 		static ImVec4 color = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(350, 100), ImGuiCond_Once);
 
-		// ImGuiウィンドウ開始
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestColorPicker");
 
 		// 色の選択ウィジェット。colorの内容がユーザー操作で変更される
@@ -382,7 +382,7 @@ namespace
         // 選択された色の値を表示
 		ImGui::Text("SelectColor - R: %.2f, G: %.2f, B: %.2f, A: %.2f", color.x, color.y, color.z, color.w);
 
-        // ウィンドウの描画を終了します。	
+        // ウィンドウ描画終了。	
 		ImGui::End();
 		return;
 	}
@@ -394,10 +394,10 @@ namespace
 	{
         static float fraction = 0.7f;
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(350, 100), ImGuiCond_Once);
 
-		// ImGuiウィンドウ開始
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestProgressBar");
 
 		// プログレスバーの表示。fractionは0.0(0%)〜1.0(100%)の範囲で進捗を表す
@@ -406,7 +406,7 @@ namespace
 		// 進捗率をテキスト表示（%表記）
 		ImGui::Text("Progress: %.1f%%", fraction * 100.0f);
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -416,10 +416,10 @@ namespace
 	/// </summary>
 	void TestMenuBar()
 	{
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-		// ImGuiウィンドウ開始
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestMenuBar", nullptr, ImGuiWindowFlags_MenuBar);
 
         // メニューバーを開始します。ウィンドウの上部にメニューバーが表示されます。
@@ -449,7 +449,7 @@ namespace
 			ImGui::EndMenuBar();
 		}
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -459,10 +459,10 @@ namespace
 	/// </summary>
 	void TestTabWidget()
 	{
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-        // ImGuiウィンドウ開始
+        // ウィンドウ描画開始。
 		ImGui::Begin("TestTabWidget");
 
         // タブバーを開始します。
@@ -484,28 +484,21 @@ namespace
 			ImGui::EndTabBar();
 		}
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
 
-	/// <summary>
-	/// フォントを変更
-	/// </summary>
-	void TestFontChange()
-	{
-		return;
-	}
 
 	/// <summary>
 	/// スタイルを変更する
 	/// </summary>
 	void TestStyleControl()
 	{
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(100, 100), ImGuiCond_Once);
 
-		// ImGuiウィンドウ開始
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestStyleControl");
 
 		// ImGuiのスタイルを変更するための関数です。
@@ -525,7 +518,7 @@ namespace
         // スタイルの色を元に戻します。
 		style.Colors[ImGuiCol_Text] = styleColor;
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 
 		return;
@@ -539,10 +532,10 @@ namespace
 		static char buf1[128] = "First";
 		static char buf2[128] = "Second";
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 100), ImGuiCond_Once);
 
-		// ImGuiウィンドウ開始
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestFocusControl");
 
         // 1つ目の入力フィールドを作成します。
@@ -554,7 +547,7 @@ namespace
         // 2つ目の入力フィールドを作成します。
 		ImGui::InputText("Second", buf2, 128);
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -567,10 +560,10 @@ namespace
         // ドラッグ&ドロップのテスト用のアイテムリスト
 		static std::vector<std::string> items = { "Item 1", "Item 2", "Item 3", "Item 4" };
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(150, 200), ImGuiCond_Once);
 
-        // ImGuiウィンドウ開始
+        // ウィンドウ描画開始。
 		ImGui::Begin("TestDragDrop");
 
 		for (int i = 0; i < items.size(); i++)
@@ -608,7 +601,7 @@ namespace
 			}
 		}
 
-        // ウィンドウの描画を終了します。
+        // ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -618,7 +611,7 @@ namespace
 	/// </summary>
 	void TestChildWindow()
 	{
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(220, 170), ImGuiCond_Once);
 
         // 親ウィンドウを開始します。
@@ -647,7 +640,7 @@ namespace
 	{
 		ImGuiIO& io = ImGui::GetIO();
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(250, 170), ImGuiCond_Once);
 
 		// 親ウィンドウを開始します。
@@ -673,7 +666,7 @@ namespace
 		if (io.WantCaptureMouse)
 			ImGui::Text("ImGui is capturing mouse input");
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -691,10 +684,10 @@ namespace
 	/// </summary>
 	void TestLayoutAdjust()
 	{
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(250, 170), ImGuiCond_Once);
 
-		// ウィンドウを開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestLayoutAdjust");
 
 
@@ -719,10 +712,10 @@ namespace
 	/// </summary>
 	void TestColumnLayout()
 	{
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-		// ウィンドウを開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestColumnLayout");
 
         // 3列レイアウトを開始します。
@@ -738,7 +731,7 @@ namespace
 		// 列終了（元に戻す）
 		ImGui::Columns(1);
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -748,10 +741,10 @@ namespace
 	/// </summary>
 	void TestModalDialog()
 	{
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(150, 65), ImGuiCond_Once);
 
-		// ウィンドウを開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestModalDialog");
 
         // ボタンを押すとモーダルダイアログが開きます。
@@ -780,7 +773,7 @@ namespace
 			ImGui::EndPopup();
 		}
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -796,13 +789,13 @@ namespace
         // ウィンドウサイズを(400,300)に固定（ImGuiCond_Alwaysで毎フレーム適用）
 		ImGui::SetNextWindowSize(ImVec2(400, 300), ImGuiCond_Always);
 
-        // ウィンドウを開始します。リサイズと移動を禁止するフラグを指定。
+        // ウィンドウ描画開始。リサイズと移動を禁止するフラグを指定。
 		ImGui::Begin("TestWindowPosition", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
 
         // 固定位置・サイズの説明テキスト
 		ImGui::Text("This window has fixed position and size.");
 
-        // ウィンドウの描画を終了します。
+        // ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -814,7 +807,7 @@ namespace
 	{
 		static char buf[256] = "";
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 70), ImGuiCond_Once);
 
 		// ウィンドウ開始
@@ -843,7 +836,7 @@ namespace
 		// テキストを表示する
 		ImGui::Text("Buffer: %s", buf);
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -855,16 +848,16 @@ namespace
 	{
 		static bool show_help = true;
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(500, 400), ImGuiCond_Once);
 
-		// ウィンドウを開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestHelpNote");
 
         // ImGuiのユーザーガイドを表示します。
 		ImGui::ShowUserGuide();
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -892,10 +885,10 @@ namespace
 			pan = ImVec2(pan.x + io.MouseDelta.x, pan.y + io.MouseDelta.y);
 		}
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(300, 300), ImGuiCond_Once);
 
-		// ウィンドウを開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestHelpNote");
 
         // ズームとパンの情報を表示
@@ -910,7 +903,7 @@ namespace
         // ズームとパンを反映した円を描画
 		dl->AddCircleFilled(ImVec2(p.x + pan.x, p.y + pan.y), 50 * zoom, IM_COL32(255, 0, 0, 255));
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -924,10 +917,10 @@ namespace
 		static std::vector<std::string> items = { "Item 1", "Item 2", "Item 3", "Item 4" };
 		static int dragged_item = -1;
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(100, 100), ImGuiCond_Once);
 
-		// ウィンドウを開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestReorderListBox");
 
         // リストボックス内の各アイテムを表示
@@ -952,7 +945,7 @@ namespace
 			}
 		}
 
-        // ウィンドウの描画を終了します。
+        // ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -962,10 +955,10 @@ namespace
 	/// </summary>
 	void TestCanvasDraw()
 	{
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-        // ImGuiウィンドウ開始
+        // ウィンドウ描画開始。
 		ImGui::Begin("TestCanvasDraw");
 
 		// キャンバスのサイズを指定
@@ -998,7 +991,7 @@ namespace
 			draw_list->AddLine(origin + points[i], origin + points[i + 1], IM_COL32(255, 0, 0, 255), 2.0f);
 		}
 
-        // ウィンドウの描画を終了します。
+        // ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -1010,7 +1003,7 @@ namespace
 	{
 		static float synced_scroll = 0.0f; // 同期するスクロール位置
 
-        // ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+        // 直近１つのウィンドウサイズ指定。
         ImGui::SetNextWindowSize(ImVec2(450, 200), ImGuiCond_Once);
 
         // ウィンドウ開始
@@ -1067,10 +1060,10 @@ namespace
 		// 進捗バーを描画するシンプルな例
 		static float progress = 0.0f;
 
-        // ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+        // 直近１つのウィンドウサイズ指定。
         ImGui::SetNextWindowSize(ImVec2(250, 100), ImGuiCond_Once);
 
-        // ウィンドウを開始します。
+        // ウィンドウ描画開始。
         ImGui::Begin("TestTimelineBar");
 
 		// 毎フレームで進捗を更新（例として時間経過でループ）
@@ -1082,7 +1075,7 @@ namespace
 		ImGui::ProgressBar(progress, ImVec2(200, 20), "Progress");
 		ImGui::Text("Progress: %.1f%%", progress * 100.0f);
 
-        // ウィンドウの描画を終了します。
+        // ウィンドウ描画終了。
         ImGui::End();
 		return;
 	}
@@ -1101,10 +1094,10 @@ namespace
 			"Mango"
 		};
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 250), ImGuiCond_Once);
 
-		// ウィンドウを開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestFilterList");
 
         // フィルタ入力ボックスを表示
@@ -1118,7 +1111,7 @@ namespace
 			}
 		}
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -1133,10 +1126,10 @@ namespace
 		// 選択中のインデックス
 		static ImVector<int> selected_indices;
 
-        // ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+        // 直近１つのウィンドウサイズ指定。
         ImGui::SetNextWindowSize(ImVec2(150, 200), ImGuiCond_Once);
 
-        // ウィンドウを開始します。
+        // ウィンドウ描画開始。
 		ImGui::Begin("TestMultiSelectList");
 
         // 複数選択可能なリストボックスを表示
@@ -1165,7 +1158,7 @@ namespace
 			}
 		}
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -1177,16 +1170,16 @@ namespace
 	{
 		static char buf[1024] = "default text";
 
-        // ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+        // 直近１つのウィンドウサイズ指定。
         ImGui::SetNextWindowSize(ImVec2(450, 300), ImGuiCond_Once);
 
-        // ウィンドウを開始します。
+        // ウィンドウ描画開始。
         ImGui::Begin("TestMultiLineInput");
 
         // マルチラインテキスト入力フィールドを表示
 		ImGui::InputTextMultiline("##multiline", buf, IM_ARRAYSIZE(buf),ImVec2(400, 200), ImGuiInputTextFlags_None);
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 
 		return;
@@ -1198,10 +1191,10 @@ namespace
 	/// </summary>
 	void TestNumberStepper()
 	{
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 150), ImGuiCond_Once);
 
-		// ウィンドウを開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestNumberStepper");
 
 		// ステップサイズ付きInputInt（+-ボタン付き）
@@ -1212,7 +1205,7 @@ namespace
 		static int dragValue = 50;
 		ImGui::DragInt("Drag Int", &dragValue, 1.0f, 0, 100);
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -1222,10 +1215,10 @@ namespace
 	/// </summary>
 	void TestColorEdit()
 	{
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 150), ImGuiCond_Once);
 
-		// ウィンドウを開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestColorEdit");
 
 		// RGBカラーの編集（アルファなし）
@@ -1236,7 +1229,7 @@ namespace
 		static float colorAlpha[4] = { 0.0f, 1.0f, 0.0f, 1.0f };  // 初期色：緑、不透明
 		ImGui::ColorEdit4("Color with Alpha", colorAlpha);
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -1249,10 +1242,10 @@ namespace
 		static float angle = 0.0f;
 		static float scale = 1.0f;
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(400, 400), ImGuiCond_Once);
 
-        // ウィンドウを開始します。
+        // ウィンドウ描画開始。
 		ImGui::Begin("TestTransformWidget");
 
 		ImGui::SliderFloat("Angle", &angle, 0.0f, 360.0f);
@@ -1301,10 +1294,10 @@ namespace
 	{
 		static char password[64] = ""; // パスワード入力用バッファ
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-        // ウィンドウを開始します。
+        // ウィンドウ描画開始。
 		ImGui::Begin("TestPasswordInput");
 
         // パスワード入力フィールド（入力内容は'*'で表示）
@@ -1313,7 +1306,7 @@ namespace
         // 入力されたパスワードを表示（デバッグ用、実際は安全管理に注意）
 		ImGui::Text("You entered: %s", password); // デバッグ用表示（実際は安全管理に注意）
 
-        // ウィンドウの描画を終了します。
+        // ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -1323,10 +1316,10 @@ namespace
 	/// </summary>
 	void TestOnHoverDetail()
 	{
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-        // ウィンドウを開始します。
+        // ウィンドウ描画開始。
 		ImGui::Begin("TestOnHoverDetail");
 
         // 説明テキスト
@@ -1340,7 +1333,7 @@ namespace
 			ImGui::BulletText("項目2の説明");
 		}
 
-        // ウィンドウの描画を終了します。
+        // ウィンドウ描画終了。
 		ImGui::End();
 
 		return;
@@ -1353,10 +1346,10 @@ namespace
 	{
 		static float value = 0.5f; // スライダーの制御変数
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(250, 100), ImGuiCond_Once);
 
-        // ウィンドウを開始します。
+        // ウィンドウ描画開始。
 		ImGui::Begin("TestDragSlider");
 
 		// DragFloat : ラベル、変数へのポインタ、ドラッグ速度、最小値、最大値
@@ -1365,7 +1358,7 @@ namespace
 		// 現在の値を表示
 		ImGui::Text("Current Value: %.3f", value);
 
-        // ウィンドウの描画を終了します。
+        // ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -1391,10 +1384,10 @@ namespace
 	/// </summary>
 	void TestTagSelector()
 	{
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(250, 100), ImGuiCond_Once);
 
-		// ウィンドウを開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestTagSelector");
 
 		// タグの数
@@ -1430,7 +1423,7 @@ namespace
 			}
 		}
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 
 		return;
@@ -1444,10 +1437,10 @@ namespace
 		// 折りたたみヘッダーの状態を保持するbool変数
 		static bool open = true;
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(250, 150), ImGuiCond_Once);
 
-		// ウィンドウを開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestHeaderCollapse");
 
 		// CollapsingHeader: 折りたたみ可能なヘッダーを作成
@@ -1458,7 +1451,7 @@ namespace
 			ImGui::Button("ボタン");
 		}
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -1472,10 +1465,10 @@ namespace
 		static int rows = 5;
 		static int columns = 3;
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(400, 400), ImGuiCond_Once);
 
-		// ウィンドウを開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestHeaderCollapse");
 
 		// 行数・カラム数を変更するUI（スライダーなど）
@@ -1505,7 +1498,7 @@ namespace
 			ImGui::EndTable();
 		}
 
-        // ウィンドウの描画を終了します。
+        // ウィンドウ描画終了。
         ImGui::End();
 		return;
 	}
@@ -1561,7 +1554,7 @@ namespace
         // 描画領域の確保
 		ImGui::Dummy(size);
 
-        // ウィンドウの描画を終了します。
+        // ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -1579,10 +1572,10 @@ namespace
 		// テーマ切り替え用フラグ
 		static int theme_type = 0;
 
-        // ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+        // 直近１つのウィンドウサイズ指定。
         ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-        // ウィンドウを開始します。
+        // ウィンドウ描画開始。
 		ImGui::Begin("TestThemeToggle");
 
         // テーマ切替ボタン
@@ -1609,7 +1602,7 @@ namespace
 			// 自由なテーマカラー指定、他にも必要に応じて色を設定
 		}
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -1624,10 +1617,10 @@ namespace
 	{
 		ImGuiIO& io = ImGui::GetIO();
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 150), ImGuiCond_Once);
 
-		// ウィンドウを開始します。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestCursorCustom");
 
 		// 通常のボタン
@@ -1643,7 +1636,7 @@ namespace
 			ImGui::SetMouseCursor(ImGuiMouseCursor_Arrow); // 通常の矢印カーソル
 		}
 
-		// ウィンドウの描画を終了します。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
@@ -1671,9 +1664,9 @@ namespace
 			{4, "Date", 7.8f}
 		};
 
-		// ウィンドウサイズを設定します（ImGuiCond_Onceで一度だけ適用）。
+		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(300, 200), ImGuiCond_Once);
-        // ウィンドウを開始します。
+        // ウィンドウ描画開始。
         ImGui::Begin("TestRowSortControl");
 
 		// テーブル開始（3列、ソート可能）
@@ -1720,7 +1713,7 @@ namespace
             // テーブル終了
 			ImGui::EndTable();
 		}
-        // ウィンドウの描画を終了します。
+        // ウィンドウ描画終了。
         ImGui::End();
 		return;
 	}
@@ -1753,7 +1746,6 @@ AImGuiActor::AImGuiActor()
 	TestCases.Add(FtestCase(TestProgressBar, TEXT("ProgressBar")));      // プログレスバーを表示
 	TestCases.Add(FtestCase(TestMenuBar, TEXT("MenuBar")));              // メニューを作成する
 	TestCases.Add(FtestCase(TestTabWidget, TEXT("TabWidget")));          // タブを作成する
-	TestCases.Add(FtestCase(TestFontChange, TEXT("FontChange")));        // フォントを変更
 	TestCases.Add(FtestCase(TestStyleControl, TEXT("StyleControl")));    // スタイルを変更する
 	TestCases.Add(FtestCase(TestFocusControl, TEXT("FocusControl")));    // フォーカス制御
 	TestCases.Add(FtestCase(TestDragDrop, TEXT("DragDrop")));            // ドラッグ&ドロップを実装する
