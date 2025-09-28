@@ -362,25 +362,32 @@ namespace
 	}
 
 	/// <summary>
-	/// カラー選択ダイアログを表示
+	/// カラーピッカー
+	/// カラー選択メニューの例です。
+	/// RGBA各成分を調整可能なカラーピッカー・プレビュー表示を配置。
 	/// </summary>
 	void TestColorPicker()
 	{
-
 		// カラーを保存する変数
 		static ImVec4 color = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);
 
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(350, 100), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestColorPicker");
 
-		// 色の選択ウィジェット。colorの内容がユーザー操作で変更される
+        // カラーピッカーを表示。RGBA各成分を調整可能。
 		ImGui::ColorEdit4("RGBA", (float*)&color);
 
+        // カラーピッカー（大きい版）を表示。ウィンドウに収めるのが難しいのでコメントアウト。
+		// ImGui::ColorPicker4("RGBA", (float*)&color);
+
         // 選択された色の値を表示
-		ImGui::Text("SelectColor - R: %.2f, G: %.2f, B: %.2f, A: %.2f", color.x, color.y, color.z, color.w);
+		ImGui::Text("R: %.2f, G: %.2f, B: %.2f, A: %.2f", color.x, color.y, color.z, color.w);
+
+        // 選択された色のプレビューを表示
+		ImGui::ColorButton("RGBA", color);
 
         // ウィンドウ描画終了。	
 		ImGui::End();
@@ -388,23 +395,26 @@ namespace
 	}
 
 	/// <summary>
-	/// プログレスバーを表示
+	/// プログレスバー
+    /// プログレスバー表示の例です。
+    /// 進捗率を表すプログレスバーを配置、進捗率は0.0〜1.0の範囲で指定。
 	/// </summary>
 	void TestProgressBar()
 	{
         static float fraction = 0.7f;
 
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(350, 100), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
 
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestProgressBar");
 
-		// プログレスバーの表示。fractionは0.0(0%)〜1.0(100%)の範囲で進捗を表す
+        // プログレスバーの表示。0.0から1.0の範囲で進捗率を指定。
+        // 自動的に0～100%の範囲で表示される。
 		ImGui::ProgressBar(fraction, ImVec2(0.0f, 0.0f)); // サイズ(0,0)は自動的に幅いっぱいで高さは規定値
 
 		// 進捗率をテキスト表示（%表記）
-		ImGui::Text("Progress: %.1f%%", fraction * 100.0f);
+		ImGui::Text("Progress: %f", fraction);
 
 		// ウィンドウ描画終了。
 		ImGui::End();
