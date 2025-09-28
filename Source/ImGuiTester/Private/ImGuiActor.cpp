@@ -631,17 +631,19 @@ namespace
 
 	/// <summary>
 	/// 子ウィンドウ・領域を作る
+    /// ウィンドウの中に子ウィンドウを作成する例です。
+	/// 子ウィンドウはスクロール操作や、その中でリスト等のUI要素を独立して管理できます。
 	/// </summary>
 	void TestChildWindow()
 	{
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(220, 170), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
         // 親ウィンドウを開始します。
 		ImGui::Begin("TestChildWindow");
 
 		// 子ウィンドウ開始（サイズは (width=200, height=150)）
-		ImGui::BeginChild("ChildWindowID", ImVec2(200, 150), true); // 第3引数はボーダー表示の有無
+		ImGui::BeginChild("ChildWindowID", ImVec2(160, 160), true); // 第3引数はボーダー表示の有無
 
         // 子ウィンドウ内にテキストを表示します。
 		for (int i = 0; i < 20; i++) {
