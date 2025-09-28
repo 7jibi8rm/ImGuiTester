@@ -349,7 +349,7 @@ namespace
 		// 何らかのアイテムを表示（例：テキスト）
 		ImGui::Text("マウスホバーで");
 
-		// マウスがこのアイテムにホバーされているか判定してツールチップを表示
+		// マウスが直前のアイテムにホバーされているか判定してツールチップを表示
 		if (ImGui::IsItemHovered())
 		{
 			ImGui::SetTooltip("ツールチップ表示");
@@ -422,15 +422,18 @@ namespace
 	}
 
 	/// <summary>
-	/// メニューバーを作成する
+	/// メニューバー追加
+    /// ウィンドウにメニューバーを追加する例です。
+    /// ImGui::Beginにて、ImGuiWindowFlags_MenuBarを指定することでメニューバーを有効化。
+	/// メニューバーに「File」を追加し、その中に複数のアイテムを配置。
 	/// </summary>
 	void TestMenuBar()
 	{
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
 
 		// ウィンドウ描画開始。
-		ImGui::Begin("TestMenuBar", nullptr, ImGuiWindowFlags_MenuBar);
+        ImGui::Begin("TestMenuBar", nullptr, ImGuiWindowFlags_MenuBar); // メニューバーを有効化するフラグを指定。
 
         // メニューバーを開始します。ウィンドウの上部にメニューバーが表示されます。
 		if (ImGui::BeginMenuBar()) 
@@ -465,12 +468,14 @@ namespace
 	}
 
 	/// <summary>
-	/// タブを作成する
+	/// タブバー
+    /// タブ付きウィンドウを作成する例です。
+	/// タブバーを追加し２つのタブを配置。 それぞれ内容を変化。
 	/// </summary>
 	void TestTabWidget()
 	{
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
 
         // ウィンドウ描画開始。
 		ImGui::Begin("TestTabWidget");
@@ -501,12 +506,14 @@ namespace
 
 
 	/// <summary>
-	/// スタイルを変更する
+	/// スタイル変更
+	/// ImGui内の様々なスタイルを変更する例です。
+	/// テキストカラーの変更を行います。他にも色々出来そうだが深追いしきれず…。要調査。
 	/// </summary>
 	void TestStyleControl()
 	{
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(100, 100), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
 
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestStyleControl");
@@ -519,11 +526,11 @@ namespace
 
         // スタイルの色を変更します。
 		style.Colors[ImGuiCol_Text] = ImVec4(1.0f, 0.5f, 0.5f, 1.0f); 
-		ImGui::Text("Text A");
+		ImGui::Text("テキストカラー変更 赤");
 		style.Colors[ImGuiCol_Text] = ImVec4(0.5f, 1.0f, 0.5f, 1.0f);
-		ImGui::Text("Text B");
+		ImGui::Text("テキストカラー変更 緑");
 		style.Colors[ImGuiCol_Text] = ImVec4(0.5f, 0.5f, 1.0f, 1.0f);
-		ImGui::Text("Text C");
+		ImGui::Text("テキストカラー変更 青");
 
         // スタイルの色を元に戻します。
 		style.Colors[ImGuiCol_Text] = styleColor;
@@ -536,26 +543,30 @@ namespace
 
 	/// <summary>
 	/// フォーカス制御
+	/// 片方の入力フィールドを優先フォーカスする例です。
+    /// フォーカス関数は多々あるため、一番単純なキーボードのフォーカス制御を対応。
+	/// その他の応用的な制御は要調査。
 	/// </summary>
 	void TestFocusControl()
 	{
+        // 入力フィールド用のバッファ
 		static char buf1[128] = "First";
 		static char buf2[128] = "Second";
 
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(200, 100), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
 
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestFocusControl");
 
-        // 1つ目の入力フィールドを作成します。
-		ImGui::InputText("First", buf1, 128);
+        // 1つ目の入力フィールドを作成。
+		ImGui::InputText("無効", buf1, 128);
 
-        // 1つ目の入力フィールドがフォーカスされている場合、次のInputTextにフォーカスを移動します。
+        // 次のアイテム（2つ目の入力フィールド）を優先フォーカスにします。
 		ImGui::SetKeyboardFocusHere();
 
-        // 2つ目の入力フィールドを作成します。
-		ImGui::InputText("Second", buf2, 128);
+        // 2つ目の入力フィールドを作成。
+		ImGui::InputText("優先", buf2, 128);
 
 		// ウィンドウ描画終了。
 		ImGui::End();
@@ -563,15 +574,17 @@ namespace
 	}
 
 	/// <summary>
-	/// ドラッグ&ドロップを実装する
+	/// ドラッグ&ドロップ
+    /// ドラッグ&ドロップの実装例です。
+	/// アイテムリストをドラッグ&ドロップで並び替え可能にしています。
 	/// </summary>
 	void TestDragDrop()
 	{
         // ドラッグ&ドロップのテスト用のアイテムリスト
-		static std::vector<std::string> items = { "Item 1", "Item 2", "Item 3", "Item 4" };
+		static std::vector<std::string> items = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5","Item 6","Item 7", "Item 8" };
 
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(150, 200), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
         // ウィンドウ描画開始。
 		ImGui::Begin("TestDragDrop");
