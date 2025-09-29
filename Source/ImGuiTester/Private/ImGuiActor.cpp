@@ -630,9 +630,9 @@ namespace
 	}
 
 	/// <summary>
-	/// 子ウィンドウ・領域を作る
+	/// 子ウィンドウ作成
     /// ウィンドウの中に子ウィンドウを作成する例です。
-	/// 子ウィンドウはスクロール操作や、その中でリスト等のUI要素を独立して管理できます。
+	/// 子ウィンドウはスクロール操作や、その中でUI要素を独立して管理できます。
 	/// </summary>
 	void TestChildWindow()
 	{
@@ -659,14 +659,16 @@ namespace
 	}
 
 	/// <summary>
-	/// 入力状態を監視
+	/// キーボード・マウス入力監視
+	/// 入力状態を監視する例です。
+	/// マウス位置、ボタン状態、キー押下状態を取得し表示します。
 	/// </summary>
 	void TestInputMonitor()
 	{
 		ImGuiIO& io = ImGui::GetIO();
 
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(250, 170), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
 		// 親ウィンドウを開始します。
 		ImGui::Begin("TestInputMonitor");
@@ -705,27 +707,31 @@ namespace
 	}
 
 	/// <summary>
-	/// レイアウトをスペースで調整
+	/// スペース調整
+    /// ウィンドウ内のスペース調整の例です。
+    /// 縦横のスペース調整、同一ライン配置を行います。
 	/// </summary>
 	void TestLayoutAdjust()
 	{
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(250, 170), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestLayoutAdjust");
 
-
 		// 縦のスペース調整
-		ImGui::Text("Text above spacing");
+		ImGui::Text("テキスト上（間に20pxの余白指定）");
 		ImGui::Spacing();  // 標準スペース
 		ImGui::Dummy(ImVec2(0.0f, 20.0f));  // 20pxの空白
-		ImGui::Text("Text below custom spacing");
+		ImGui::Text("テキスト下");
+
+        // さらに縦のスペース調整
+		ImGui::Dummy(ImVec2(0.0f, 20.0f));
 
 		// 横のスペース調整
-		ImGui::Button("Button A");
-		ImGui::SameLine(150, 10);  // 150pxから開始、10pxの間隔を空ける
-		ImGui::Button("Button B");
+		ImGui::Button("左ボタン");
+		ImGui::SameLine(100, 10);  // 50pxから開始、10pxの間隔を空ける
+		ImGui::Button("右ボタン");
 
 		// 親ウィンドウ終了
 		ImGui::End();
@@ -1764,7 +1770,6 @@ AImGuiActor::AImGuiActor()
 	TestCases.Add(FtestCase(TestShowImage, TEXT("ShowImage")));          // 画像を表示する
 	TestCases.Add(FtestCase(TestInputField, TEXT("InputField")));        // ラベル付き入力フィールド
 	TestCases.Add(FtestCase(TestSimpleTable, TEXT("SimpleTable")));      // テーブルを表示する
-	///TestCases.Add(FtestCase(TestListBox, TEXT("ListBox")));              // リストボックスを作成
 	TestCases.Add(FtestCase(TestTreeNode, TEXT("TreeNode")));            // ツリーノードを作成
 	TestCases.Add(FtestCase(TestShowTooltip, TEXT("ShowTooltip")));      // ツールチップを表示
 	TestCases.Add(FtestCase(TestColorPicker, TEXT("ColorPicker")));      // カラー選択ダイアログを表示
