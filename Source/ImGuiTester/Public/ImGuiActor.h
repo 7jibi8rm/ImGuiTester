@@ -27,6 +27,11 @@ public:
 	UPROPERTY(EditAnywhere)
 	UTexture2D* SampleTexture;
 
+	/** サンプル用のテクスチャアセット。ImGuiウィンドウで表示するために使用されます。 */
+	UPROPERTY(EditAnywhere)
+	UTexture2D* ButtonTexture;
+
+
 #if WITH_IMGUI
 protected:
 

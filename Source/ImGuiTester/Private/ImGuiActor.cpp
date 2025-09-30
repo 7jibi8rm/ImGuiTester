@@ -699,10 +699,38 @@ namespace
 	}
 
 	/// <summary>
-	/// 画像ボタンを設置
+	/// 画像ボタン
+	/// 画像付きボタンを配置する例です。
+	/// コンテンツブラウザの画像をテクスチャとして登録し、それをボタンに割り当てます。
 	/// </summary>
 	void TestImageButton()
 	{
+
+		// 直近１つのウィンドウサイズ指定。
+		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
+
+		// 親ウィンドウを開始します。
+		ImGui::Begin("TestImageButton");
+
+		// 登録済みテクスチャを呼び出し、ImGuiで表示。
+		FImGuiTextureHandle TextureHandle = FImGuiModule::Get().FindTextureHandle("ButtonTexture");
+		if (ImGui::ImageButton("Chawan",TextureHandle, ImVec2(100, 100))) {
+			// 確認用ダイアログを開く
+			ImGui::OpenPopup("PushDialog");
+		}
+
+		// 確認用ダイアログ
+		if (ImGui::BeginPopupModal("PushDialog", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+		{
+			ImGui::Text("画像ボタンを押した");
+			if (ImGui::Button("OK")) {
+				ImGui::CloseCurrentPopup();
+			}
+			ImGui::EndPopup();
+		}
+
+		// ウィンドウ描画終了。
+		ImGui::End();
 		return;
 	}
 
@@ -740,6 +768,8 @@ namespace
 
 	/// <summary>
 	/// 行や列を分割配置
+    /// カラムレイアウトの例です。
+	/// ウィンドウ内に3列レイアウトを作成し、各列にテキストを配置します。
 	/// </summary>
 	void TestColumnLayout()
 	{
@@ -753,11 +783,17 @@ namespace
 		ImGui::Columns(3, nullptr, false);
 
         // 各列にテキストを表示します。
-		ImGui::Text("Column 1");
-		ImGui::NextColumn();
-		ImGui::Text("Column 2");
-		ImGui::NextColumn();
-		ImGui::Text("Column 3");
+		ImGui::Text("Column1-1");
+		ImGui::Text("Column1-2");
+		ImGui::Text("Column1-2");
+        ImGui::NextColumn(); // 次の列へ移動
+		ImGui::Text("Column2-1");
+		ImGui::Text("Column2-2");
+		ImGui::Text("Column2-3");
+        ImGui::NextColumn(); // 次の列へ移動
+		ImGui::Text("Column3-3");
+		ImGui::Text("Column3-3");
+		ImGui::Text("Column3-3");
 
 		// 列終了（元に戻す）
 		ImGui::Columns(1);
@@ -768,12 +804,14 @@ namespace
 	}
 
 	/// <summary>
-	/// モーダルダイアログを表示
+	/// モーダルダイアログ
+	/// ポップアップで出現するダイアログの例です。
+	/// ボタンを押すと優先フォーカスされたダイアログが表示されます。
 	/// </summary>
 	void TestModalDialog()
 	{
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(150, 65), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
 
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestModalDialog");
@@ -789,7 +827,7 @@ namespace
 		if (ImGui::BeginPopupModal("Modal Dialog", NULL, ImGuiWindowFlags_AlwaysAutoResize))
 		{
             // ダイアログ内のテキスト
-			ImGui::Text("Are you sure you want to continue?");
+			ImGui::Text("モーダルなダイアログ");
 
             // OKとCancelボタン。ひとまず閉じるだけ。
 			if (ImGui::Button("OK")) {
@@ -810,36 +848,16 @@ namespace
 	}
 
 	/// <summary>
-	/// ウィンドウの位置・サイズ固定
-	/// </summary>
-	void TestWindowPosition()
-	{
-        // ウィンドウ位置を(100,100)に固定（ImGuiCond_Alwaysで毎フレーム適用）    
-		ImGui::SetNextWindowPos(ImVec2(100, 100), ImGuiCond_Always);
-
-        // ウィンドウサイズを(400,300)に固定（ImGuiCond_Alwaysで毎フレーム適用）
-		ImGui::SetNextWindowSize(ImVec2(400, 300), ImGuiCond_Always);
-
-        // ウィンドウ描画開始。リサイズと移動を禁止するフラグを指定。
-		ImGui::Begin("TestWindowPosition", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
-
-        // 固定位置・サイズの説明テキスト
-		ImGui::Text("This window has fixed position and size.");
-
-        // ウィンドウ描画終了。
-		ImGui::End();
-		return;
-	}
-
-	/// <summary>
-	/// データをコピー&ペースト
+	/// コピー&ペースト
+	/// クリップボードを利用したコピー&ペーストの例です。
+    /// 入力フィールドの文字列をクリップボードにコピーします。
 	/// </summary>
 	void TestClipboard()
 	{
 		static char buf[256] = "";
 
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(200, 70), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
 
 		// ウィンドウ開始
 		ImGui::Begin("TestClipboard");
@@ -848,13 +866,13 @@ namespace
 		ImGui::InputText("Input", buf, sizeof(buf));
 
 		// コピー ボタンが押されたらクリップボードにテキストをセット
-		if (ImGui::Button("Copy"))
+		if (ImGui::Button("コピー"))
 		{
 			ImGui::SetClipboardText(buf);
 		}
 
 		// ペースト ボタンが押されたらクリップボードからテキストを取得してバッファにセット
-		if (ImGui::Button("Paste"))
+		if (ImGui::Button("ペースト"))
 		{
 			const char* clipboard = ImGui::GetClipboardText();
 			if (clipboard)
@@ -1785,7 +1803,6 @@ AImGuiActor::AImGuiActor()
 	TestCases.Add(FtestCase(TestLayoutAdjust, TEXT("LayoutAdjust")));    // レイアウトをスペースで調整
 	TestCases.Add(FtestCase(TestColumnLayout, TEXT("ColumnLayout")));    // 行や列を分割配置
 	TestCases.Add(FtestCase(TestModalDialog, TEXT("ModalDialog")));      // モーダルダイアログを表示
-	TestCases.Add(FtestCase(TestWindowPosition, TEXT("WindowPosition"))); // ウィンドウの位置・サイズ固定
 	TestCases.Add(FtestCase(TestClipboard, TEXT("Clipboard")));          // データをコピー&ペースト
 	TestCases.Add(FtestCase(TestHelpNote, TEXT("HelpNote")));            // ノートやヘルプウィンドウ
 	TestCases.Add(FtestCase(TestZoomPan, TEXT("ZoomPan")));              // ズーム/パン操作
@@ -1831,6 +1848,7 @@ void AImGuiActor::BeginPlay()
 
     // サンプル画像をロードしてテクスチャとして登録
 	FImGuiModule::Get().RegisterTexture("SampleTexture", SampleTexture);
+	FImGuiModule::Get().RegisterTexture("ButtonTexture", ButtonTexture);
 }
 
 /**
@@ -1852,6 +1870,8 @@ void AImGuiActor::EndPlay(const EEndPlayReason::Type EndPlayReason)
     // 登録したテクスチャを解除
 	FImGuiTextureHandle TextureHandle = FImGuiModule::Get().FindTextureHandle("SampleTexture");
 	FImGuiModule::Get().ReleaseTexture(TextureHandle);
+	FImGuiTextureHandle ButtonTextureHandle = FImGuiModule::Get().FindTextureHandle("ButtonTexture");
+	FImGuiModule::Get().ReleaseTexture(ButtonTextureHandle);
 }
 
 /**
