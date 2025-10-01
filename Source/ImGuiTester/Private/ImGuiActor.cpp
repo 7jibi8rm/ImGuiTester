@@ -891,7 +891,9 @@ namespace
 	}
 
 	/// <summary>
-	/// ノートやヘルプウィンドウ
+	/// ユーザーガイド表示
+	/// ImGuiのユーザーガイドを表示する例です。
+    /// ヘルプメニューとして利用可能。ImGuiの基本的な操作方法が記載されています。
 	/// </summary>
 	void TestHelpNote()
 	{
@@ -903,8 +905,10 @@ namespace
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestHelpNote");
 
-        // ImGuiのユーザーガイドを表示します。
-		ImGui::ShowUserGuide();
+        // ヘルプ表示いろいろ
+		ImGui::ShowUserGuide();      // ImGuiのユーザーガイドを表示します。
+		ImGui::ShowAboutWindow();    // ImGuiのバージョン、クレジットなど概要情報を表示します。
+        ImGui::ShowMetricsWindow();  // ImGuiの内部状態、メモリ使用量、ウィンドウ情報などの詳細なメトリクスを表示します。
 
 		// ウィンドウ描画終了。
 		ImGui::End();
@@ -913,6 +917,9 @@ namespace
 
 	/// <summary>
 	/// ズーム/パン操作
+	/// ズームとパン操作の例です。
+	/// マウスホイールでズームイン・ズームアウト、右ドラッグでパン操作が可能です。
+    /// 描画領域に円を描画し、ズームとパンを反映します。
 	/// </summary>
 	void TestZoomPan()
 	{
@@ -935,10 +942,10 @@ namespace
 		}
 
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(300, 300), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
 		// ウィンドウ描画開始。
-		ImGui::Begin("TestHelpNote");
+		ImGui::Begin("TestZoomPan");
 
         // ズームとパンの情報を表示
 		ImGui::Text("Zoom: %.2f Pan: (%.1f, %.1f)", zoom, pan.x, pan.y);
