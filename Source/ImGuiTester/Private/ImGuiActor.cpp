@@ -1110,16 +1110,17 @@ namespace
 
 	/// <summary>
 	/// 複数選択リストボックス
+	/// 複数選択可能なリストボックスの例です。
 	/// </summary>
 	void TestMultiSelectList()
 	{
         // 選択肢の配列
-		static const char* items[] = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+		static const char* items[] = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8" };
 		// 選択中のインデックス
 		static ImVector<int> selected_indices;
 
         // 直近１つのウィンドウサイズ指定。
-        ImGui::SetNextWindowSize(ImVec2(150, 200), ImGuiCond_Once);
+        ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
         // ウィンドウ描画開始。
 		ImGui::Begin("TestMultiSelectList");
@@ -1157,19 +1158,21 @@ namespace
 
 	/// <summary>
 	/// マルチライン入力
+	/// マルチラインテキスト入力フィールドの例です。
+    /// ImGui::InputTextMultilineを使用して複数行のテキスト入力を可能にします。
 	/// </summary>
 	void TestMultiLineInput()
 	{
 		static char buf[1024] = "default text";
 
         // 直近１つのウィンドウサイズ指定。
-        ImGui::SetNextWindowSize(ImVec2(450, 300), ImGuiCond_Once);
+        ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
         // ウィンドウ描画開始。
         ImGui::Begin("TestMultiLineInput");
 
         // マルチラインテキスト入力フィールドを表示
-		ImGui::InputTextMultiline("##multiline", buf, IM_ARRAYSIZE(buf),ImVec2(400, 200), ImGuiInputTextFlags_None);
+		ImGui::InputTextMultiline("##multiline", buf, IM_ARRAYSIZE(buf),ImVec2(180, 100), ImGuiInputTextFlags_None);
 
 		// ウィンドウ描画終了。
 		ImGui::End();
@@ -1184,7 +1187,7 @@ namespace
 	void TestNumberStepper()
 	{
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(200, 150), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestNumberStepper");
