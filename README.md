@@ -1,16 +1,17 @@
 ﻿# ImGuiTester
 
-ImGuiTesterは、UE5上でImGuiのUI部品のテスト・流用を目的としたサンプルコード集です。
+ImGuiTesterは、Unreal Engine 5上でImGuiのUI部品のテスト・流用を目的としたサンプルコード集です。
 
-![Image](./image/Top.png)
+<img src="./Image/Top.png" width="640" height="360"/>
 
 ## 概要
+- ImGuiのテスト・流用を目的としたサンプルコード集です。
+- UE5.5上で実装されています。テクスチャや音声再生など、一部UE機能と連携している個所があります。
+- 各サンプルは１つの関数内で完結しています。コピーによりそのまま流用可能です。
 
 ## 動作環境
 - Unreal Engine 5.5
 - Visual Studio 2022
-
-## 構成
 
 ## 主要ファイル
 - `Source/ImGuiTester/Private/ImGuiActor.cpp`  
@@ -21,6 +22,9 @@ ImGuiTesterは、UE5上でImGuiのUI部品のテスト・流用を目的とし�
   Dear ImGuiプラグイン本体
 
 ## サンプルコード解説
+- タイトルリンクから目的コードの場所へ移動することが出来ます。
+- 移動先のコードをコピーすることでサムネイルと同じUIを表示可能です。
+- 一部テクスチャ等のUE側と連携しているものはコピーのみでは動作しません。
 
 
 <table>
