@@ -1296,6 +1296,9 @@ namespace
 
 	/// <summary>
 	/// 音声再生UI
+	/// 残念ながらImGui自体に音声再生機能はない…。
+	/// 音声再生する際はプラットフォーム側の再生機能を使用する必要があります。
+    /// ImGuiとUEのサウンド再生を組み合わせた例です。
 	/// </summary>
 	void TestAudioControl()
 	{
@@ -1303,7 +1306,7 @@ namespace
 	}
 
 	/// <summary>
-	/// ビデオ埋め込みUI
+	/// 動画再生UI
 	/// </summary>
 	void TestVideoEmbed()
 	{
@@ -1359,6 +1362,8 @@ namespace
 
 	/// <summary>
 	/// ヘッダーで折りたたみ
+	/// 折りたたみ可能なブロックを配置する例です。
+    /// ヘッダー部分をクリックすると内容が展開・折りたたまれます。	
 	/// </summary>
 	void TestHeaderCollapse()
 	{
@@ -1366,7 +1371,7 @@ namespace
 		static bool open = true;
 
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(250, 150), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestHeaderCollapse");
@@ -1375,7 +1380,9 @@ namespace
 		if (ImGui::CollapsingHeader("折りたたみヘッダー"))
 		{
 			// ヘッダーが開かれている時だけ表示される内容
-			ImGui::Text("ここに折りたたみ内部の内容を記述します。");
+			ImGui::Text("折りたたまれ文字列１");
+			ImGui::Text("折りたたまれ文字列２");
+			ImGui::Text("折りたたまれ文字列３");
 			ImGui::Button("ボタン");
 		}
 
@@ -1386,6 +1393,8 @@ namespace
 
 	/// <summary>
 	/// 行数・カラム数変更可能テーブル
+	/// ImGuiのテーブル機能を応用した例です。
+    /// スライダーで行数・カラム数を動的に変更し、テーブルの内容を更新します。
 	/// </summary>
 	void TestFlexibleTable()
 	{
@@ -1394,10 +1403,10 @@ namespace
 		static int columns = 3;
 
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(400, 400), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
 		// ウィンドウ描画開始。
-		ImGui::Begin("TestHeaderCollapse");
+		ImGui::Begin("TestFlexibleTable");
 
 		// 行数・カラム数を変更するUI（スライダーなど）
 		ImGui::SliderInt("Rows", &rows, 1, 20);
