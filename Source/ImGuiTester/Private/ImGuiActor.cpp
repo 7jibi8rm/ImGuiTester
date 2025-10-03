@@ -1183,6 +1183,8 @@ namespace
 
 	/// <summary>
 	/// 数値ステッパー
+    /// 値を増減できる入力フィールドの例です。
+    /// ＋－ボタン、マウスドラッグ型の入力フィールドを2種類配置します。
 	/// </summary>
 	void TestNumberStepper()
 	{
@@ -1196,9 +1198,15 @@ namespace
 		static int stepValue = 0;
 		ImGui::InputInt("Step Int", &stepValue, 1, 10);
 
+		static float stepValueF = 0.0;
+		ImGui::InputFloat("Step Float", &stepValueF, 1.0f, 10.0f);
+
+
 		// マウスドラッグで値を増減
 		static int dragValue = 50;
 		ImGui::DragInt("Drag Int", &dragValue, 1.0f, 0, 100);
+		static float dragValueF = 50;
+		ImGui::DragFloat("Drag Float", &dragValueF, 1.0f, 0.0f, 100.0f);
 
 		// ウィンドウ描画終了。
 		ImGui::End();
@@ -1206,7 +1214,9 @@ namespace
 	}
 
 	/// <summary>
-	/// 回転/スケールUI
+	/// 図形描画
+	/// 回転とスケールを適用した四角形描画の例です。
+    /// スライダーで回転角度とスケールを調整し、四角形を変形して描画します。
 	/// </summary>
 	void TestTransformWidget()
 	{
@@ -1214,7 +1224,7 @@ namespace
 		static float scale = 1.0f;
 
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(400, 400), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(250, 250), ImGuiCond_Once);
 
         // ウィンドウ描画開始。
 		ImGui::Begin("TestTransformWidget");
@@ -1226,8 +1236,8 @@ namespace
 		ImVec2 size = ImVec2(100 * scale, 100 * scale);
 
 		// 中心位置を画面内にオフセットして調整
-		center.x += 150;
-		center.y += 100;
+		center.x += 100;
+		center.y += 80;
 
 		// 回転計算用ラジアンに変換
 		float rad = angle * 3.14159265f / 180.0f;
@@ -1260,13 +1270,15 @@ namespace
 
 	/// <summary>
 	/// パスワード入力
+	/// パスワード入力フィールドの例です。
+    /// 入力内容を'*'で表示される入力フィールドを配置します。
 	/// </summary>
 	void TestPasswordInput()
 	{
 		static char password[64] = ""; // パスワード入力用バッファ
 
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
 
         // ウィンドウ描画開始。
 		ImGui::Begin("TestPasswordInput");
@@ -1276,58 +1288,6 @@ namespace
 
         // 入力されたパスワードを表示（デバッグ用、実際は安全管理に注意）
 		ImGui::Text("You entered: %s", password); // デバッグ用表示（実際は安全管理に注意）
-
-        // ウィンドウ描画終了。
-		ImGui::End();
-		return;
-	}
-
-	/// <summary>
-	/// ホバー時詳細情報
-	/// </summary>
-	void TestOnHoverDetail()
-	{
-		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
-
-        // ウィンドウ描画開始。
-		ImGui::Begin("TestOnHoverDetail");
-
-        // 説明テキスト
-		ImGui::Text("ホバーしてください");
-
-        // ホバー対象のUI要素（例：ボタン）
-		if (ImGui::IsItemHovered())
-		{
-			ImGui::TextColored(ImVec4(1, 1, 0, 1), "詳細情報:");
-			ImGui::BulletText("項目1の説明");
-			ImGui::BulletText("項目2の説明");
-		}
-
-        // ウィンドウ描画終了。
-		ImGui::End();
-
-		return;
-	}
-
-	/// <summary>
-	/// 物理スライダー操作
-	/// </summary>
-	void TestDragSlider()
-	{
-		static float value = 0.5f; // スライダーの制御変数
-
-		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(250, 100), ImGuiCond_Once);
-
-        // ウィンドウ描画開始。
-		ImGui::Begin("TestDragSlider");
-
-		// DragFloat : ラベル、変数へのポインタ、ドラッグ速度、最小値、最大値
-		ImGui::DragFloat("Drag Float", &value, 0.01f, 0.0f, 1.0f);
-
-		// 現在の値を表示
-		ImGui::Text("Current Value: %.3f", value);
 
         // ウィンドウ描画終了。
 		ImGui::End();
@@ -1351,12 +1311,14 @@ namespace
 	}
 
 	/// <summary>
-	/// タグ選択UI
+	/// タグ選択風UI
+    /// SmallButtonを利用したタグ選択風UIの例です。
+    /// 複数のタグボタンを配置し、選択状態をトグルで判定しています。
 	/// </summary>
 	void TestTagSelector()
 	{
 		// 直近１つのウィンドウサイズ指定。
-		ImGui::SetNextWindowSize(ImVec2(250, 100), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestTagSelector");
@@ -1376,11 +1338,6 @@ namespace
 			if (ImGui::SmallButton(tags[i])) {
 				selected[i] = !selected[i];
 			}
-			// 選択されているボタンに色を付ける例
-			if (selected[i]) {
-				ImGui::SameLine();
-				ImGui::TextColored(ImVec4(0, 1, 0, 1), "[Selected]");
-			}
 			// ボタン間にスペースを入れる
 			ImGui::SameLine();
 		}
@@ -1390,7 +1347,7 @@ namespace
 		ImGui::Text("Selected Tags:");
 		for (int i = 0; i < numTags; ++i) {
 			if (selected[i]) {
-				ImGui::Text("%s", tags[i]);
+				ImGui::TextColored(ImVec4(0.0f, 1.0f, 0.0f, 1.0f), "%s", tags[i]);
 			}
 		}
 
@@ -1471,15 +1428,6 @@ namespace
 
         // ウィンドウ描画終了。
         ImGui::End();
-		return;
-	}
-
-	/// <summary>
-	/// ツールバー作成
-	/// </summary>
-	void TestToolbar()
-	{
-		// 没
 		return;
 	}
 
@@ -1736,14 +1684,11 @@ AImGuiActor::AImGuiActor()
 	TestCases.Add(FtestCase(TestNumberStepper, TEXT("NumberStepper")));  // 数値ステッパー
 	TestCases.Add(FtestCase(TestTransformWidget, TEXT("TransformWidget"))); // 回転/スケールUI
 	TestCases.Add(FtestCase(TestPasswordInput, TEXT("PasswordInput")));  // パスワード入力
-	TestCases.Add(FtestCase(TestOnHoverDetail, TEXT("OnHoverDetail")));  // ホバー時詳細情報
-	TestCases.Add(FtestCase(TestDragSlider, TEXT("DragSlider")));        // 物理スライダー操作
 	TestCases.Add(FtestCase(TestAudioControl, TEXT("AudioControl")));    // 音声再生UI
 	TestCases.Add(FtestCase(TestVideoEmbed, TEXT("VideoEmbed")));        // ビデオ埋め込みUI
 	TestCases.Add(FtestCase(TestTagSelector, TEXT("TagSelector")));      // タグ選択UI
 	TestCases.Add(FtestCase(TestHeaderCollapse, TEXT("HeaderCollapse"))); // ヘッダーで折りたたみ
 	TestCases.Add(FtestCase(TestFlexibleTable, TEXT("FlexibleTable")));  // 行数・カラム数変更可能テーブル
-	TestCases.Add(FtestCase(TestToolbar, TEXT("Toolbar")));              // ツールバー作成
 	TestCases.Add(FtestCase(TestLineGraph, TEXT("LineGraph")));			// 折れ線グラフ
 	TestCases.Add(FtestCase(TestThemeToggle, TEXT("ThemeToggle")));      // テーマ切替（複数テーマ対応）
 	TestCases.Add(FtestCase(TestCursorCustom, TEXT("CursorCustom")));    // マウスカーソルカスタマイズ

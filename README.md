@@ -302,73 +302,63 @@ ImGuiの描画・入力制御をUE5アクター経由で行い、ウィンドウ
   <tr>
     <td><img src="./Image/TestNumberStepper.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1188-L1207">No.33 数値ステッパー</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1190-L1215">No.33 数値ステッパー</a><br>
+      <span style="font-size:small;color:#555;">値を増減できる入力フィールドの例です。</span><br>
+      <span style="font-size:small;color:#555;">＋－ボタン、マウスドラッグ型の入力フィールドを2種類配置します。</span><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestTransformWidget.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1212-L1260">No.34 回転/スケールUI</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1222-L1270">No.34 図形描画</a><br>
+      <span style="font-size:small;color:#555;">回転とスケールを適用した四角形描画の例です。</span><br>
+      <span style="font-size:small;color:#555;">スライダーで回転角度とスケールを調整し、四角形を変形して描画します。</span><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestPasswordInput.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1265-L1284">No.35 パスワード入力</a><br>
-    </td>
-  </tr>
-  <tr>
-    <td><img src="./Image/TestOnHoverDetail.png" width="128" height="128" /></td>
-    <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1289-L1312">No.36 ホバー時詳細情報</a><br>
-    </td>
-  </tr>
-  <tr>
-    <td><img src="./Image/TestDragSlider.png" width="128" height="128" /></td>
-    <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1317-L1336">No.37 物理スライダー操作</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1277-L1296">No.35 パスワード入力</a><br>
+      <span style="font-size:small;color:#555;">パスワード入力フィールドの例です。</span><br>
+      <span style="font-size:small;color:#555;">入力内容を'*'で表示される入力フィールドを配置します。</span><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestAudioControl.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1341-L1344">No.38 音声再生UI</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1301-L1304">No.36 音声再生UI</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestVideoEmbed.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1349-L1352">No.39 ビデオ埋め込みUI</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1309-L1312">No.37 ビデオ埋め込みUI</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestTagSelector.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1357-L1402">No.40 タグ選択UI</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1319-L1359">No.38 タグ選択風UI</a><br>
+      <span style="font-size:small;color:#555;">SmallButtonを利用したタグ選択風UIの例です。</span><br>
+      <span style="font-size:small;color:#555;">複数のタグボタンを配置し、選択状態をトグルで判定しています。</span><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestHeaderCollapse.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1407-L1429">No.41 ヘッダーで折りたたみ</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1364-L1386">No.39 ヘッダーで折りたたみ</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestFlexibleTable.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1434-L1476">No.42 行数・カラム数変更可能テーブル</a><br>
-    </td>
-  </tr>
-  <tr>
-    <td><img src="./Image/TestToolbar.png" width="128" height="128" /></td>
-    <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1481-L1485">No.43 ツールバー作成</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1391-L1433">No.40 行数・カラム数変更可能テーブル</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestLineGraph.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1492-L1532">No.44 折れ線グラフ</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1440-L1480">No.41 折れ線グラフ</a><br>
       <span style="font-size:small;color:#555;">ImDrawListを使ってウィンドウ内に折れ線グラフを描画します。</span><br>
       <span style="font-size:small;color:#555;">カスタム描画の工夫によりグラフを実現しています。グラフ機能が存在するわけではありません。</span><br>
     </td>
@@ -376,7 +366,7 @@ ImGuiの描画・入力制御をUE5アクター経由で行い、ウィンドウ
   <tr>
     <td><img src="./Image/TestThemeToggle.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1539-L1580">No.45 テーマ切替</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1487-L1528">No.42 テーマ切替</a><br>
       <span style="font-size:small;color:#555;">テーマ切り替え用メソッドのテストです。</span><br>
       <span style="font-size:small;color:#555;">ダーク・ライト・クラシック・カスタムテーマの4種類への切り替えを行います。</span><br>
     </td>
@@ -384,7 +374,7 @@ ImGuiの描画・入力制御をUE5アクター経由で行い、ウィンドウ
   <tr>
     <td><img src="./Image/TestCursorCustom.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1588-L1614">No.46 マウスカーソルカスタマイズ</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1536-L1562">No.43 マウスカーソルカスタマイズ</a><br>
       <span style="font-size:small;color:#555;">マウスカーソルの形を変更する方法の例です。</span><br>
       <span style="font-size:small;color:#555;">ホバー時は左右リサイズ用のカーソル、通常時は矢印カーソルを表示します。</span><br>
       <span style="font-size:small;color:#555;">ImGui::SetMouseCursor()によりカーソル形状を変更しています。</span><br>
@@ -393,7 +383,7 @@ ImGuiの描画・入力制御をUE5アクター経由で行い、ウィンドウ
   <tr>
     <td><img src="./Image/TestRowSortControl.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1622-L1691">No.47 行の並び替え</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1570-L1639">No.44 行の並び替え</a><br>
       <span style="font-size:small;color:#555;">テーブルソート機能を利用したシンプルなサンプル。</span><br>
       <span style="font-size:small;color:#555;">ソート可能なテーブルで行データ（ID・名前・値）を表示します。</span><br>
       <span style="font-size:small;color:#555;">ヘッダークリックで昇順・降順の並び替えができます。</span><br>
