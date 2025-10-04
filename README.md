@@ -4,27 +4,24 @@ ImGuiTesterは、Unreal Engine 5上でImGuiのUI部品のテスト・流用を�
 
 <img src="./Image/Top.png" width="640" height="360"/>
 
-## 概要
-- ImGuiのテスト・流用を目的としたサンプルコード集です。
-- UE5.5上で実装されています。テクスチャや音声再生など、一部UE機能と連携している個所があります。
-- 各サンプルは１つの関数内で完結しています。コピーによりそのまま流用可能です。
+## 解説
+ImGuiによるメニュー実装の効率化になればと思い作りました。<br>
+目的の機能を目で探すことができ、コピペによりある程度の実装が可能です。<br>
+実装する上で得た知見は[こちら](https://zenn.dev/link/comments/c6426d111bb491)にまとめてあります。<br>
 
 ## 動作環境
-- Unreal Engine 5.5
+- Unreal Engine 5.5.4
 - Visual Studio 2022
 
 ## 主要ファイル
 - `Source/ImGuiTester/Private/ImGuiActor.cpp`  
-  ImGuiテスト用アクターの実装
-- `Source/ImGuiTester/Public/ImGuiActor.h`  
-  ImGuiテスト用アクターのヘッダ
+  ImGuiテスト用アクターの実装。サンプルコードは全てここに入っています。
 - `Plugins/ImGui/`  
-  Dear ImGuiプラグイン本体
+  ImGuiプラグイン本体。日本語化対応のため一部変更を加えています。
 
 ## サンプルコード解説
-- タイトルリンクから目的コードの場所へ移動することが出来ます。
-- 移動先のコードをコピーすることでサムネイルと同じUIを表示可能です。
-- 一部テクスチャ等のUE側と連携しているものはコピーのみでは動作しません。
+- タイトルリンクからサンプルコードの場所に移動できます。
+- 一部を除いてコピペによりサムネイルと同じUIが実装できます。
 
 
 <table>
