@@ -51,20 +51,10 @@ protected:
 public:
 
 	/**
-	 * 毎フレーム呼び出されるTick関数。
-	 * 必要に応じてアクターの状態更新などを行います。
-	 * @param DeltaTime 前フレームからの経過時間（秒）
-	 */
-	virtual void Tick(float DeltaTime) override;
-
-	/**
 	 * ImGui描画用のTick関数。
 	 * ImGuiのウィンドウ表示やテストケースのUI制御・実行を行います。
 	 */
 	void ImGuiTick();
-
-
-
 
 private:
 

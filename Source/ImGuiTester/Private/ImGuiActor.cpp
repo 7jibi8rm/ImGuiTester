@@ -44,24 +44,23 @@ namespace
 		ImGui::Begin("TestSimpleButton");
 
 		// ボタンを表示し、押された瞬間テキストを表示します。
-        static bool value[3] = { false, false, false };
+		static bool bButtonStates[3] = { false, false, false };
 
-		if (ImGui::Button("ボタンA 押してください")){
-            value[0] = !value[0];
+		if (ImGui::Button("ボタンA 押してください")) {
+			bButtonStates[0] = !bButtonStates[0];
 		}
 		if (ImGui::Button("ボタンB 押してください")) {
-			value[1] = !value[1];
+			bButtonStates[1] = !bButtonStates[1];
 		}
 		if (ImGui::Button("ボタンC 押してください")) {
-			value[2] = !value[2];
+			bButtonStates[2] = !bButtonStates[2];
 		}
-		ImGui::Text("ボタンA:%d ボタンB:%d  ボタンC:%d", value[0], value[1], value[2]);
+		ImGui::Text("ボタンA:%d ボタンB:%d  ボタンC:%d", bButtonStates[0], bButtonStates[1], bButtonStates[2]);
 
 		// ウィンドウ描画終了。
 		ImGui::End();
-        return;
+		return;
 	}
-
 	/// <summary>
 	/// 様々なテキスト表示
 	/// 色変え等の特殊なテキストの例です。
@@ -76,14 +75,14 @@ namespace
 		ImGui::Begin("TestShowText");
 
 		// 整数値を埋め込んだテキスト表示。
-		int value = 42;
-		ImGui::Text("Value: %d", value);
+		int DisplayValue = 42;
+		ImGui::Text("Value: %d", DisplayValue);
 
 		// 色指定してテキスト表示。
 		ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "赤色指定テキスト");
 
 		// グレーアウトなテキスト表示。
-        ImGui::TextDisabled("グレーアウトテキスト");
+		ImGui::TextDisabled("グレーアウトテキスト");
 
 		// 一時的にテキストの色変え。
 		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 0.7f, 0.0f, 1.0f));
@@ -103,10 +102,10 @@ namespace
 	/// </summary>
 	void TestCheckBox()
 	{
-        // チェックボックスの状態を保持する変数
-		static bool isCheckedA{ false };
-		static bool isCheckedB{ false };
-		static bool isCheckedC{ false };
+		// チェックボックスの状態を保持する変数
+		static bool bIsCheckedA = false;
+		static bool bIsCheckedB = false;
+		static bool bIsCheckedC = false;
 
 		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
@@ -114,16 +113,16 @@ namespace
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestCheckBox");
 
-        // チェックボックスを表示し、状態を変数で管理。
-		ImGui::Checkbox("チェックボックスA", &isCheckedA);
-		ImGui::Checkbox("チェックボックスB", &isCheckedB);
-		ImGui::Checkbox("チェックボックスC", &isCheckedC);
+		// チェックボックスを表示し、状態を変数で管理。
+		ImGui::Checkbox("チェックボックスA", &bIsCheckedA);
+		ImGui::Checkbox("チェックボックスB", &bIsCheckedB);
+		ImGui::Checkbox("チェックボックスC", &bIsCheckedC);
 
-        // チェックボックスの状態表示。
-		ImGui::Text("A:%d B:%d  C:%d", isCheckedA, isCheckedB, isCheckedC);
+		// チェックボックスの状態表示。
+		ImGui::Text("A:%d B:%d  C:%d", bIsCheckedA, bIsCheckedB, bIsCheckedC);
 
 		// ウィンドウ描画終了。
-		ImGui::End(); 
+		ImGui::End();
 		return;
 	}
 
@@ -134,9 +133,9 @@ namespace
 	/// </summary>
 	void TestSlider()
 	{
-		static float sliderValueF = 0.0f;
-		static int sliderValueI = 0.0f;
-		static float sliderValueA = 0.0f;
+		static float SliderValueFloat = 0.0f;
+		static int SliderValueInt = 0;
+		static float SliderValueAngle = 0.0f;
 
 		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(230, 230), ImGuiCond_Once);
@@ -144,15 +143,15 @@ namespace
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestSlider");
 
-        // スライダーを表示し、値を0.0から100.0の範囲で調整します。
-		ImGui::SliderFloat("SliderFloat", &sliderValueF, 0.0f, 1.0f);
-		ImGui::SliderInt("SliderInt",  &sliderValueI, 0, 100);
-		ImGui::SliderAngle("SliderAngle", &sliderValueA);
+		// スライダーを表示し、値を0.0から100.0の範囲で調整します。
+		ImGui::SliderFloat("SliderFloat", &SliderValueFloat, 0.0f, 1.0f);
+		ImGui::SliderInt("SliderInt", &SliderValueInt, 0, 100);
+		ImGui::SliderAngle("SliderAngle", &SliderValueAngle);
 
 		// 整数値を埋め込んだテキストを表示します。
-		ImGui::Text("SliderFloat: %f", sliderValueF);
-		ImGui::Text("SliderInt: %d", sliderValueI);
-		ImGui::Text("SliderAngle: %f", sliderValueA);
+		ImGui::Text("SliderFloat: %f", SliderValueFloat);
+		ImGui::Text("SliderInt: %d", SliderValueInt);
+		ImGui::Text("SliderAngle: %f", SliderValueAngle);
 
 		// ウィンドウ描画終了。
 		ImGui::End();
@@ -167,11 +166,11 @@ namespace
 	/// </summary>
 	void TestComboBox()
 	{
-        // コンボボックスの選択状態管理。
-		static int ComboBoxValue = 0;
+		// コンボボックスの選択状態管理。
+		static int ComboBoxSelectedIndex = 0;
 
-        // コンボボックスアイテムを定義。
-		const char* items[] = { "Apple", "Banana", "Cherry" };
+		// コンボボックスアイテムを定義。
+		const char* ComboBoxItems[] = { "Apple", "Banana", "Cherry" };
 
 		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
@@ -179,18 +178,17 @@ namespace
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestComboBox");
 
-        // コンボボックスを表示、選択されたインデックスをComboBoxValueで管理。
-		if (ImGui::Combo("Fruits", &ComboBoxValue, items, IM_ARRAYSIZE(items)))
+		// コンボボックスを表示、選択されたインデックスをComboBoxSelectedIndexで管理。
+		if (ImGui::Combo("Fruits", &ComboBoxSelectedIndex, ComboBoxItems, IM_ARRAYSIZE(ComboBoxItems)))
 		{
-            // 変更された際、インデックスをログに出力。
-			UE_LOG(LogTemp, Log, TEXT("ComboBoxValue: %d"), ComboBoxValue);
+			// 変更された際、インデックスをログに出力。
+			UE_LOG(LogTemp, Log, TEXT("ComboBoxSelectedIndex: %d"), ComboBoxSelectedIndex);
 		}
 
 		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
-
 	/// <summary>
 	/// テクスチャ表示
 	/// コンテンツブラウザの画像を参照して表示する例です。
@@ -220,9 +218,9 @@ namespace
 	/// </summary>
 	void TestInputField()
 	{
-		static char InputTextA[128] = "文字列入力";
-		static char InputTextB[16] = "123456789";
-		static char InputTextC[128] = "読み取り専用";
+		static char TextA[128] = "文字列入力";
+		static char TextB[16] = "123456789";
+		static char TextC[128] = "読み取り専用";
 
 		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
@@ -230,15 +228,15 @@ namespace
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestInputField");
 
-        // 入力フィールド表示、ユーザーがテキストを入力できるようになる
-		ImGui::InputText("LabelA", InputTextA, IM_ARRAYSIZE(InputTextA));
-        ImGui::InputText("LabelB", InputTextB, IM_ARRAYSIZE(InputTextB), ImGuiInputTextFlags_CharsDecimal); // 数字のみ入力可能
-        ImGui::InputText("LabelC", InputTextC, IM_ARRAYSIZE(InputTextC), ImGuiInputTextFlags_ReadOnly); // 読み取り専用
+		// 入力フィールド表示、ユーザーがテキストを入力できるようになる
+		ImGui::InputText("LabelA", TextA, IM_ARRAYSIZE(TextA));
+		ImGui::InputText("LabelB", TextB, IM_ARRAYSIZE(TextB), ImGuiInputTextFlags_CharsDecimal); // 数字のみ入力可能
+		ImGui::InputText("LabelC", TextC, IM_ARRAYSIZE(TextC), ImGuiInputTextFlags_ReadOnly); // 読み取り専用
 
-		// 入力済みテキスト表示。。
-		ImGui::Text("TextA: %s", InputTextA);
-		ImGui::Text("TextB: %s", InputTextB);
-		ImGui::Text("TextC: %s", InputTextC);
+		// 入力済みテキスト表示。
+		ImGui::Text("TextA: %s", TextA);
+		ImGui::Text("TextB: %s", TextB);
+		ImGui::Text("TextC: %s", TextC);
 
 		// ウィンドウ描画終了。
 		ImGui::End();
@@ -259,31 +257,31 @@ namespace
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestSimpleTable");
 
-        // テーブル開始。3列のテーブル、境界線と行背景を有効化。
+		// テーブル開始。3列のテーブル、境界線と行背景を有効化。
 		if (ImGui::BeginTable("Table1", 3, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg))
 		{
-            // テーブルの列を設定します。3つの列を定義。
+			// テーブルの列を設定します。3つの列を定義。
 			ImGui::TableSetupColumn("COL 1");
 			ImGui::TableSetupColumn("COL 2");
 			ImGui::TableSetupColumn("COL 3");
 
-            // テーブルのヘッダー行を定義。
+			// テーブルのヘッダー行を定義。
 			ImGui::TableHeadersRow();
 
-            // テーブルの行をループ、各セルにテキスト設定。
-			for (int row = 0; row < 5; ++row)
+			// テーブルの行をループ、各セルにテキスト設定。
+			for (int RowIndex = 0; RowIndex < 5; ++RowIndex)
 			{
-                // 新しい行開始。
+				// 新しい行開始。
 				ImGui::TableNextRow();
 
-                // 各列にテキスト設定。
-				for (int column = 0; column < 3; ++column)
+				// 各列にテキスト設定。
+				for (int ColumnIndex = 0; ColumnIndex < 3; ++ColumnIndex)
 				{
-                    ImGui::TableSetColumnIndex(column); // 列を選択。
-					ImGui::Text("%d-%d", row, column);
+					ImGui::TableSetColumnIndex(ColumnIndex); // 列を選択。
+					ImGui::Text("%d-%d", RowIndex, ColumnIndex);
 				}
 			}
-            // テーブル終了。
+			// テーブル終了。
 			ImGui::EndTable();
 		}
 
@@ -292,7 +290,6 @@ namespace
 
 		return;
 	}
-
 	/// <summary>
 	/// ツリーノード
 	/// ツリーノード表示の例です。
@@ -369,7 +366,7 @@ namespace
 	void TestColorPicker()
 	{
 		// カラーを保存する変数
-		static ImVec4 color = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);
+		static ImVec4 ColorValue = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);
 
 		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
@@ -377,19 +374,19 @@ namespace
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestColorPicker");
 
-        // カラーピッカーを表示。RGBA各成分を調整可能。
-		ImGui::ColorEdit4("RGBA", (float*)&color);
+		// カラーピッカーを表示。RGBA各成分を調整可能。
+		ImGui::ColorEdit4("RGBA", reinterpret_cast<float*>(&ColorValue));
 
-        // カラーピッカー（大きい版）を表示。ウィンドウに収めるのが難しいのでコメントアウト。
-		// ImGui::ColorPicker4("RGBA", (float*)&color);
+		// カラーピッカー（大きい版）を表示。ウィンドウに収めるのが難しいのでコメントアウト。
+		// ImGui::ColorPicker4("RGBA", reinterpret_cast<float*>(&ColorValue));
 
-        // 選択された色の値を表示
-		ImGui::Text("R: %.2f, G: %.2f, B: %.2f, A: %.2f", color.x, color.y, color.z, color.w);
+		// 選択された色の値を表示
+		ImGui::Text("R: %.2f, G: %.2f, B: %.2f, A: %.2f", ColorValue.x, ColorValue.y, ColorValue.z, ColorValue.w);
 
-        // 選択された色のプレビューを表示
-		ImGui::ColorButton("RGBA", color);
+		// 選択された色のプレビューを表示
+		ImGui::ColorButton("RGBA", ColorValue);
 
-        // ウィンドウ描画終了。	
+		// ウィンドウ描画終了。	
 		ImGui::End();
 		return;
 	}
@@ -401,7 +398,7 @@ namespace
 	/// </summary>
 	void TestProgressBar()
 	{
-        static float fraction = 0.7f;
+		static float ProgressFraction = 0.7f;
 
 		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
@@ -409,12 +406,12 @@ namespace
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestProgressBar");
 
-        // プログレスバーの表示。0.0から1.0の範囲で進捗率を指定。
-        // 自動的に0～100%の範囲で表示される。
-		ImGui::ProgressBar(fraction, ImVec2(0.0f, 0.0f)); // サイズ(0,0)は自動的に幅いっぱいで高さは規定値
+		// プログレスバーの表示。0.0から1.0の範囲で進捗率を指定。
+		// 自動的に0～100%の範囲で表示される。
+		ImGui::ProgressBar(ProgressFraction, ImVec2(0.0f, 0.0f)); // サイズ(0,0)は自動的に幅いっぱいで高さは規定値
 
 		// 進捗率をテキスト表示（%表記）
-		ImGui::Text("Progress: %f", fraction);
+		ImGui::Text("Progress: %f", ProgressFraction);
 
 		// ウィンドウ描画終了。
 		ImGui::End();
@@ -519,21 +516,21 @@ namespace
 		ImGui::Begin("TestStyleControl");
 
 		// ImGuiのスタイルを変更するための関数です。
-		ImGuiStyle& style = ImGui::GetStyle();
+		ImGuiStyle& Style = ImGui::GetStyle();
 
-        // スタイルの色を取得します。
-        const ImVec4 styleColor = style.Colors[ImGuiCol_Text];
+		// スタイルの色を取得します。
+		const ImVec4 StyleColor = Style.Colors[ImGuiCol_Text];
 
-        // スタイルの色を変更します。
-		style.Colors[ImGuiCol_Text] = ImVec4(1.0f, 0.5f, 0.5f, 1.0f); 
+		// スタイルの色を変更します。
+		Style.Colors[ImGuiCol_Text] = ImVec4(1.0f, 0.5f, 0.5f, 1.0f);
 		ImGui::Text("テキストカラー変更 赤");
-		style.Colors[ImGuiCol_Text] = ImVec4(0.5f, 1.0f, 0.5f, 1.0f);
+		Style.Colors[ImGuiCol_Text] = ImVec4(0.5f, 1.0f, 0.5f, 1.0f);
 		ImGui::Text("テキストカラー変更 緑");
-		style.Colors[ImGuiCol_Text] = ImVec4(0.5f, 0.5f, 1.0f, 1.0f);
+		Style.Colors[ImGuiCol_Text] = ImVec4(0.5f, 0.5f, 1.0f, 1.0f);
 		ImGui::Text("テキストカラー変更 青");
 
-        // スタイルの色を元に戻します。
-		style.Colors[ImGuiCol_Text] = styleColor;
+		// スタイルの色を元に戻します。
+		Style.Colors[ImGuiCol_Text] = StyleColor;
 
 		// ウィンドウ描画終了。
 		ImGui::End();
@@ -1745,16 +1742,6 @@ void AImGuiActor::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	FImGuiModule::Get().ReleaseTexture(TextureHandle);
 	FImGuiTextureHandle ButtonTextureHandle = FImGuiModule::Get().FindTextureHandle("ButtonTexture");
 	FImGuiModule::Get().ReleaseTexture(ButtonTextureHandle);
-}
-
-/**
- * 毎フレーム呼び出されるTick関数。
- * 必要に応じてアクターの状態更新などを行います。
- * @param DeltaTime 前フレームからの経過時間（秒）
- */
-void AImGuiActor::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
 }
 
 /**
