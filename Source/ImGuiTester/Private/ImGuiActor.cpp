@@ -546,9 +546,9 @@ namespace
 	/// </summary>
 	void TestFocusControl()
 	{
-        // 入力フィールド用のバッファ
-		static char buf1[128] = "First";
-		static char buf2[128] = "Second";
+		// 入力フィールド用のバッファ
+		static char BufferFirst[128] = "First";
+		static char BufferSecond[128] = "Second";
 
 		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
@@ -556,14 +556,14 @@ namespace
 		// ウィンドウ描画開始。
 		ImGui::Begin("TestFocusControl");
 
-        // 1つ目の入力フィールドを作成。
-		ImGui::InputText("無効", buf1, 128);
+		// 1つ目の入力フィールドを作成。
+		ImGui::InputText("無効", BufferFirst, 128);
 
-        // 次のアイテム（2つ目の入力フィールド）を優先フォーカスにします。
+		// 次のアイテム（2つ目の入力フィールド）を優先フォーカスにします。
 		ImGui::SetKeyboardFocusHere();
 
-        // 2つ目の入力フィールドを作成。
-		ImGui::InputText("優先", buf2, 128);
+		// 2つ目の入力フィールドを作成。
+		ImGui::InputText("優先", BufferSecond, 128);
 
 		// ウィンドウ描画終了。
 		ImGui::End();
@@ -577,51 +577,51 @@ namespace
 	/// </summary>
 	void TestDragDrop()
 	{
-        // ドラッグ&ドロップのテスト用のアイテムリスト
-		static std::vector<std::string> items = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5","Item 6","Item 7", "Item 8" };
+		// ドラッグ&ドロップのテスト用のアイテムリスト
+		static std::vector<std::string> ItemList = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8" };
 
 		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-        // ウィンドウ描画開始。
+		// ウィンドウ描画開始。
 		ImGui::Begin("TestDragDrop");
 
-		for (int i = 0; i < items.size(); i++)
+		for (int ItemIndex = 0; ItemIndex < ItemList.size(); ItemIndex++)
 		{
-            // アイテムを選択可能なリストとして表示します。
-			ImGui::Selectable(items[i].c_str());
+			// アイテムを選択可能なリストとして表示します。
+			ImGui::Selectable(ItemList[ItemIndex].c_str());
 
 			// ドラッグの開始
 			if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID))
 			{
-                // ドラッグ&ドロップのペイロードを設定します。
-				ImGui::SetDragDropPayload("DND_DEMO_ITEM", &i, sizeof(int));
+				// ドラッグ&ドロップのペイロードを設定します。
+				ImGui::SetDragDropPayload("DND_DEMO_ITEM", &ItemIndex, sizeof(int));
 
-                // ドラッグ&ドロップのソースを終了します。
+				// ドラッグ&ドロップのソースを終了します。
 				ImGui::EndDragDropSource();
 			}
 
-            // ドラッグ&ドロップのターゲットを設定します。
+			// ドラッグ&ドロップのターゲットを設定します。
 			if (ImGui::BeginDragDropTarget())
 			{
-                // ドラッグ&ドロップのペイロードを受け入れます。
-				if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_DEMO_ITEM"))
+				// ドラッグ&ドロップのペイロードを受け入れます。
+				if (const ImGuiPayload* Payload = ImGui::AcceptDragDropPayload("DND_DEMO_ITEM"))
 				{
-                    // ペイロードからドラッグ元のアイテムインデックスを取得します。
-					const int source_idx = *(const int*)payload->Data;
-					if (source_idx != i)
+					// ペイロードからドラッグ元のアイテムインデックスを取得します。
+					const int SourceIndex = *(const int*)Payload->Data;
+					if (SourceIndex != ItemIndex)
 					{
 						// ドラッグ元とドロップ先を入れ替える
-						std::swap(items[source_idx], items[i]);
+						std::swap(ItemList[SourceIndex], ItemList[ItemIndex]);
 					}
 				}
 
-                // ドラッグ&ドロップのターゲットを終了します。
+				// ドラッグ&ドロップのターゲットを終了します。
 				ImGui::EndDragDropTarget();
 			}
 		}
 
-        // ウィンドウ描画終了。
+		// ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
