@@ -4,14 +4,18 @@ ImGuiTesterは、Unreal Engine 5上でImGuiのUI部品のテスト・流用を�
 
 <img src="./Image/Top.png" width="640" height="360"/>
 
-## 解説
-ImGuiによるメニュー実装の効率化になればと思い作りました。<br>
-目的の機能を目で探すことができ、コピペによりある程度の実装が可能です。<br>
-実装する上で得た知見は[こちら](https://zenn.dev/link/comments/c6426d111bb491)にまとめてあります。<br>
 
 ## 動作環境
-- Unreal Engine 5.5.4
-- Visual Studio 2022
+- Unreal Engine 5.5.4以上  
+- VisualStudio2022
+
+### ImGuiについて
+- Unreal ImGuiプラグイン (benui-dev/UnrealImGui)：MIT License  
+  [GitHubリポジトリ](https://github.com/benui-dev/UnrealImGui)  
+  Unreal Engine 4/5向けにDear ImGuiを統合するプラグインです。
+
+- Dear ImGui (Omar Cornut)：MIT License  
+  [GitHubリポジトリ](https://github.com/ocornut/imgui)
 
 ## 主要ファイル
 - `Source/ImGuiTester/Private/ImGuiActor.cpp`  
