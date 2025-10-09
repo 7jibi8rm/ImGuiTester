@@ -1,22 +1,21 @@
 ﻿# ImGuiTester
 
-ImGuiTesterは、Unreal Engine 5上でImGuiのUI部品のテスト・流用を目的としたサンプルコード集です。
+ImGuiTesterは、UE5上でImGuiのテスト・流用を目的としたサンプルコード集です。
 
 <img src="./Image/Top.png" width="640" height="360"/>
 
 
 ## 動作環境
-- Unreal Engine 5.5.4以上  
-- VisualStudio2022
+- Unreal Engine 5.5.4
+- VisualStudio 2022
 
-### ImGuiについて
-- Unreal ImGuiプラグイン (benui-dev/UnrealImGui)：MIT License  
-  [GitHubリポジトリ](https://github.com/benui-dev/UnrealImGui)  
-  Unreal Engine 4/5向けにDear ImGuiを統合するプラグインです。
+### 使用しているImGuiについて
+- [Unreal ImGuiプラグイン (benui-dev/UnrealImGui)：MIT License](https://github.com/benui-dev/UnrealImGui)  
+  Unreal Engine 5 向けに Dear ImGui を統合するプラグイン。ImPlotなどの拡張にも対応。
 
-- Dear ImGui (Omar Cornut)：MIT License  
-  [GitHubリポジトリ](https://github.com/ocornut/imgui)
-
+- [Dear ImGui (Omar Cornut)：MIT License](https://github.com/ocornut/imgui)  
+  軽量で移植性の高い即時モードGUIライブラリ。Unreal ImGuiはこのライブラリをUnreal Engineに対応させたもの。
+ 
 ## 主要ファイル
 - `Source/ImGuiTester/Private/ImGuiActor.cpp`  
   ImGuiテスト用アクターの実装。サンプルコードは全てここに入っています。
@@ -25,7 +24,6 @@ ImGuiTesterは、Unreal Engine 5上でImGuiのUI部品のテスト・流用を�
 
 ## サンプルコード解説
 - タイトルリンクからサンプルコードの場所に移動できます。
-- 一部を除いてコピペによりサムネイルと同じUIが実装できます。
 
 
 <table>
@@ -387,4 +385,6 @@ ImGuiTesterは、Unreal Engine 5上でImGuiのUI部品のテスト・流用を�
   </tr>
 </table>
 
+## ライセンス
+This project is licensed under the MIT License. See the LICENSE file for details.
 
