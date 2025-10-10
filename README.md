@@ -14,11 +14,11 @@ ImGuiTesterは、UE5上でImGuiのテスト・流用を目的としたサンプ�
   Unreal Engine 5 向けに Dear ImGui を統合するプラグイン。ImPlotなどの拡張にも対応。
 
 - [Dear ImGui (Omar Cornut)：MIT License](https://github.com/ocornut/imgui)  
-  軽量で移植性の高い即時モードGUIライブラリ。Unreal ImGuiはこのライブラリをUnreal Engineに対応させたもの。
- 
+  軽量で移植性の高いGUIライブラリ。Unreal ImGuiはこのライブラリをUnreal Engineに対応させたもの。
+
 ## 主要ファイル
 - `Source/ImGuiTester/Private/ImGuiActor.cpp`  
-  ImGuiテスト用アクターの実装。サンプルコードは全てここに入っています。
+  ImGuiテスト用アクターの実装。サンプルコードは全てここ。
 - `Plugins/ImGui/`  
   ImGuiプラグイン本体。日本語化対応のため一部変更を加えています。
 
@@ -313,22 +313,19 @@ ImGuiTesterは、UE5上でImGuiのテスト・流用を目的としたサンプ�
   <tr>
     <td><img src="./Image/TestAudioControl.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1300-L1303">No.36 音声再生UI</a><br>
-      <span style="font-size:small;color:#555;">残念ながらImGui自体に音声再生機能はない…。</span><br>
-      <span style="font-size:small;color:#555;">音声再生する際はプラットフォーム側の再生機能を使用する必要があります。</span><br>
-      <span style="font-size:small;color:#555;">ImGuiとUEのサウンド再生を組み合わせた例です。</span><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1297-L1301">No.36 音声再生UI（未対応）</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestVideoEmbed.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1308-L1311">No.37 動画再生UI</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1306-L1310">No.37 動画再生UI（未対応）</a><br>
     </td>
   </tr>
   <tr>
     <td><img src="./Image/TestTagSelector.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1318-L1358">No.38 タグ選択風UI</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1317-L1357">No.38 タグ選択風UI</a><br>
       <span style="font-size:small;color:#555;">SmallButtonを利用したタグ選択風UIの例です。</span><br>
       <span style="font-size:small;color:#555;">複数のタグボタンを配置し、選択状態をトグルで判定しています。</span><br>
     </td>
@@ -336,7 +333,7 @@ ImGuiTesterは、UE5上でImGuiのテスト・流用を目的としたサンプ�
   <tr>
     <td><img src="./Image/TestHeaderCollapse.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1365-L1389">No.39 ヘッダーで折りたたみ</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1364-L1388">No.39 ヘッダーで折りたたみ</a><br>
       <span style="font-size:small;color:#555;">折りたたみ可能なブロックを配置する例です。</span><br>
       <span style="font-size:small;color:#555;">ヘッダー部分をクリックすると内容が展開・折りたたまれます。</span><br>
     </td>
@@ -344,7 +341,7 @@ ImGuiTesterは、UE5上でImGuiのテスト・流用を目的としたサンプ�
   <tr>
     <td><img src="./Image/TestFlexibleTable.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1396-L1438">No.40 行数・カラム数変更可能テーブル</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1395-L1437">No.40 行数・カラム数変更可能テーブル</a><br>
       <span style="font-size:small;color:#555;">ImGuiのテーブル機能を応用した例です。</span><br>
       <span style="font-size:small;color:#555;">スライダーで行数・カラム数を動的に変更し、テーブルの内容を更新します。</span><br>
     </td>
@@ -352,7 +349,7 @@ ImGuiTesterは、UE5上でImGuiのテスト・流用を目的としたサンプ�
   <tr>
     <td><img src="./Image/TestLineGraph.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1445-L1485">No.41 折れ線グラフ</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1444-L1484">No.41 折れ線グラフ</a><br>
       <span style="font-size:small;color:#555;">ImDrawListを使ってウィンドウ内に折れ線グラフを描画します。</span><br>
       <span style="font-size:small;color:#555;">カスタム描画の工夫によりグラフを実現しています。グラフ機能が存在するわけではありません。</span><br>
     </td>
@@ -360,7 +357,7 @@ ImGuiTesterは、UE5上でImGuiのテスト・流用を目的としたサンプ�
   <tr>
     <td><img src="./Image/TestThemeToggle.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1492-L1533">No.42 テーマ切替</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1491-L1532">No.42 テーマ切替</a><br>
       <span style="font-size:small;color:#555;">テーマ切り替え用メソッドのテストです。</span><br>
       <span style="font-size:small;color:#555;">ダーク・ライト・クラシック・カスタムテーマの4種類への切り替えを行います。</span><br>
     </td>
@@ -368,7 +365,7 @@ ImGuiTesterは、UE5上でImGuiのテスト・流用を目的としたサンプ�
   <tr>
     <td><img src="./Image/TestCursorCustom.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1541-L1567">No.43 マウスカーソルカスタマイズ</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1540-L1566">No.43 マウスカーソルカスタマイズ</a><br>
       <span style="font-size:small;color:#555;">マウスカーソルの形を変更する方法の例です。</span><br>
       <span style="font-size:small;color:#555;">ホバー時は左右リサイズ用のカーソル、通常時は矢印カーソルを表示します。</span><br>
       <span style="font-size:small;color:#555;">ImGui::SetMouseCursor()によりカーソル形状を変更しています。</span><br>
@@ -377,7 +374,7 @@ ImGuiTesterは、UE5上でImGuiのテスト・流用を目的としたサンプ�
   <tr>
     <td><img src="./Image/TestRowSortControl.png" width="128" height="128" /></td>
     <td style="vertical-align:middle; padding-left:10px;">
-      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1575-L1644">No.44 行の並び替え</a><br>
+      <a href="https://github.com/7jibi8rm/ImGuiTester/blob/master/Source/ImGuiTester/Private/ImGuiActor.cpp#L1574-L1643">No.44 行の並び替え</a><br>
       <span style="font-size:small;color:#555;">テーブルソート機能を利用したシンプルなサンプル。</span><br>
       <span style="font-size:small;color:#555;">ソート可能なテーブルで行データ（ID・名前・値）を表示します。</span><br>
       <span style="font-size:small;color:#555;">ヘッダークリックで昇順・降順の並び替えができます。</span><br>

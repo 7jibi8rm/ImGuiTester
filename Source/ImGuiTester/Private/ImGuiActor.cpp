@@ -1292,21 +1292,20 @@ namespace
 	}
 
 	/// <summary>
-	/// 音声再生UI
-	/// 残念ながらImGui自体に音声再生機能はない…。
-	/// 音声再生する際はプラットフォーム側の再生機能を使用する必要があります。
-    /// ImGuiとUEのサウンド再生を組み合わせた例です。
+	/// 音声再生UI（未対応）
 	/// </summary>
 	void TestAudioControl()
 	{
+        // ImGuiに音声再生機能はない、UE側で音を鳴らす。
 		return;
 	}
 
 	/// <summary>
-	/// 動画再生UI
+	/// 動画再生UI（未対応）
 	/// </summary>
 	void TestVideoEmbed()
 	{
+        // ImGuiに動画再生機能はない、UE側で動画再生してテクスチャをImGuiに渡す。
 		return;
 	}
 
