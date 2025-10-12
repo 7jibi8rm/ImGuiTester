@@ -96,6 +96,61 @@ namespace
 	}
 
 	/// <summary>
+	/// 固定位置にウィンドウを表示する
+    /// スクリーン中央・四隅にウィンドウを固定表示する例
+	/// 直近のウィンドウ座標指定で位置を固定、ボタンで位置変更。
+	/// </summary>
+	void TestFixPosWindow()
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		static ImVec2 pos = ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.5f);
+		static ImVec2 pivot = ImVec2(0.5f, 0.5f);
+
+		// 直近１つのウィンドウサイズ指定。
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
+
+		// 直近１つのウィンドウ座標指定。
+		ImGui::SetNextWindowPos(pos, ImGuiCond_Always, pivot);
+
+        // ウィンドウ描画開始。
+		ImGui::Begin("TestFixPosWindow");
+
+		if (ImGui::Button("上段")) {
+			pos.y  = 0.0f;
+			pivot.y= 0.0f;
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("中段")) {
+			pos.y  = io.DisplaySize.y * 0.5f;
+			pivot.y= 0.5f;
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("下段")) {
+			pos.y  = io.DisplaySize.y;
+			pivot.y= 1.0f;
+		}
+
+		if (ImGui::Button("左端")) {
+			pos.x = 0.0f;
+			pivot.x = 0.0f;
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("中央")) {
+			pos.x = io.DisplaySize.x * 0.5f;
+			pivot.x = 0.5f;
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("右端")) {
+			pos.x = io.DisplaySize.x;
+			pivot.x = 1.0f;
+		}
+		ImGui::Text("Pos(%f,%f)", pos.x, pos.y);
+		ImGui::Text("Pivot(%f,%f)", pivot.x, pivot.y);
+		ImGui::End();
+		return;
+	}
+
+	/// <summary>
 	/// チェックボックス
     /// チェックボックス配置の例です。
 	/// チェックボックスを３つ配置、状態を変数で管理し、その状態表示。
@@ -1657,6 +1712,7 @@ AImGuiActor::AImGuiActor()
 	TestCases.Add(FtestCase(TestSimpleWindow, TEXT("SimpleWindow")));    // ウィンドウを作成する
 	TestCases.Add(FtestCase(TestSimpleButton, TEXT("SimpleButton")));    // ボタンを表示する
 	TestCases.Add(FtestCase(TestShowText, TEXT("ShowText")));            // テキストを表示する
+    TestCases.Add(FtestCase(TestFixPosWindow, TEXT("TestFixPosWindow"))); // 固定位置にウィンドウを表示する
 	TestCases.Add(FtestCase(TestCheckBox, TEXT("CheckBox")));            // チェックボックスを作成する
 	TestCases.Add(FtestCase(TestSlider, TEXT("Slider")));				 // スライダーを操作する
 	TestCases.Add(FtestCase(TestComboBox, TEXT("ComboBox")));            // ドロップダウンリストを作成
