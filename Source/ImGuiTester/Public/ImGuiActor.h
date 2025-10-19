@@ -3,12 +3,12 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Containers/BitArray.h"
-#include "ImGuiTester/ImGuiCommon.h"  // ImGui
+#include "ImGuiTester/ImGuiCommon.h"
 #include "ImGuiActor.generated.h"
 
 /**
- * ImGuiによるデバッグUIやテスト機能を提供するアクタークラス。
- * Unreal EngineのTickやイベントに連動してImGuiのウィンドウやテストケースを管理します。
+ * ImGuiによるデバッグUIやテスト機能を提供するアクター。
+ * Unreal EngineのTickに連動してImGuiウィンドウやテストケースの実行を管理します。
  */
 UCLASS()
 class IMGUITESTER_API AImGuiActor : public AActor
@@ -17,70 +17,50 @@ class IMGUITESTER_API AImGuiActor : public AActor
 
 public:
 
-	/**
-	 * AImGuiActor クラスの新しいインスタンスを生成します。
-	 * ImGuiテストケースの初期化やTick設定を行います。
-	 */
+	/** コンストラクタ：ImGuiテストケースの初期化やTick設定を行う */
 	AImGuiActor();
 
-    /** サンプル用のテクスチャアセット。ImGuiウィンドウで表示するために使用されます。 */
-	UPROPERTY(EditAnywhere)
-	UTexture2D* SampleTexture;
+	/** ImGuiウィンドウで使用するサンプルテクスチャ */
+	UPROPERTY(EditAnywhere, Category = "ImGui|Assets")
+	UTexture2D* SampleTexture = nullptr;
 
-	/** サンプル用のテクスチャアセット。ImGuiウィンドウで表示するために使用されます。 */
-	UPROPERTY(EditAnywhere)
-	UTexture2D* ButtonTexture;
+	/** ImGuiウィンドウで使用するボタン用のテクスチャ */
+	UPROPERTY(EditAnywhere, Category = "ImGui|Assets")
+	UTexture2D* ButtonTexture = nullptr;
 
-
-#if WITH_IMGUI
 protected:
 
-	/**
-	 * ゲーム開始時またはアクターがスポーンされた際に呼び出されます。
-	 * ImGuiのTick関数をデリゲートにバインドします。
-	 */
+	/** アクター生成・開始時に呼び出され、ImGui Tickデリゲートを登録する */
 	virtual void BeginPlay() override;
 
-	/**
-	 * アクターの終了時やレベル遷移時に呼び出されます。
-	 * ImGuiのTick関数のデリゲート登録を解除します。
-	 * @param EndPlayReason 終了理由
-	 */
+	/** アクター終了時またはレベル遷移時に呼び出され、ImGui Tickデリゲートを解除する */
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-
-public:
-
-	/**
-	 * ImGui描画用のTick関数。
-	 * ImGuiのウィンドウ表示やテストケースのUI制御・実行を行います。
-	 */
-	void ImGuiTick();
 
 private:
 
-	/**
-	 * テストケース情報を保持する構造体。
-	 * - FlagIndex: テストケースの識別子
-	 * - TestFunction: 実行するテスト関数
-	 * - Name: テスト名（UI表示用）
-	 * - Description: テスト内容の説明
-	 */
-	struct FtestCase
-	{
-		TFunction<void()> TestFunction{};   ///< テスト実行用関数
-		FString Name{};                     ///< テスト名
-        bool bDisplayed{ false };			///< UI表示フラグ
+	/** ImGui描画用Tick関数。ImGuiのUI表示・テスト制御を行う */
+	void ImGuiTick();
 
-		FtestCase(TFunction<void()> InTestFunction, const FString& InName)
-			: TestFunction(InTestFunction), Name(InName) {
+	/**
+	 * テストケースの構造体。
+	 * - TestFunction: 実行するImGuiテスト関数
+	 * - Name: テスト名
+	 * - bDisplayed: 現在UI上に表示されているかのフラグ
+	 */
+	struct FTestCase
+	{
+        TFunction<void()> TestFunction;	// ImGuiテスト関数
+        FString Name;					// テスト名
+        bool bDisplayed = false;		// UI上に表示されているかのフラグ
+
+		FTestCase() = default;
+		FTestCase(TFunction<void()> InTestFunction, const FString& InName)
+			: TestFunction(MoveTemp(InTestFunction))
+			, Name(InName)
+		{
 		}
 	};
 
-	/**
-	 * 登録されている全テストケースのリスト。
-	 * ImGuiのUIでボタンや説明文として利用されます。
-	 */
-	TArray<FtestCase> TestCases{};
-
-#endif // WITH_IMGUI
+	/** 登録済みすべてのテストケースリスト */
+	TArray<FTestCase> TestCases;
 };

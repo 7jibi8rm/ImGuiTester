@@ -2,8 +2,6 @@
 #include <functional>
 #include <map>
 
-#if WITH_IMGUI
-
 namespace
 {
 
@@ -96,60 +94,99 @@ namespace
 	}
 
 	/// <summary>
+	/// 大きいテキスト表示
+    /// スケールをかけたテキスト表示の例です。
+    /// ImGuiはフォントサイズ変更ができない。ウィンドウのスケールを変更して対応します。
+	/// 厳密にやりたい場合、大きいフォント追加が必要。
+	/// </summary>
+	void TestShowBigText()
+	{
+		// 直近１つのウィンドウサイズ指定。
+		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
+
+		// ウィンドウ描画開始。
+		ImGui::Begin("TestShowBigText");
+
+        // 通常サイズのテキスト表示。
+		ImGui::Text("拡大テキスト");
+
+		// 通常の1.5倍サイズにスケールアップ
+		ImGui::SetWindowFontScale(1.5f);
+		ImGui::Text("拡大テキスト");
+
+		// 通常の2倍サイズにスケールアップ
+		ImGui::SetWindowFontScale(2.0f); 
+		ImGui::Text("拡大テキスト");
+
+        // スケールを元に戻す
+		ImGui::SetWindowFontScale(1.0f);
+
+		// ウィンドウ描画終了。
+		ImGui::End();
+		return;
+	}
+
+
+	/// <summary>
 	/// 固定位置にウィンドウを表示する
     /// スクリーン中央・四隅にウィンドウを固定表示する例
 	/// 直近のウィンドウ座標指定で位置を固定、ボタンで位置変更。
 	/// </summary>
 	void TestFixPosWindow()
 	{
-		ImGuiIO& io = ImGui::GetIO();
-		static ImVec2 pos = ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.5f);
-		static ImVec2 pivot = ImVec2(0.5f, 0.5f);
+        // 画面サイズの中央にウィンドウを表示する。
+		ImGuiIO& ImGuiIo = ImGui::GetIO();
+		static ImVec2 VecPos = ImVec2(ImGuiIo.DisplaySize.x * 0.5f, ImGuiIo.DisplaySize.y * 0.5f);
+		static ImVec2 VecPivot = ImVec2(0.5f, 0.5f);
 
-		// 直近１つのウィンドウサイズ指定。
+        // 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
 
-		// 直近１つのウィンドウ座標指定。
-		ImGui::SetNextWindowPos(pos, ImGuiCond_Always, pivot);
+        // 直近１つのウィンドウ座標指定。
+		ImGui::SetNextWindowPos(VecPos, ImGuiCond_Always, VecPivot);
 
         // ウィンドウ描画開始。
 		ImGui::Begin("TestFixPosWindow");
 
+        // ボタンで位置変更。
 		if (ImGui::Button("上段")) {
-			pos.y  = 0.0f;
-			pivot.y= 0.0f;
+			VecPos.y = 0.0f;
+			VecPivot.y = 0.0f;
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("中段")) {
-			pos.y  = io.DisplaySize.y * 0.5f;
-			pivot.y= 0.5f;
+			VecPos.y = ImGuiIo.DisplaySize.y * 0.5f;
+			VecPivot.y = 0.5f;
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("下段")) {
-			pos.y  = io.DisplaySize.y;
-			pivot.y= 1.0f;
+			VecPos.y = ImGuiIo.DisplaySize.y;
+			VecPivot.y = 1.0f;
 		}
 
 		if (ImGui::Button("左端")) {
-			pos.x = 0.0f;
-			pivot.x = 0.0f;
+			VecPos.x = 0.0f;
+			VecPivot.x = 0.0f;
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("中央")) {
-			pos.x = io.DisplaySize.x * 0.5f;
-			pivot.x = 0.5f;
+			VecPos.x = ImGuiIo.DisplaySize.x * 0.5f;
+			VecPivot.x = 0.5f;
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("右端")) {
-			pos.x = io.DisplaySize.x;
-			pivot.x = 1.0f;
+			VecPos.x = ImGuiIo.DisplaySize.x;
+			VecPivot.x = 1.0f;
 		}
-		ImGui::Text("Pos(%f,%f)", pos.x, pos.y);
-		ImGui::Text("Pivot(%f,%f)", pivot.x, pivot.y);
+
+        // 現在の位置表示。
+		ImGui::Text("Pos(%f,%f)", VecPos.x, VecPos.y);
+		ImGui::Text("Pivot(%f,%f)", VecPivot.x, VecPivot.y);
+
+        // ウィンドウ描画終了。
 		ImGui::End();
 		return;
 	}
-
 	/// <summary>
 	/// チェックボックス
     /// チェックボックス配置の例です。
@@ -602,8 +639,9 @@ namespace
 	void TestFocusControl()
 	{
 		// 入力フィールド用のバッファ
-		static char BufferFirst[128] = "First";
-		static char BufferSecond[128] = "Second";
+        const int BufferSize = 128;
+		static char BufferFirst[BufferSize] = "First";
+		static char BufferSecond[BufferSize] = "Second";
 
 		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(150, 150), ImGuiCond_Once);
@@ -612,13 +650,13 @@ namespace
 		ImGui::Begin("TestFocusControl");
 
 		// 1つ目の入力フィールドを作成。
-		ImGui::InputText("無効", BufferFirst, 128);
+		ImGui::InputText("無効", BufferFirst, BufferSize);
 
 		// 次のアイテム（2つ目の入力フィールド）を優先フォーカスにします。
 		ImGui::SetKeyboardFocusHere();
 
 		// 2つ目の入力フィールドを作成。
-		ImGui::InputText("優先", BufferSecond, 128);
+		ImGui::InputText("優先", BufferSecond, BufferSize);
 
 		// ウィンドウ描画終了。
 		ImGui::End();
@@ -717,7 +755,7 @@ namespace
 	/// </summary>
 	void TestInputMonitor()
 	{
-		ImGuiIO& io = ImGui::GetIO();
+		ImGuiIO& ImGuiIo = ImGui::GetIO();
 
 		// 直近１つのウィンドウサイズ指定。
 		ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiCond_Once);
@@ -726,24 +764,28 @@ namespace
 		ImGui::Begin("TestInputMonitor");
 
 		// マウスの位置取得
-		ImVec2 mousePos = io.MousePos;
-		ImGui::Text("Mouse Position: (%.1f, %.1f)", mousePos.x, mousePos.y);
+		ImVec2 MousePosition = ImGuiIo.MousePos;
+		ImGui::Text("Mouse Position: (%.1f, %.1f)", MousePosition.x, MousePosition.y);
 
 		// マウスボタンの状態
-		bool mouseLeftDown = io.MouseDown[0];
-		ImGui::Text("Left Mouse Button: %s", mouseLeftDown ? "Down" : "Up");
+		bool bIsMouseLeftDown = ImGuiIo.MouseDown[0];
+		ImGui::Text("Left Mouse Button: %s", bIsMouseLeftDown ? "Down" : "Up");
 
 		// キーの押下状態監視（例：スペースキー）
-		bool spacePressed = ImGui::IsKeyPressed(ImGuiKey_Space);
-		ImGui::Text("Space Key: %s", spacePressed ? "Pressed" : "Released");
+		bool bIsSpacePressed = ImGui::IsKeyPressed(ImGuiKey_Space);
+		ImGui::Text("Space Key: %s", bIsSpacePressed ? "Pressed" : "Released");
 
 		// ImGuiがキーボード入力を受け付け中か判定
-		if (io.WantCaptureKeyboard)
+		if (ImGuiIo.WantCaptureKeyboard)
+		{
 			ImGui::Text("ImGui is capturing keyboard input");
+		}
 
 		// ImGuiがマウス入力を受け付け中か判定
-		if (io.WantCaptureMouse)
+		if (ImGuiIo.WantCaptureMouse)
+		{
 			ImGui::Text("ImGui is capturing mouse input");
+        }
 
 		// ウィンドウ描画終了。
 		ImGui::End();
@@ -1709,51 +1751,52 @@ AImGuiActor::AImGuiActor()
 	PrimaryActorTick.bCanEverTick = true;
 
 	// テストケース情報を追加
-	TestCases.Add(FtestCase(TestSimpleWindow, TEXT("SimpleWindow")));    // ウィンドウを作成する
-	TestCases.Add(FtestCase(TestSimpleButton, TEXT("SimpleButton")));    // ボタンを表示する
-	TestCases.Add(FtestCase(TestShowText, TEXT("ShowText")));            // テキストを表示する
-    TestCases.Add(FtestCase(TestFixPosWindow, TEXT("TestFixPosWindow"))); // 固定位置にウィンドウを表示する
-	TestCases.Add(FtestCase(TestCheckBox, TEXT("CheckBox")));            // チェックボックスを作成する
-	TestCases.Add(FtestCase(TestSlider, TEXT("Slider")));				 // スライダーを操作する
-	TestCases.Add(FtestCase(TestComboBox, TEXT("ComboBox")));            // ドロップダウンリストを作成
-	TestCases.Add(FtestCase(TestShowImage, TEXT("ShowImage")));          // 画像を表示する
-	TestCases.Add(FtestCase(TestInputField, TEXT("InputField")));        // ラベル付き入力フィールド
-	TestCases.Add(FtestCase(TestSimpleTable, TEXT("SimpleTable")));      // テーブルを表示する
-	TestCases.Add(FtestCase(TestTreeNode, TEXT("TreeNode")));            // ツリーノードを作成
-	TestCases.Add(FtestCase(TestShowTooltip, TEXT("ShowTooltip")));      // ツールチップを表示
-	TestCases.Add(FtestCase(TestColorPicker, TEXT("ColorPicker")));      // カラー選択ダイアログを表示
-	TestCases.Add(FtestCase(TestProgressBar, TEXT("ProgressBar")));      // プログレスバーを表示
-	TestCases.Add(FtestCase(TestMenuBar, TEXT("MenuBar")));              // メニューを作成する
-	TestCases.Add(FtestCase(TestTabWidget, TEXT("TabWidget")));          // タブを作成する
-	TestCases.Add(FtestCase(TestStyleControl, TEXT("StyleControl")));    // スタイルを変更する
-	TestCases.Add(FtestCase(TestFocusControl, TEXT("FocusControl")));    // フォーカス制御
-	TestCases.Add(FtestCase(TestDragDrop, TEXT("DragDrop")));            // ドラッグ&ドロップを実装する
-	TestCases.Add(FtestCase(TestChildWindow, TEXT("ChildWindow")));      // 子ウィンドウ・領域を作る
-	TestCases.Add(FtestCase(TestInputMonitor, TEXT("InputMonitor")));    // 入力状態を監視
-	TestCases.Add(FtestCase(TestImageButton, TEXT("ImageButton")));      // 画像ボタンを設置
-	TestCases.Add(FtestCase(TestLayoutAdjust, TEXT("LayoutAdjust")));    // レイアウトをスペースで調整
-	TestCases.Add(FtestCase(TestColumnLayout, TEXT("ColumnLayout")));    // 行や列を分割配置
-	TestCases.Add(FtestCase(TestModalDialog, TEXT("ModalDialog")));      // モーダルダイアログを表示
-	TestCases.Add(FtestCase(TestClipboard, TEXT("Clipboard")));          // データをコピー&ペースト
-	TestCases.Add(FtestCase(TestHelpNote, TEXT("HelpNote")));            // ノートやヘルプウィンドウ
-	TestCases.Add(FtestCase(TestZoomPan, TEXT("ZoomPan")));              // ズーム/パン操作
-	TestCases.Add(FtestCase(TestCanvasDraw, TEXT("CanvasDraw")));        // キャンバス描画
-	TestCases.Add(FtestCase(TestScrollSync, TEXT("ScrollSync")));        // スクロール同期
-	TestCases.Add(FtestCase(TestFilterList, TEXT("FilterList")));        // フィルタリングリスト
-	TestCases.Add(FtestCase(TestMultiSelectList, TEXT("MultiSelectList"))); // 複数選択リストボックス
-	TestCases.Add(FtestCase(TestMultiLineInput, TEXT("MultiLineInput"))); // マルチライン入力
-	TestCases.Add(FtestCase(TestNumberStepper, TEXT("NumberStepper")));  // 数値ステッパー
-	TestCases.Add(FtestCase(TestTransformWidget, TEXT("TransformWidget"))); // 回転/スケールUI
-	TestCases.Add(FtestCase(TestPasswordInput, TEXT("PasswordInput")));  // パスワード入力
-	TestCases.Add(FtestCase(TestAudioControl, TEXT("AudioControl")));    // 音声再生UI
-	TestCases.Add(FtestCase(TestVideoEmbed, TEXT("VideoEmbed")));        // ビデオ埋め込みUI
-	TestCases.Add(FtestCase(TestTagSelector, TEXT("TagSelector")));      // タグ選択UI
-	TestCases.Add(FtestCase(TestHeaderCollapse, TEXT("HeaderCollapse"))); // ヘッダーで折りたたみ
-	TestCases.Add(FtestCase(TestFlexibleTable, TEXT("FlexibleTable")));  // 行数・カラム数変更可能テーブル
-	TestCases.Add(FtestCase(TestLineGraph, TEXT("LineGraph")));			// 折れ線グラフ
-	TestCases.Add(FtestCase(TestThemeToggle, TEXT("ThemeToggle")));      // テーマ切替（複数テーマ対応）
-	TestCases.Add(FtestCase(TestCursorCustom, TEXT("CursorCustom")));    // マウスカーソルカスタマイズ
-	TestCases.Add(FtestCase(TestRowSortControl, TEXT("RowSortControl"))); // 行の並び替え
+	TestCases.Add(FTestCase(TestSimpleWindow, TEXT("SimpleWindow")));    // ウィンドウを作成する
+	TestCases.Add(FTestCase(TestSimpleButton, TEXT("SimpleButton")));    // ボタンを表示する
+	TestCases.Add(FTestCase(TestShowText, TEXT("ShowText")));            // テキストを表示する
+	TestCases.Add(FTestCase(TestShowBigText, TEXT("ShowBigText")));      // 大きいテキスト表示
+    TestCases.Add(FTestCase(TestFixPosWindow, TEXT("FixPosWindow")));    // 固定位置にウィンドウを表示する
+	TestCases.Add(FTestCase(TestCheckBox, TEXT("CheckBox")));            // チェックボックスを作成する
+	TestCases.Add(FTestCase(TestSlider, TEXT("Slider")));				 // スライダーを操作する
+	TestCases.Add(FTestCase(TestComboBox, TEXT("ComboBox")));            // ドロップダウンリストを作成
+	TestCases.Add(FTestCase(TestShowImage, TEXT("ShowImage")));          // 画像を表示する
+	TestCases.Add(FTestCase(TestInputField, TEXT("InputField")));        // ラベル付き入力フィールド
+	TestCases.Add(FTestCase(TestSimpleTable, TEXT("SimpleTable")));      // テーブルを表示する
+	TestCases.Add(FTestCase(TestTreeNode, TEXT("TreeNode")));            // ツリーノードを作成
+	TestCases.Add(FTestCase(TestShowTooltip, TEXT("ShowTooltip")));      // ツールチップを表示
+	TestCases.Add(FTestCase(TestColorPicker, TEXT("ColorPicker")));      // カラー選択ダイアログを表示
+	TestCases.Add(FTestCase(TestProgressBar, TEXT("ProgressBar")));      // プログレスバーを表示
+	TestCases.Add(FTestCase(TestMenuBar, TEXT("MenuBar")));              // メニューを作成する
+	TestCases.Add(FTestCase(TestTabWidget, TEXT("TabWidget")));          // タブを作成する
+	TestCases.Add(FTestCase(TestStyleControl, TEXT("StyleControl")));    // スタイルを変更する
+	TestCases.Add(FTestCase(TestFocusControl, TEXT("FocusControl")));    // フォーカス制御
+	TestCases.Add(FTestCase(TestDragDrop, TEXT("DragDrop")));            // ドラッグ&ドロップを実装する
+	TestCases.Add(FTestCase(TestChildWindow, TEXT("ChildWindow")));      // 子ウィンドウ・領域を作る
+	TestCases.Add(FTestCase(TestInputMonitor, TEXT("InputMonitor")));    // 入力状態を監視
+	TestCases.Add(FTestCase(TestImageButton, TEXT("ImageButton")));      // 画像ボタンを設置
+	TestCases.Add(FTestCase(TestLayoutAdjust, TEXT("LayoutAdjust")));    // レイアウトをスペースで調整
+	TestCases.Add(FTestCase(TestColumnLayout, TEXT("ColumnLayout")));    // 行や列を分割配置
+	TestCases.Add(FTestCase(TestModalDialog, TEXT("ModalDialog")));      // モーダルダイアログを表示
+	TestCases.Add(FTestCase(TestClipboard, TEXT("Clipboard")));          // データをコピー&ペースト
+	TestCases.Add(FTestCase(TestHelpNote, TEXT("HelpNote")));            // ノートやヘルプウィンドウ
+	TestCases.Add(FTestCase(TestZoomPan, TEXT("ZoomPan")));              // ズーム/パン操作
+	TestCases.Add(FTestCase(TestCanvasDraw, TEXT("CanvasDraw")));        // キャンバス描画
+	TestCases.Add(FTestCase(TestScrollSync, TEXT("ScrollSync")));        // スクロール同期
+	TestCases.Add(FTestCase(TestFilterList, TEXT("FilterList")));        // フィルタリングリスト
+	TestCases.Add(FTestCase(TestMultiSelectList, TEXT("MultiSelectList"))); // 複数選択リストボックス
+	TestCases.Add(FTestCase(TestMultiLineInput, TEXT("MultiLineInput"))); // マルチライン入力
+	TestCases.Add(FTestCase(TestNumberStepper, TEXT("NumberStepper")));  // 数値ステッパー
+	TestCases.Add(FTestCase(TestTransformWidget, TEXT("TransformWidget"))); // 回転/スケールUI
+	TestCases.Add(FTestCase(TestPasswordInput, TEXT("PasswordInput")));  // パスワード入力
+	TestCases.Add(FTestCase(TestAudioControl, TEXT("AudioControl")));    // 音声再生UI
+	TestCases.Add(FTestCase(TestVideoEmbed, TEXT("VideoEmbed")));        // ビデオ埋め込みUI
+	TestCases.Add(FTestCase(TestTagSelector, TEXT("TagSelector")));      // タグ選択UI
+	TestCases.Add(FTestCase(TestHeaderCollapse, TEXT("HeaderCollapse"))); // ヘッダーで折りたたみ
+	TestCases.Add(FTestCase(TestFlexibleTable, TEXT("FlexibleTable")));  // 行数・カラム数変更可能テーブル
+	TestCases.Add(FTestCase(TestLineGraph, TEXT("LineGraph")));			// 折れ線グラフ
+	TestCases.Add(FTestCase(TestThemeToggle, TEXT("ThemeToggle")));      // テーマ切替（複数テーマ対応）
+	TestCases.Add(FTestCase(TestCursorCustom, TEXT("CursorCustom")));    // マウスカーソルカスタマイズ
+	TestCases.Add(FTestCase(TestRowSortControl, TEXT("RowSortControl"))); // 行の並び替え
 }
 
 /**
@@ -1809,7 +1852,7 @@ void AImGuiActor::ImGuiTick()
 	ImGui::Begin("TestMenu", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
 	// テストケースごとにボタンと説明を表示
-	for (FtestCase& TestCase : TestCases)
+	for (FTestCase& TestCase : TestCases)
 	{
 		std::string NameStr = TCHAR_TO_UTF8(*TestCase.Name);
 		if (ImGui::Button(NameStr.c_str()))
@@ -1830,7 +1873,7 @@ void AImGuiActor::ImGuiTick()
 	ImGui::End();
 
 	// 有効なテストケースを実行
-	for (const FtestCase& TestCase : TestCases)
+	for (const FTestCase& TestCase : TestCases)
 	{
 		if (TestCase.bDisplayed)
 		{
@@ -1841,5 +1884,3 @@ void AImGuiActor::ImGuiTick()
 		}
 	}
 }
-
-#endif // WITH_IMGUI
